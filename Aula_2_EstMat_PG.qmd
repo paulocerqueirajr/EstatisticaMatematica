@@ -1,0 +1,1205 @@
+---
+format:
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    #logo: "faest.png"
+    #footer: "[https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)"
+    code-copy: true
+    center-title-slide: false
+    lang: pt
+    transition: fade
+    transition-speed: default
+highlight-style: a11y
+code-link: true
+height: 1080
+width: 1600
+execute: 
+  eval: true
+  echo: true
+---
+
+<h1> Estatística Matemática </h1>
+
+<h2> Verossimilhança </h2>
+
+<hr>
+
+<br>
+
+<h3> Prof. Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br>
+Faculdade de Estatística - FAEST <br>
+Programa de Pós-Graduação em Matemática e Estatística - PPGME<br>
+Instituto de Ciências Exatas e Naturais - ICEN
+</h3>
+
+<h3>  </h3>
+<br>
+
+<h3> [https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)
+
+![](github.jpg){.absolute top=620 left=845 height="90"}
+
+
+![](ppgme.jpg){.absolute top=5 left=1400 height="200"}
+
+<!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# [Modelos estatísticos]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+
+## Modelos Estatísticos
+
+* Nosso ponto de partida será um estudo empírico (pode ser experimental ou observacional) que irá fornecer certo conjunto de dados (amostra) que denotamos por $\textbf{y}$. Nos casos mais simples,
+$\textbf{y} = (y_1,y_2,\dots,y_n)’$.
+
+> **Suposição fundamental:** considere $\textbf{y}$ como um valor obtido de uma vetor aleatório $Y$.
+
+* Nosso objetivo é usar $\textbf{y}$ para tirar conclusões sobre a distribuição desconhecida $F(\cdot)$ de $Y$.
+
+* Nossas conclusões sobre $F(\cdot)$ estão sujeitas à incerteza dado a aleatoriedade governando $Y$ (que irá produzir $\textbf{y}$). Devemos certificar que:
+
+   - O nível de incerteza é o menor possível, considerando a
+aleatoriedade de $Y$.
+   
+   - Somos capazes de avaliar o nível de incerteza em nossas conclusões.
+
+
+## Modelos Estatísticos
+
+* A natureza física do fenômeno que gera $\textbf{y}$, o esquema de amostragem, e outras informações, irão colocar limites no conjunto de possíveis escolhas para $F(\cdot)$. 
+
+* Este conjunto (denotado por $\mathcal{F}$) é chamado de modelo estatístico.
+
+* É intuitivo pensar que nossa inferênias serão mais precisas de formos capazes de selecionar o conjunto $\mathcal{F}$ menor possível, sob o requerimento de que $F\in \mathcal{F}$.
+
+
+* Em alguns casos, podemos assumir que $Y$ é uma a. a. com componentes independentes e identicamentes distribuídos. Neste caso, dizemos que $\textbf{y}$ é uma a.a. simples de $Y$.
+
+
+# Modelos paramétricos
+
+## Modelos paramétricos
+
+* A princípio, $\mathcal{F}$ pode ser qualquer conjunto de funções de distribuições, mas existe uma categoria de tais conjuntos que possui importante papel, tanto do ponto de vista teórico quando aplicado.
+
+* Este caso ocorre todos os elementos de $\mathcal{F}$ são funções com a mesma formulação matemática, identificadas apenas pelas diferentes especificações de $\theta$, que varia em $\Theta\in \mathbb{R}^{k}$,
+
+$$\mathcal{F}=\left\{ F(\cdot\mid \theta): \theta \in \Theta  \subseteq \mathbb{R}^{k}\right\} $$
+
+
+## Modelos paramétricos
+
+* Na grande maioria dos casos (em todos os casos que iremos considerar neste curso), toda a função de distribuição membro de $\mathcal{F}$ refere-se a v.a. discretas ou contínuas.
+
+
+* Então, $\mathcal{F}$ pode ser definida usando as f.p. ou f.d. correspondentes.
+
+* Podemos definir um modelo estatístico $\mathcal{F}$ (caso contínuo) como um conjunto de f.d's
+
+$$\mathcal{F}=\left\{ f(\cdot\mid \theta): \theta \in \Theta  \subseteq \mathbb{R}^{k}\right\} $$
+
+$\theta:$ parâmetro.
+
+$\Theta:$ espaço paramétrico.
+
+* $\mathcal{F}$, indicado acima, é chamado de classe paramétrica ou modelo paramétrico.
+
+* Portanto, os elementos de $\mathcal{F}$ estão associados aos elementos de $\Theta$.
+
+* Em particular, existe um valor $\theta^{*}\in\Theta$, associado a $F(\cdot)$, chamado de **valor real** do parâmetro, e nossas inferências serão sobre $\theta^{*}$
+
+
+## Modelos paramétricos
+
+:::{#def-def1}
+## Espaço amostral 
+É o conjunto $\mathcal{Y}$ de todos os possíveis resultados $y$ compatíveis com o modelo paramétrico dado.
+:::
+
+* Formalmente denotado por $\mathcal{Y}_{\theta}$ o suporte (domínio) da densidade $f(\cdot;\theta)$, o espaço amostral é dado por $\mathcal{Y}=\bigcup\limits_{\theta\in \Theta} \mathcal{Y}_{\theta}$.
+
+* Frequentemente, entretanto, $\mathcal{Y}_{\theta}$ é o mesmo que as possíveis escolhas de $\theta$, e este conjunto coincidirá com $\mathcal{Y}$.
+
+:::{#exm-exm1} 
+Assuma que $Y\sim Binomial (n, \theta)$. Se $\theta \in [0,1]$, $\mathcal{Y}_{\theta}$ será o mesmo para todo $\theta$.  $\mathcal{Y}_{\theta}$ coincidirá com o espaço amostral $\mathcal{Y}=\{0,1,2,\dots,n\}$.
+:::
+
+
+* Se $\theta\in [0,1]$, então  $\mathcal{Y}_{\theta=0}=\{0\}$, $\mathcal{Y}_{\theta=1}=\{n\}$ e $\mathcal{Y}_{\theta\in(0,1)}=\{0,1,\dots,n\}$.
+
+* Neste caso, $\mathcal{Y}=\bigcup\limits_{\theta\in [0,1]} \mathcal{Y}_{\theta}=\{0,1,\, \dots,n\}$.
+
+
+## Modelos paramétricos
+
+
+:::{#exm-exm2}  
+Se dois valores são amostrados independentemente da $N(\theta,1)$, então $\textbf{y}=(y_{1},y_{2})^{\top}$, onde $y_{i}\in\mathbb{R}\ (i=1,2),$
+:::
+
+$$\mathcal{Y}=\mathbb{R}\times\mathbb{R}, \quad Y\sim N \left[\begin{array}{c}\theta\\
+\theta\end{array}, I_{2}\right],$$
+
+
+em que,
+
+$$f(y; \theta)=\phi(y_{1}-\theta)\phi(y_{2}-\theta)$$
+
+* Se não houver qualquer restrição para $\theta$, temos $\Theta=\mathbb{R}$.
+
+
+* Se existir restrição (ex. sabemos que $\theta>0$)
+
+
+
+# [Famílias de locação e escala]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+
+## Famílias de locação e escala
+
+* Aqui discutiremos três técnicas para construir famílias de distribuições. 
+
+* As famílias resultantes possuem interpretações físicas diretas que as tornam úteis para modelagem, além de apresentarem propriedades matemáticas convenientes. Considere apenas o caso contínuo.
+
+* Os 3 tipos de famílias são: 
+
+   i. locação;
+   
+   ii. lscala e
+   
+   iii. locação e escala.
+
+* Cada família é construída pela especificação de uma f.d $f(x)$ chamada de densidade padrão da família.
+
+* Todas as outras densidades da família podem ser geradas pela
+transformação da densidade padrão.
+
+
+## Famílias de locação e escala
+
+>:::{#thm-thm1} 
+Seja $f(x)$ qualquer f.d. e considere $\mu$ e $\sigma>0$ como constantes conhecidas. Então, a função $g(x| \mu,\sigma)=\dfrac{1}{\sigma}f\left(\dfrac{x-\mu}{\sigma}\right)$ é uma f.d.
+:::
+
+**Prova:** Para verificar que a transformação produziu um f.d. legítima, precisamos verificar que $$\dfrac{1}{\sigma}f\left(\dfrac{x-\mu}{\sigma}\right)$$ se é: 
+
+. . .
+
+1. não negativa;
+
+. . . 
+
+2. integra 1.
+
+. . .
+
+* Logo, em relação a `1.`, tem-se
+
+$f(x)$ é uma f.d.$\Rightarrow f(x)>0, \forall x$, então $\dfrac{1}{\sigma}f\left(\dfrac{x-\mu}{\sigma}\right)>0$, para todos os valores de $x, \mu$ e $\sigma$.
+
+
+
+## Famílias de Locação  e Escala.
+
+
+* Referente a `2.`
+
+$$\int\limits_{-\infty}^{\infty}\dfrac{1}{\sigma}f\left(\dfrac{x-\mu}{\sigma}\right)dx, \quad \quad y=\dfrac{x-\mu}{\sigma} \ \text{e} \ dy=\dfrac{1}{\sigma}.$$
+
+Logo,
+
+$$\int\limits_{-\infty}^{\infty}\dfrac{1}{\sigma}f\left(y\right)\sigma dy = \int\limits_{-\infty}^{\infty}f\left(y\right)dy=1.$$
+
+
+## Famílias de Locação  e Escala.
+
+:::{#def-def2} 
+Seja $f(x)$ qualquer f.d., então a família de densidades $f(x-\mu)$ indexada pelo parâmetro real $\mu$ é chamada de **família de locação
+(localização)** com densidade padrão $f(x)$. O $\mu$ é conhecido como **parâmetro de localização da família**.
+:::
+
+* O parâmetro $\mu$ simplesmente desloca a densidade $f(x)$ de maneira que o formato do gráfico não é alterado, mas o ponto do gráfico de $f(x)$ que estava acima de $x = 0$, estará agora acima de $x = \mu$ para $f(x-\mu)$.
+
+:::{#exm-exm3} 
+Se $\sigma>0$ é especificado e definimos
+
+$$f(x)=(2\pi\sigma^2)^{-1/2}\exp\left\{-\dfrac{1}{2\sigma^2}\left(x-\mu\right)^2\right\}I_{(-\infty,\infty)}(x),$$
+:::
+
+então a família de localização com densidade padrão $f(x)$ é o conjunto de distribuições Normais com média $\mu$ desconhecida e variância $\sigma^2$ conhecida.
+
+
+
+## Famílias de Locação  e Escala.
+
+
+* A família Cauchy com $\sigma$ (conhecido) e $\mu$ (desconhecido) é outro exemplo de família de locação.
+
+* O ponto principal da @def-def2 é que podemos iniciar com qualquer densidade $f(x)$ e gerar uma família de densidades com a introdução do
+parâmetro de localização.
+
+* Se $X$ é uma variável aleatória com densidade $f(x-\mu)$, então $X$ pode ser representada como $X = Z + \mu$ , onde $Z$ é variável aleatória com
+densidade $f(z)$.
+
+:::{#exm-exm4}  
+## Família de locação exponencial
+
+Seja $f(x)=e^{-x}$ para todo $x\geq 0$ e $f(x)=0$ para $x<0$.
+:::
+
+Para formar uma família de locação devemos substituir $x$ por $x-\mu$
+
+$$
+f(x)=\left\{
+\begin{array}{ll}
+e^{-(x-\mu)}& x-\mu\geq 0\\
+0& x-\mu< 0
+\end{array}
+\right.
+=\left\{
+\begin{array}{ll}
+e^{-(x-\mu)}& x\geq \mu\\
+0& x< \mu
+\end{array}
+\right.
+$$
+
+
+
+## Famílias de Locação  e Escala.
+
+
+```{r fig1, fig.height=6, fig.width=6,fig.align='center'}
+f <- function(x, mu){
+  return(exp(-(x-mu)))}
+mu.val <- c(1,2,3,4,5)
+x.val <- seq(0,8, length.out=1000)
+
+plot(x.val+mu.val[1], f(x=x.val,mu=1), type="l", ylim=c(0,200), ylab="f(x-mu)",
+     xlab="x", lty=1, lwd=2)
+lines(x.val+mu.val[2], f(x=x.val,mu=2), type="l", lty=2, lwd=2)
+lines(x.val+mu.val[3], f(x=x.val,mu=3), type="l", lty=3, lwd=2)
+lines(x.val+mu.val[4], f(x=x.val,mu=4), type="l", lty=4, lwd=2)
+lines(x.val+mu.val[5], f(x=x.val,mu=5), type="l", lty=5, lwd=2)
+```
+
+
+
+## Famílias de Locação  e Escala
+
+:::{#def-def3}  
+Seja $f(x)$ qualquer f.d., então para qualquer $\sigma>0$, a família de densidades $1/\sigma f[x/\sigma]$ indexada pelo parâmetro $\sigma$ é chamada de **família de escala** com densidade padrão $f(x)$ e parâmetro de escala $\sigma$.
+:::
+
+* O efeito de introduzir $\sigma$ é tanto esticar ($\sigma>1$) quanto contrair ($\sigma<1$) o gráfico $f(x)$ a forma básica é mantida.
+
+## Famílias de Locação  e Escala
+
+
+```{r fig2, fig.height=6, fig.width=6,fig.align='center'}
+
+sigma.val <- c(1,1.5,3,4,5)
+x.val <- seq(-6,6, length.out=1000)
+plot(x.val, dnorm(x=x.val,sd=sigma.val[1]), type="l", ylim=c(0,.5), ylab="", xlab="x",
+     lty=1, lwd=2)
+lines(x.val, dnorm(x=x.val,sd=sigma.val[2]), lty=2, lwd=2)
+lines(x.val, dnorm(x=x.val,sd=sigma.val[3]), lty=3, lwd=2)
+lines(x.val, dnorm(x=x.val,sd=sigma.val[4]), lty=4, lwd=2)
+lines(x.val, dnorm(x=x.val,sd=sigma.val[5]), lty=5, lwd=2)
+```
+
+
+
+## Famílias de Locação  e Escala
+
+:::{#exm-exm5} 
+$Ga\left(\alpha, \beta=\dfrac{1}{\sigma}\right)$ com $\alpha$ conhecido e $\beta=\dfrac{1}{\sigma}$ onde $\sigma$ é desconhecido.
+:::
+
+A densidade padrão $Ga(\alpha, \beta=1)$
+
+$$f(x| \alpha, \beta=1)=\dfrac{1}{\Gamma\left( \alpha \right)}x^{\alpha-1}\exp\left\{  -x\right\}I_{(-\infty, \infty)}(x).$$
+
+Logo,
+
+$$
+\begin{array}{cc}
+f(x/\sigma)=\dfrac{1}{\Gamma\left( \alpha \right)}\dfrac{x^{\alpha-1}}{\sigma^{\alpha-1}}\exp\left\{  -\dfrac{x}{\sigma}\right\}I_{(-\infty, \infty)}(x)\\
+1/\sigma f(x/\sigma)=\dfrac{1}{\sigma^\alpha}\dfrac{1}{\Gamma\left( \alpha \right)}x^{\alpha-1}\exp\left\{  -\dfrac{x}{\sigma}\right\}I_{(-\infty, \infty)}(x)
+\end{array}
+$$
+
+
+
+## Famílias de Locação  e Escala
+
+:::{#exm-exm6} 
+Família Normal com $\mu=0$  e $\sigma^2$ desconhecido.
+:::
+A densidade padrão $N(0, 1)$
+
+$$f(x)=1*(2\pi)^{-1/2}\exp\left\{-\dfrac{1}{2(1)}x^2\right\}I_{(-\infty,\infty)}(x),$$
+
+Logo,
+
+
+$$
+\begin{array}{ll}
+f(x/\sigma)=& (2\pi)^{-1/2}\exp\left\{-\dfrac{1}{2\sigma^2}\left(x-\mu\right)^2\right\}I_{(-\infty,\infty)}(x)\\
+1/\sigma f(x/\sigma)=&(2\pi\sigma^2)^{-1/2}\exp\left\{-\dfrac{1}{2\sigma^2}\left(x-\mu\right)^2\right\}I_{(-\infty,\infty)}(x)
+\end{array}
+$$
+
+
+
+## Famílias de Locação  e Escala
+
+
+
+:::{#def-def4} 
+Seja $f(x)$ qualquer f.d., então para qualquer $\mu$ real e qualquer $\sigma > 0$ a família de densidades
+:::
+
+$$\dfrac{1}{\sigma} f\left[\dfrac{(x-\mu)}{\sigma}\right],$$
+
+indexadas pelos parâmetros $(\mu , \sigma)$, é chamada de família de locação e escala com densidade padrão $f(x)$. Neste caso, $\mu$ é o parâmetro de localização e $\sigma$ é o parâmetro de escala.
+
+
+* Efeito da inclusão dos parâmetros:
+
+   - $\mu$ irá deslocar o gráfico de maneira que o ponto que estava acima de 0,
+agora fica acima de $\mu$.
+
+   - $\sigma$ irá esticar ($\sigma > 1$) ou contrair ($\sigma < 1$) o gráfico de $f(x)$.
+
+
+
+
+
+## Famílias de Locação  e Escala
+
+
+```{r fig3, fig.height=6, fig.width=8,fig.align='center'}
+
+sigma.val <- c(1,1.5,3,4,5)
+x.val <- seq(-6,6, length.out=1000)
+plot(x.val, dnorm(x=x.val, mean = 0,sd=sigma.val[1]), type="l", xlim=c(-8,8),
+     ylim=c(0,.5), ylab="", xlab="x", lty=1, lwd=1)
+lines(x.val, dnorm(x=x.val, mean = 1,sd=sigma.val[2]), lty=2, lwd=1)
+lines(x.val, dnorm(x=x.val, mean = -2.5,sd=sigma.val[3]), lty=3, lwd=1)
+lines(x.val, dnorm(x=x.val, mean = 2,sd=sigma.val[4]), lty=4, lwd=1)
+lines(x.val, dnorm(x=x.val, mean = 4,sd=sigma.val[5]), lty=5, lwd=1)
+```
+
+
+
+## Famílias de Locação e Escala
+
+
+* O seguinte teorema relaciona a transformação da f.d. $f(x)$, que define uma família de locação e escala, com a transformação da variável aleatória $Z$ com densidade $f(z)$.
+
+
+>:::{#thm-thm2}  
+Seja $f(\cdot)$ qualquer f.d. e considere $\mu \in \mathbb{R}$ e $\sigma \in \mathbb{R}^{+}$. Então $X$ é uma v.a. com densidade $1/\sigma f[(x-\mu)/\sigma]$, se e somente se, existe uma v.a. $Z$ com densidade $f(z)$ e $X=\sigma Z+\mu$.
+:::
+
+* No @thm-thm2:
+
+   - Se $\sigma=1$: família de locação (apenas).
+
+   - Se $\mu=0$: família de escala (apenas).
+
+
+
+## Famílias de Locação e Escala
+
+
+*  Fato importante a ser extraído do `Teorema 12` é que $Z=\dfrac{X-\mu}{\sigma},$ tem f.d.
+
+$$f_{Z}(z)=\dfrac{1}{1}f\left(\dfrac{z-0}{1}\right)=f(z),$$
+
+isto é, a distribuição de $Z$ é membro da família de locação escala com $\mu=0$ e $\sigma=1$.
+
+
+* Frequentemente, cálculos são desenvolvidos para a v.a. padrão $Z$ com f.d $f(z)$ e então o resultado correspondente para a v.a. $X$ com f.d. $1/\sigma f[(x-\mu)/\sigma]$ pode ser facilmente derivado.
+
+
+
+## Famílias de Locação e Escala
+
+
+>:::{#thm-thm3}  
+Seja $Z$ uma v.a. com f.d. $f(z)$. Suponha que $E(Z)$ e $Var(Z)$ existem. Se $X$ é uma v.a. com densidade $1/\sigma f(x/\sigma)$, então, 
+:::
+
+$$E(X)=\sigma E(Z)+\mu\ \text{e}\ Var(X)=\sigma^2 Var(Z).$$
+
+* Em particular, se $E(Z)=0$ e $Var(Z)=1$, então, $E(X)=\mu$ e $Var(X)=\sigma^2$.
+
+
+* Probabilidades para qualquer membro da família de locação escala pode ser calculada em termos da variável padrão $Z$.
+
+$$P(X\leq x)=P\left( \dfrac{X-\mu}{\sigma}\leq \dfrac{x-\mu}{\sigma} \right)=P\left(Z\leq \dfrac{x-\mu}{\sigma} \right).$$
+
+
+
+# A função de verossimilhança
+
+## A função de verossimilhança
+
+
+* Considere o dado modelo do tipo: $\mathcal{F}=\left\{f(\cdot\mid \theta): \theta \in \Theta  \subseteq \mathbb{R}^{k}\right\}$.
+
+* Quando um valor amostral $y$ é observado, o valor da f.d $f(y;\theta)$ **dependerá apenas** de $\theta$.
+
+* Esta função nos parece a f.d para observar aquilo que de fato observamos ($y$).
+
+* Se precisamos estabelecer um *ranking* envolvendo dois elementos de $\theta$ (considere $\theta'$ e $\theta''$), então uma quantidade relevante e útil para esta tarefa será a razão $f(y;\theta')/f(y;\theta'')$, desde que o denominador não seja zero.
+
+* Como esta razão não muda caso ambos os temos sejam multiplicados por uma constante postiva $C$, independentemente de $\theta$, então para comparar os elementos de $\Theta$ a quantidade relevante será proporcional a  $f(y;\theta)$.
+
+
+## A função de verossimilhança
+
+:::{#def-def4} 
+Para o modelo $\mathcal{F}=\left\{f(\cdot\mid \theta): \theta \in \Theta  \subseteq \mathbb{R}^{k}\right\}$ a partir do qual uma amostra $y\in \mathcal{Y}$ foi observada, usamos o termo **função de verossimilhança**, ou simplesmente **verossimilhança**, para a função de $\Theta$ para $\mathbb{R}^{+}\cup\{0\}$ escrita como
+:::
+
+$$L(\theta;y)=c(y)f(y;\theta),$$
+
+em que $c(y):$ constante positiva independente de $\theta$.
+
+* A verossimilhança é uma função de $\theta$.
+
+* A notação $L(\theta;y)$ é usada para enfatizar que esta função depende de $y$, no sentido de que para uma amostra diferente $y'$ obteremos uma verossimilhança diferente $L(\theta;y')$.
+
+
+## A função de verossimilhança
+
+* Note que não importa se escrevemos $c$ ou $c(y)$ na definição de verossimilhança, uma vez que a verossimilhança é uma função de $\theta$.
+
+
+* Mesmo que todo valor $L(\theta ; y)$ seja determinado por distribuições de probabilidades, a função de verossimilhança **não é uma distribuição de probabilidade**.
+
+* $L(\theta ; y)$ é uma quantidade não negativa, e na maioria dos casos é positiva para todo $\theta$. Sendo assim, definimos a função de log-verossimilhança como:
+
+
+$$\ell(\theta;y)=\ln L(\theta;y)=c+\ln f(y;\theta),$$
+
+com a convenção de que $\ell(\theta;y)=-\infty$ se $L(\theta;y)=0$.
+
+
+
+
+## A função de verossimilhança
+
+:::{#exm-exm7} 
+Considere uma a.a. $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})^{'}$ da v.a. $N(\mu, \sigma^2)$, onde $\theta=(\mu, \sigma^2)$ varia no espaço $\Theta=\mathbb{R}\times \mathbb{R}^{+}$.
+:::
+
+* Devido à independência das componentes, temos,
+
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=&c \ \prod\limits_{i=1}^{n}(2\pi \sigma^2)^{-1/2}\exp\left\{ -\dfrac{1}{2\sigma^2} (y_{i}-\mu)^2  \right\}\\
+&=&c\ (2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \sum\limits_{i=1}^{n}(y_{i}-\mu)^2  \right\}\\
+&=&c\ (2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}
+\end{array}
+$$
+
+* Qualquer constante não dependente de $\theta$, por exemplo, $c=1$.
+
+* Função de log-verossimilhança
+
+
+$$
+\ell(\theta;\textbf{y})=c-\dfrac{n}{2}\ln 2\pi -\dfrac{n}{2}\ln\sigma^2 -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]
+$$
+
+
+## A função de verossimilhança
+
+
+:::{#exm-exm8} 
+Considere uma a.a. $\textbf{x}=(x_{1}, x_{2}, \dots, x_{n})^{'}$ da v.a. $U(0, \theta)$, onde $\theta>0$. A f.d. associada a $x_{i}$ é $f(x_{i})=\frac{1}{\theta}$, se $x_{i}\in (0,\theta)$.
+:::
+
+* Quando multiplicamos tais f.d.'s para obter $L(\theta;x)$, não podemos simplesmente multiplicar o termo $1/\theta$ sen considerar a condição **se $x_{i}\in (0,\theta)$**.
+
+* Portanto, escrevemos a densidade para uma única observação, como segue,
+
+$$\dfrac{1}{\theta}I_{(0,\theta)}(x), \ x \in \mathbb{R}.$$
+
+## A função de verossimilhança
+
+
+Função de verossimilhança
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{x})&=&c \ \prod\limits_{i=1}^{n}\dfrac{1}{\theta}I_{(0,\theta)}(x_{i})\\
+ &=&\dfrac{c}{\theta^n}\prod\limits_{i=1}^{n}I_{(0,\theta)}(x_{i})
+\end{array}
+$$
+
+* Note que $\prod\limits_{i=1}^{n}I_{(0,\theta)}(x_{i})=1$, se
+
+$$
+\begin{array}{c}
+0<x_{1}<\theta\\
+0<x_{2}<\theta\\
+\vdots\\
+0<x_{n}<\theta
+\end{array}
+\Longrightarrow
+x_{(n)}<\theta
+$$
+
+
+## A função de verossimilhança
+
+
+Assim,
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=&c \ \prod\limits_{i=1}^{n}\dfrac{1}{\theta}I_{(0,\theta)}(x_{i})\\
+ &=&\dfrac{c}{\theta^n}\prod\limits_{i=1}^{n}I_{(x_{(n)},\infty)}(\theta)
+\end{array}
+$$
+
+A log-verossimilhança:
+
+
+$$
+\ell(\theta;\textbf{y})=
+\left\{
+\begin{array}{cc}
+\infty, &\theta\leq x_{(n)} \\
+ c \ -n\ln \theta, &\theta> x_{(n)}
+\end{array}
+\right.
+$$
+
+## A função de verossimilhança
+
+
+![](fig_uniforme.png)
+
+
+<!-- \centering -->
+<!-- \scalebox{0.7}{\includegraphics{figuraUniforme.jpg}} -->
+
+
+
+
+
+
+## Princípio da verossimilhança.
+
+* A função de verossimilhança conecta a informação pré-experimental (expressa pela escolha do modelo) com a informação experimental contida em $\text{y}$.
+
+* Portanto, de certa forma, a verossimilhança contém tudo que sabemos sobre o problema de inferência em questão (sem levar em conta qualquer informação sobre $\theta$ que, por qualquer razão, não foi acomodada no modelo, tais como opiniões pessoais ou resultado de estudos relacionados).
+
+:::{#exm-exm8} 
+O princípio da verossimilhança. Para um modelo estatístico $\left\{f(\cdot\mid \theta): \theta \in \Theta  \right\}$ dois pontos $y,z\in \mathcal{Y}$ tal que $L(\theta;y)\propto L(\theta;z)$ devem levar às mesmas conclusões inferenciais.
+:::
+
+* Esta afirmação representa a versão mais fraca do princípio da verossimilhança.
+
+* A seguir apresentamos uma versão mais forte que diz que as conclusões coincidem mesmo quando as duas observações se referem a modelos distintos e espaços amostrais distintos.
+
+
+## Princípio da verossimilhança.
+
+:::{#def-def5} 
+Considere um experimento que consiste em lançar várias vezes uma moeda, de forma independente, e seja $\theta$ a probabilidade de ocorrer coroa $\bar{C}$ e $1−\theta$ a probabilidade de ocorrer cara $C$.
+:::
+
+Suponha que o resultado do experimento foi:
+
+$$\textbf{x}=\{\bar{C}, \bar{C}, \bar{C}, \bar{C}, \bar{C}, C, \bar{C}, \bar{C}, \bar{C}, \bar{C}, C, C \}$$
+
+`Regras de parada:`
+
+1. Lançar a moeda 12 vezes ($n^{o}$ de lançamentos fixado);
+
+2. Lançar a moeda até aparecer 3 caras;
+
+3. Lançar a moeda até aparecerem 2 caras consecutivas;
+
+4. Lançar a moeda até o lançador ficar cansado.
+
+
+## Princípio da verossimilhança.
+
+
+Em qualquer situação a verossimilhança é proporcional a
+
+$$\theta^{9}(1-\theta)^{3},$$
+
+
+* Segundo o princípio da verossimilhança as inferências **devem ser a mesmas qualquer que tenha sido o processo experimental** (ou a regra de parada).
+
+
+# Estatísticas Suficientes
+
+## Estatísticas Suficientes
+
+
+* Em uma descrição mais simplificada da teoria estatística, alguns poderiam dizer que seu objetivo é selecionar as **operações** mais apropriadas para serem aplicadas aos dados.
+
+* Visto que uma variedade destas operações serão consideradas, é necessário introduzir a seguinte definição:
+
+
+:::{#def-def6}
+Uma função $T(\cdot):\mathcal{y}\rightarrow \mathbb{R}^{R}$, para algum inteiro positivo $r$, tal que $T(y)$ não depende de $\theta$, é chamada de **Estatística**, e o valor $t=T(y)$ correspondendo ao valor observado $y$ é chamado de valor amostral.
+:::
+
+* A condição de que $T(y)$ não dependa de $\theta$ é necessária para assegurar que a estatística seja calculável na presença dos dados.
+
+
+## Estatísticas Suficientes
+
+
+:::{#exm-exm19} 
+Estatísticas para uma amostra $(y_{1}, y_{2}, \dots, y_{n})$ cujos elementos pertencem a $\mathbb{R}$:
+:::
+
+$$
+\begin{array}{ll}
+T_{1}=\sum\limits_{i=1}^{n}y_{i}, & T_{1}(\cdot): (y_{1}, y_{2}, \dots, y_{n}) \rightarrow \mathbb{R}\\
+T_{2}=\sum\limits_{i=1}^{n}\exp\{y_{i}\}, & T_{2}(\cdot): (y_{1}, y_{2}, \dots, y_{n}) \rightarrow \mathbb{R}^{+}\\
+T_{3}=\left(\sum\limits_{i=1}^{n}y_{i}, \sum\limits_{i=1}^{n}\exp\{y_{i}\}\right) , & T_{3}(\cdot): (y_{1}, y_{2}, \dots, y_{n}) \rightarrow \mathbb{R}\times \mathbb{R}^{+}
+\end{array}
+$$
+
+
+Obviamente, estes são apenas 3 exemplos entre inúmeros casos.
+
+
+## Estatísticas suficientes
+
+
+* Algumas vezes devemos considerar a imagem inversa dos valores de $t$ de uma estatística $T$, isto é, conjuntos do tipo:
+
+$$A_{t}=\left\{ y: y\in \mathcal{Y}; T(y)=t\right\},$$
+
+formam uma partição do espaço amostral. Fazemos referência a esta partição induzida por $T(y)$.
+
+
+* Por exemplo, se $T=\sum\limits_{i=1}^{n}y_{i}$, os conjuntos $\{A_{t}\}$ serão hiperplanos paralelos uns aos outros.
+
+* Um conjunto específico $A_{t}$ é dado por todos os pontos $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})'\in \mathbb{R}$ satisfazendo a equação $y_{1}+ y_{2}+ \dots+ y_{n}=t$.
+
+
+
+## Estatísticas suficientes
+
+:::{#exm-exm11}
+Entre os tipos de estatísticas que iremos considerar, alguns são usados com frequência e a eles são dados nomes específicos. Para a amostra $(y_{1}, y_{2}, \dots, y_{n})'$ o r-ésimo momento amostral é a estatística de $\mathcal{Y}$ para $\mathbb{R}$ dada por
+:::
+
+$$m_{r}=\dfrac{1}{n}\sum\limits_{i=1}^{n}y_{i}^{r}.$$
+
+* Em particular, $m_{1}=\dfrac{1}{n}\sum\limits_{i=1}^{n}y_{i}^{1}$ é a média amostral $\bar{y}$.
+
+* Outro exemplo de estatística é o que definimos como variância amostral:
+
+
+$$S^{2}=\dfrac{1}{n-1}\sum\limits_{i=1}^{n}(y_{i}-\bar{y})^{2},$$
+
+que assume valores em $\mathbb{R}^{+}\cup\{0\}$.
+
+## Estatísticas Suficientes
+
+
+* No caso da distribuição $N(\mu,\sigma^2)$, temos a verossimilhança indicada abaixo para uma amostra aleatória simples $(y_{1}, y_{2}, \dots, y_{n})'=\textbf{y}$.
+
+* Considere $\theta=(\mu, \sigma^2)$,
+
+$$
+L(\theta;\textbf{y})= (2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}
+$$
+
+
+## Estatísticas Suficientes
+
+* Veja que não é preciso conhecer todos os elementos individuais de $(y_{1}, y_{2}, \dots, y_{n})$ para escrever $L(\theta;\textbf{y})$ do *slide* anterior, dado a quantidade $\left(\sum\limits_{i=1}^{n}y_{i}, \sum\limits_{i=1}^{n}y_{i}^2\right)$.
+
+* Essa função de verossimilhança é unicamente identificada, entre todas as possíveis funções de verossimilhança para o modelo estatístico escolhido, uma vez que dois valores $\left(\sum\limits_{i=1}^{n}y_{i}, \sum\limits_{i=1}^{n}y_{i}^2\right)$ são dados.
+
+
+* A questão agora é saber se tal situação favorável pode ser estendida em geral, ou pelo menos para algumas classes de modelos (neste caso, para quais classes?) A seguir, iremos examinar a natureza e propriedades daquelas estatísticas capazes de sumarizar **toda a informação** presente na função de verossimilhança.
+
+
+## Estatísticas Suficientes
+
+:::{#def-def7} 
+Para o modelo $\mathcal{F}=\left\{f(\cdot\mid \theta): \theta \in \Theta  \right\}$, uma estatística $T(y)$ é dita **suficiente** para $\theta$ se assume valores em dois pontos do espaço amostral somente se estes pontos possuem verossimilhanças equivalentes. Isto é:
+:::
+
+$$\forall \ y,z\in\mathcal{Y}, \quad T(y)=T(z)\Rightarrow L(\theta;y)\propto L(\theta;z), \forall\ \theta\in \Theta.$$
+
+
+
+* Devemos ter em mente que a propriedade de suficiência está diretamente relacionada à escolha do modelo.
+
+* Se o modelo é **alterado**, as estatísticas em questão podem não ser mais suficientes.
+
+* Para qualquer modelo, sempre existirá uma estatística suficiente que será a própria amostra $\textbf{y} = (y_1,\dots,y_n)'$, entretanto, esta estatística suficiente é uma escolha muito trivial e na prática é desconsiderada.
+
+
+
+## 
+
+:::{#exm-exm12}
+Suponha que $\theta$ pode assumir dois valores (0 e 1). As duas funções de verossimilhança correspondentes são fornecidas a seguir:
+:::
+
+
+| $\theta$ | $P(Y=0)$ | $P(Y=1)$ | $P(Y=2)$ |
+|:---:|:---:|:---:|:---:|
+| 0 | 8/12 | 1/12 | 3/12 |
+| 1 | 4/12 | 2/12 | 6/12 |
+
+<!-- \begin{table} -->
+<!-- \centering -->
+<!-- \begin{tabular}{|c|c|c|c|} -->
+<!-- \hline -->
+<!-- $\theta$& $P(Y=0)$& $P(Y=1)$ & $P(Y=2)$   \\ \hline -->
+<!-- 0   & 8/12          & 1/12 & 3/12\\ \hline -->
+<!-- 1 & 4/12 & 2/12 & 6/12 \\ \hline -->
+<!-- \end{tabular} -->
+<!-- \end{table} -->
+
+Note que: 
+
+$$
+\begin{array}{ccc}
+\underbrace{L(\theta=0;y=2)}_{3/12}&=&3\ \underbrace{L(\theta=0;y=1)}_{1/12}\\
+\underbrace{L(\theta=1;y=2)}_{6/12}&=&3\ \underbrace{L(\theta=1;y=1)}_{2/12}
+\end{array}
+$$
+
+Estatística: 
+
+$$
+T(y)=I_{\{0\}}(y)=\left\{
+\begin{array}{cc}
+1,& \text{se} \ y=0\\
+0,& \text{se} \ y\neq 0
+\end{array}
+\right.
+$$
+
+
+$$ T(y=1)=0=T(y=2)\Rightarrow L(\theta;y=1)\propto L(\theta;y=2).$$
+
+Assim, $T(y)=I_{\{0\}}(y)$ é uma estatística suficiente para $\theta$.
+
+
+
+## Estatísticas Suficientes
+
+:::{#exm-exm12} 
+Considere $g(\cdot;\theta)$ a f.d. associada a uma a.a. simples $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$.
+:::
+
+* A função de verossimilhança pode ser escrita como
+
+$$L(\theta; \textbf{y})=\prod\limits_{i=1}^{n}g(y_{i};\theta)=\prod\limits_{i=1}^{n}g(y_{(i)};\theta),$$
+
+onde na última igualdade, os temos foram multiplicados após terem sido organizados de acordo com as estatísticas de ordem.
+
+* Portanto, duas amostras com as mesmas estatísticas de ordem possuem as mesmas funções verossimilhança.
+
+* Segue então que, para quaisquer f.d.'s $g(\cdot;\theta)$ as estatísicas de ordem são suficientes.
+
+# Fatoração de Neyman
+
+## Fatoração de Neyman
+
+
+* Se $T(\cdot)$ é uma estatística suficiente, então $L(\theta;\textbf{y})$ depende apenas através de $T(\textbf{y})$. Isto significa que existe uma função $g$ tal que $L(\theta;\textbf{y})\propto g\left(T(\textbf{y})|\theta\right)$.
+
+* Note que $L(\theta;\textbf{y})\propto f\left(\textbf{y}|\theta\right)$, logo
+
+$$\dfrac{f\left(\textbf{y}|\theta\right)}{g\left(T(\textbf{y})|\theta\right)},$$
+
+não dependerá de $\theta$.
+
+* Denote:
+
+$$h(\textbf{y})=\dfrac{f\left(\textbf{y}|\theta\right)}{g\left(T(\textbf{y})|\theta\right)},$$
+
+portanto, se $T(\cdot)$ é estatística suficiente, a seguinte relação será válida: $f\left(\textbf{y}|\theta\right)=h(\textbf{y})g\left(T(\textbf{y})|\theta\right)$.
+
+
+## Fatoração de Neyman
+
+>:::{#thm-thm4}
+## Teorema da Fatoração de Neyman 
+Para o modelo $\mathcal{F}=\left\{ f(\cdot\mid \theta): \theta \in \Theta  \subseteq \mathbb{R}^{k}\right\}$ a estatística $T(\cdot)$ é sufuciente para $\theta$ se e somente se $f(\textbf{y};\theta)$ pode ser escrita na forma $f\left(\textbf{y}|\theta\right)=h(\textbf{y})g\left(T(\textbf{y})|\theta\right)$ para alguma função $g$ e $h$.
+:::
+
+:::{.callout-note}
+## Uma forma alternativa de interpretar a definição: 
+
+Se conhecermos o valor amostral de $t=T(\textbf{y})$ e escrevessemos a verossimilhança $L_{T}(\theta;t)$ para o modelo estatístico associado a distribuição de $T$, então tal verssimilhança seria equivalente a $L(\theta;\textbf{y})$.
+:::
+
+## Fatoração de Neyman
+
+
+:::{#exm-exm13} 
+Considere $g(\cdot;\theta)$ a f.d. associada a uma a.a. simples $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$ obtida de forma que $Y_{i}\sim Bin(1, \theta)$.
+:::
+
+* Temos a verossimilhança:
+
+
+$$
+\begin{array}{ccc}
+L(\theta;\textbf{y})&=& \prod\limits_{i=1}^{n}\theta^{y_i}(1-\theta)^{1-y_i}\\
+&=& \theta^{\sum\limits_{i=1}^{n}y_i}(1-\theta)^{n-\sum\limits_{i=1}^{n}y_i}\\
+&=& \theta^{T(\textbf{y})}(1-\theta)^{n-T(\textbf{y})}\\
+&=& \underbrace{1}_{h(\textbf{y})}\ \ \underbrace{\theta^{T(\textbf{y})}(1-\theta)^{n-T(\textbf{y})}}_{g\left(T(\textbf{y})|\theta\right)}
+\end{array}
+$$
+
+## Fatoração de Neyman
+
+
+* Temos então que $T(\textbf{y})=\sum\limits_{i=1}^{n}y_{i}$ é uma estatística suficiente para $\theta$ e que  $T(\textbf{y})\sim Bin(n,\theta)$, em que
+
+$${n\choose t}\theta^{t}(1-\theta)^{n-t}.$$
+
+
+
+* Uma outra forma de definir estatística suficiente pode ser expressa como segue:
+
+
+:::{#def-def8}  
+Uma estatística $T(\cdot)$ é suficiente para $\theta$ se a distribuição condicional de $Y$ dado o valor de $T(Y)$ não depende de $\theta$. Em outras palavras:
+:::
+
+$$P(Y=y | T(Y)=T(y),\theta) = P(Y=y | T(Y)=T(y)).$$
+
+## Fatoração de Neyman
+<br/>
+<br/>
+
+:::{#exm-exm99}
+Sejam $(X_1,\dots, X_n)$ uma a.a. da v.a. $X \sim Ber(\theta)$. Verifique se $T=\sum\limits_{i=1}^{n}X_{i}$ suficiente para $\theta$.
+:::
+
+
+## Fatoração de Neyman
+
+:::{#exm-exm14} 
+Considere  $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$ uma a.a. simples da $N(\mu, \sigma^2)$,
+:::
+
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=& \prod\limits_{i=1}^{n}(2\pi \sigma^2)^{-1/2}\exp\left\{ -\dfrac{1}{2\sigma^2} (y_{i}-\mu)^2  \right\}I_{(-\infty,\infty)}(y_{i})\\
+&=&(2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}\prod\limits_{i=1}^{n}I_{(-\infty,\infty)}(y_{i})\\
+&=&\underbrace{(2\pi )^{-n/2}\prod\limits_{i=1}^{n}I_{(-\infty,\infty)}(y_{i})}_{h(\textbf{y})}\ \underbrace{\left(\sigma^{2}\right)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}}_{g\left(T(\textbf{y})|\theta\right)}
+\end{array}
+$$
+
+
+* Então $T(\textbf{y})=\left(\sum\limits_{i=1}^{n}y_{i}, \sum\limits_{i=1}^{n}y_{i}^2\right)$ é uma estatística suficiente para $\theta=(\mu, \sigma^2)$ de acordo com o método da fatoração de Neyman.
+
+
+
+
+## Fatoração de Neyman
+
+`Observação:` Qualquer função 1 a 1 de uma estatística suficiente também é uma estatística suficiente.
+
+* Suponha que $T(\textbf{y})$ é estatística suficiente e defina $T^{*}(\textbf{y})=r(T(\textbf{y}))$ para todo $\textbf{y}$
+
+* $r$ é uma função 1 a 1 com inversa $r^{-1}$.
+
+* Teorema da Fatoração, existe $g$ e $h$ tal que
+
+$$f(\textbf{y}|\theta)=h(\textbf{y})g\left[r^{-1}(T^{*}(\textbf{y}))| \theta\right]$$
+
+* Defina $g^{*}(t|\theta)=g(r^{-1}(t)|\theta)$, então
+
+$$f(\textbf{y}|\theta)=h(\textbf{y})g^{*}\left[T^{*}(\textbf{y})| \theta\right]$$
+
+e pelo Teorema da Fatoração $T^{*}(\textbf{y})$ é uma estatística suficiente.
+
+
+
+## Fatoração de Neyman
+
+* No caso anterior considere:
+
+$(t_{1}, t_{2})=\left(\sum\limits_{i=1}^{n}y_{i}, \sum\limits_{i=1}^{n}y_{i}^2\right)$ nossa estatística suficiente para $\theta=(\mu, \sigma^2$.
+
+* Veja que:
+
+
+$$(\bar{y},S^2)=\left(\dfrac{t_{1}}{n}, \dfrac{t_{2}-(t_{1}^{2}/n)}{n-1}\right)=\left(\dfrac{\sum\limits_{i=1}^{n}y_{i}}{n}, \dfrac{\sum\limits_{i=1}^{n}(y_{i}-\bar{y})^2}{n-1}\right)$$ 
+que são função 1 a 1 de $(t_{1}, t_{2})$ com transformação inversa 
+
+$$t_{1}=n\bar{y} \ \ e \ \ t_{2}=(n-1)S^{2}+n\bar{y}^{2}.$$
+
+* Logo, $(\bar{y},S^2)$ também é uma estatística suficiente para $\theta=(\mu, \sigma^2)$.
+
+
+## Fatoração de Neyman
+
+:::{#exm-exm15} 
+Considere uma a.a. $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})^{'}$ da v.a. $U(\theta, 2\theta)$, onde $\theta>0$. A f.d. associada a $y_{i}$ é $f(y_{i})=\frac{1}{\theta}$, se $y_{i}\in (\theta,2\theta)$.
+:::
+
+* Quando multiplicamos tais f.d.'s para obter $L(\theta;y)$, não podemos simplesmente multiplicar o termo $1/\theta$ sem considerar a condição se **$y_{i}\in (\theta,2\theta)$**.
+
+* Portanto, escrevemos a densidade para uma única observação, como segue,
+
+$$\dfrac{1}{\theta}I_{(\theta,2\theta)}(y).$$
+
+## Fatoração de Neyman
+
+Função de verossimilhança
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=& \prod\limits_{i=1}^{n}\dfrac{1}{\theta}I_{(\theta,2\theta)}(y_{i})\\
+ &=&\dfrac{1}{\theta^n}\prod\limits_{i=1}^{n}I_{(\theta,2\theta)}(y_{i})
+\end{array}
+$$
+
+* Note que $\prod\limits_{i=1}^{n}I_{(\theta,2\theta)}(y_{i})=1$, se
+
+$$
+\begin{array}{c}
+\theta<y_{1}<2\theta\\
+\theta<y_{2}<2\theta\\
+\vdots\\
+\theta<y_{n}<2\theta
+\end{array}
+\Longrightarrow
+\theta<y_{(1)}\ \ \text{e}\ \ \dfrac{y_{(n)}}{2}<\theta \Longrightarrow \left[ \dfrac{y_{(n)}}{2}<\theta< y_{(1)}\right]
+$$
+
+
+## Fatoração de Neyman
+
+Assim,
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=& \dfrac{1}{\theta^n}\prod\limits_{i=1}^{n}I_{(\theta,2\theta)}(y_{i})\\
+ &=&\dfrac{1}{\theta^n}\prod\limits_{i=1}^{n}I_{(y_{(n)}/2,y_{(1)})}(\theta)
+\end{array}
+$$
+
+* Pelo critério da Fatoração, o par $(y_{(1)},y_{(n)})$ é uma estatística suficiente para $\theta$.
+
+
+
+## Fatoração de Neyman
+
+* Lembre que qualquer função 1 a 1 de uma estatística suficiente é também estatística suficiente. 
+
+* Desta forma, podemos definir inúmeras estatísticas suficientes para um dado problema. 
+
+* Poderíamos perguntar se uma estatística suficiente é melhor que as outras.
+
+* O objetivo de uma estatística suficiente é atingir uma redução nos dados sem perder informação sobre o parâmetro
+$\theta$. 
+
+* Iremos preferir a estatística que atinge a maior redução nos dados e mantenha toda informação sobre $\theta$
+
+
+:::{#def-def9}  
+Uma estatística suficiente $T(\textbf{y})$ é chamada de **Estatística suficiente minimal** se, para qualquer outra estatística suficiente $T^{'}(\textbf{y})$, $T(\textbf{y})$ é uma função de $T^{'}(\textbf{y})$. Dizer que $T(\textbf{y})$ é função de $T^{'}(\textbf{y})$ significa que 
+:::
+
+$$T^{'}(\textbf{x})=T^{'}(\textbf{y}) \Rightarrow T(\textbf{x})=T(\textbf{y})$$
+
+## Fatoração de Neyman
+
+:::{#exm-exm16} 
+Duas estatísticas suficientes (caso Normal).
+:::
+
+Já vimos anteriormente que se  $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$ uma a.a. simples da $N(\mu, \sigma^2)$ com $\theta=(\mu, \sigma^2)$, temos $T^{'}(\textbf{y})=(\bar{y},S^{2})$ como estatística suficiente para $(\mu, \sigma^{2})$.
+
+
+Se $\sigma^2$ é conhecido, podemos usar a Fatoração de Neyman e obter
+
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=&(2\pi \sigma^{2})^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}\\
+&=&(2\pi \sigma^{2})^{-n/2}\underbrace{\exp\left\{-\dfrac{1}{2\sigma^2}\sum\limits_{i=1}^{n}y_{i}\right\}}_{h(\textbf{y})}\ \underbrace{\exp\left\{ -\dfrac{n}{2}  \left[\dfrac{\mu^{2}}{\sigma^{2}}-\dfrac{2}{\sigma^{2}}\overline{y}\right]  \right\}}_{g\left(T(\textbf{y})|\theta\right)}
+\end{array}
+$$
+
+Portanto, $T(\textbf{y})=\overline{y}$ é estatística suficiente para $\mu$. 
+
+
+
+## Fatoração de Neyman
+
+* Se $\sigma^{2}$ é conhecido, temos que $T^{'}(\textbf{y})=(\bar{y},S^{2})$ e $T(\textbf{y})=\bar{y}$ são estatísticas suficientes para $\mu$.
+
+* Claramente, $T(\textbf{y})$ atinge maior redução nos dados neste caso.
+
+* Podemos escrever $T(\textbf{y})$ como função de $T^{'}(\textbf{y})$ usando a seguinte igualdade: $r(a,b)=a$. Então, $T(\textbf{y})=\bar{y}=r(\bar{y},S^{2})=r(T^{'}(\textbf{y}))$.
+
+* Como $T(\textbf{y})$ e $T^{'}(\textbf{y})$ são ambas estatísticas suficientes, as duas possuem a mesmas informações sobre $\mu$.
+
+* Então a informação adicional $S^2$ não acrescenta nada ao nosso conhecimento de $\mu$, dado que $\sigma^2$ é conhecido.
+
+* Obviamente, se $\sigma^2$ é desconhecido, a estatístca $T(\textbf{y})=\bar{y}$ deixa de ser sufuciente e $T^{'}(\textbf{y})=(\bar{y},S^{2})$ passa a conter mais informação sobre $(\mu, \sigma^2)$ do que $T(\textbf{y})$.
+
+
+# Estatística Suficiente Minimal
+
+## Estatística Suficiente Minimal
+
+
+* Usar a última definição para encontrar uma estatística suficiente minimal não é uma tarefa prática. 
+
+* Teríamos que adivinhar que $T(\textbf{y})$ é uma estatística suficiente minimal e então verificar a condição dada na definição.
+
+* Felizmente, o seguinte resultado de Lehmman e Scheffé (1950) fornece uma maneira mais fácil de encontrar uma estatística suficiente minimal.
+
+
+
+## Estatística Suficiente Minimal
+
+>:::{#thm-thm5} 
+Seja $f(\textbf{y})$ é uma f.d. associada com a amostra $\textbf{y}$. Suponha que exista uma função $T(\textbf{y})$ tal que para quaisquer dois pontos amostrais $x$ e $y$, a razão $f(x|\theta)/f(y|\theta)$ é constante como função de $\theta$ se e somente se $T(x)=T(y)$. Então $T(\textbf{y})$ é uma estatística suficiente minimal para $\theta$.
+:::
+
+:::{#exm-exm17} 
+Estatística suficiente minimal (caso Normal). Sejam  $(Y_{1}, Y_{2}, \dots, Y_{n})$ uma a.a. simples da $N(\mu, \sigma^2)$ com $\theta=(\mu, \sigma^2)$ desconhecido.
+:::
+Considere $\textbf{x}=(x_{1}, x_{2}, \dots, x_{n})$ e  $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$ são dois pontos amostrais.
+
+$$(\overline{x},S_{x}^{2})\ \text{é a média e a variância amostral de}\ \textbf{x}$$
+
+$$(\overline{y},S_{y}^{2})\ \text{é a média e a variância amostral de}\ \textbf{y}$$
+
+## Estatística Suficiente Minimal
+
+* O @exm-exm17 solicita a seguinte razão:
+
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=&\dfrac{(2\pi \sigma^{2})^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}x_{i}^2- 2\mu\sum\limits_{i=1}^{n}x_{i}+ n\mu^2\right]  \right\}}{(2\pi \sigma^{2})^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}}\\
+&=&\dfrac{\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}(x_{i}+\bar{x}-\bar{x})^2- 2n\mu \bar{x}\right]  \right\}\exp\left\{ -\dfrac{1}{2\sigma^2}  n\mu^2  \right\}}{\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}(y_{i}+\bar{y}-\bar{y})^2- 2n\mu \bar{y}\right]  \right\}\exp\left\{ -\dfrac{1}{2\sigma^2}  n\mu^2  \right\}}\\
+&=&\dfrac{\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}(x_{i}-\bar{x})^2+n\bar{x}^2-2n\mu \bar{x}^2 \right]  \right\}}{\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}(y_{i}-\bar{y})^2+n\bar{y}^2-2n\mu \bar{y}^2 \right]  \right\}}
+\end{array}
+$$
+
+
+## Estatística Suficiente Minimal
+
+Assim,
+
+$$
+\begin{array}{cll}
+L(\theta;\textbf{y})&=&\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[(n-1)S_{x}^{2} \bar{x}^2(n-2n\mu) - (n-1)S_{y}^{2} - \bar{y}^2(n-2n\mu) \right]  \right\}\\
+&=&\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[(n-1)(S_{x}^{2}-S_{y}^{2}) (n-2n\mu)(\bar{x}^2-\bar{y}^2) \right]  \right\}
+\end{array}
+$$
+
+
+* Este resultado será constante como função de $\mu$ e $\sigma^2$ se e somente se $\overline{x}=\overline{y}$ e $S_{x}^{2}=S_{y}^{2}$. Então pelo @exm-exm17 $(\overline{X}, S^{2})$ é uma estatística suficiente minimal para $(\mu, \sigma^2)$.
+
+
+
+## Estatística Suficiente Minimal
+
+:::{#exm-exm18} 
+## Estatística suficiente minimal (caso Uniforme). 
+Sejam  $(X_{1}, X_{2}, \dots, X_{n})$ uma a.a. simples da $Uniforme(\theta, \theta+1)$ com $-\infty<\theta<\infty$.
+:::
+
+Considere $\textbf{x}=(x_{1}, x_{2}, \dots, x_{n})$ e  $\textbf{y}=(y_{1}, y_{2}, \dots, y_{n})$ são dois pontos amostrais.
+
+* A densidade para uma única observação, como segue,
+
+$$f(x\mid \theta)=I_{(\theta,\theta+1)}(x), \ \theta \in \mathbb{R}.$$
+
+## Estatística Suficiente Minimal
+
+Assim, 
+
+$$
+\begin{array}{c}
+\theta<x_{1}<\theta+1\\
+\theta<x_{2}<\theta+1\\
+\vdots\\
+\theta<x_{n}<\theta+1
+\end{array}
+\Longrightarrow
+\theta<x_{(1)}\ \ \text{e}\ \ x_{(n)}-1<\theta \Longrightarrow \left[ x_{(n)}-1<\theta< x_{(1)}\right]
+$$
+
+
+* Logo, 
+
+$$f(x\mid \theta)=I_{(x_{(n)}-1,x_{(1)})}(\theta), \ \theta \in \mathbb{R}.$$
+
+
+
+## Estatística Suficiente Minimal
+
+* Então,
+
+$$f(x\mid \theta)=I_{(x_{(n)}-1,x_{(1)})}(\theta)=
+\left\{\begin{array}{ll}
+1& \text{se} \ x_{(n)}-1<\theta< x_{(1)}\\
+0& \text{c.c.}
+\end{array}
+\right.
+$$
+
+
+
+* De forma similar:
+
+
+$$f(y\mid \theta)=I_{(y_{(n)}-1,y_{(1)})}(\theta)=
+\left\{\begin{array}{ll}
+1& \text{se} \ y_{(n)}-1<\theta< y_{(1)}\\
+0& \text{c.c.}
+\end{array}
+\right.
+$$
+
+
+## Estatística Suficiente Minimal
+
+
+A razão $\dfrac{f(x\mid \theta)}{f(y\mid \theta)}$ será constante como função de $\theta$ se e só $x_{(1)}=y_{(1)}$ e $x_{(n)}=y_{(n)}$.
+
+![](figura_uniforme2.jpg)
+<!-- #\scalebox{0.9}{\includegraphics{figura_uniforme2.jpg}} -->
+
+`Conclusão:` $T(X)=(x_{(1)}, x_{(n)})$ é uma estatística suficiente minimal para $\theta$. Neste caso, note que a dimensão é diferente da dimensão do parâmetro.
+
+
+
+
+
+
