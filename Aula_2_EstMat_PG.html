@@ -348,7 +348,7 @@ Prof.&nbsp;Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br> Faculdade de Estatísti
 <!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
 </h3></section>
 <section>
-<section id="modelos-estatísticos" class="title-slide slide level1" data-background-color="#027eb6">
+<section id="modelos-estatísticos" class="title-slide slide level1" data-background-color="#00008B">
 <h1><span style="float:right;text-align:right;">Modelos estatísticos</span></h1>
 
 </section>
@@ -439,7 +439,7 @@ Prof.&nbsp;Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br> Faculdade de Estatísti
 </ul>
 </section></section>
 <section>
-<section id="famílias-de-locação-e-escala" class="title-slide slide level1" data-background-color="#027eb6">
+<section id="famílias-de-locação-e-escala" class="title-slide slide level1" data-background-color="#00008B">
 <h1><span style="float:right;text-align:right;">Famílias de locação e escala</span></h1>
 
 </section>
@@ -642,8 +642,8 @@ f(x/\sigma)=&amp; (2\pi)^{-1/2}\exp\left\{-\dfrac{1}{2\sigma^2}\left(x-\mu\right
 <p><span class="math display">\[P(X\leq x)=P\left( \dfrac{X-\mu}{\sigma}\leq \dfrac{x-\mu}{\sigma} \right)=P\left(Z\leq \dfrac{x-\mu}{\sigma} \right).\]</span></p>
 </section></section>
 <section>
-<section id="a-função-de-verossimilhança" class="title-slide slide level1">
-<h1>A função de verossimilhança</h1>
+<section id="a-função-de-verossimilhança" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">A função de verossimilhança</span></h1>
 
 </section>
 <section id="a-função-de-verossimilhança-1" class="slide level2">
@@ -799,8 +799,8 @@ c \ -n\ln \theta, &amp;\theta&gt; x_{(n)}
 </ul>
 </section></section>
 <section>
-<section id="estatísticas-suficientes" class="title-slide slide level1">
-<h1>Estatísticas Suficientes</h1>
+<section id="estatísticas-suficientes" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Estatísticas Suficientes</span></h1>
 
 </section>
 <section id="estatísticas-suficientes-1" class="slide level2">
@@ -1278,6 +1278,348 @@ L(\theta;\textbf{y})&amp;=&amp;\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[(n-1)S_{
 <p>A razão <span class="math inline">\(\dfrac{f(x\mid \theta)}{f(y\mid \theta)}\)</span> será constante como função de <span class="math inline">\(\theta\)</span> se e só <span class="math inline">\(x_{(1)}=y_{(1)}\)</span> e <span class="math inline">\(x_{(n)}=y_{(n)}\)</span>.</p>
 <p><img data-src="figura_uniforme2.jpg"> <!-- #\scalebox{0.9}{\includegraphics{figura_uniforme2.jpg}} --></p>
 <p><code>Conclusão:</code> <span class="math inline">\(T(X)=(x_{(1)}, x_{(n)})\)</span> é uma estatística suficiente minimal para <span class="math inline">\(\theta\)</span>. Neste caso, note que a dimensão é diferente da dimensão do parâmetro.</p>
+</section></section>
+<section>
+<section id="família-exponencial" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Família Exponencial</span></h1>
+
+</section>
+<section id="família-exponencial-1" class="slide level2">
+<h2>Família exponencial</h2>
+<div id="def-def10" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 11</strong></span> Dizemos que a distribuição da v.a. <span class="math inline">\(Y\)</span> pertence à família exponencial unidimensional se pudermos escrever sua f.p. ou f.d. como</p>
+</div>
+<p><span class="math display">\[f(y\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\},\]</span> em que:</p>
+<ul>
+<li><p><span class="math inline">\(h(x)\geq0\)</span> e <span class="math inline">\(t_i(y), i=1, \dots, k,\)</span> são funções reais da observação <span class="math inline">\(y\)</span> e são elementos que não dependem de <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><span class="math inline">\(c(\theta)\geq0\)</span> e <span class="math inline">\(\omega_i(\theta), i=1, \dots, k,\)</span> são funções reais de <span class="math inline">\(\theta\)</span> e são elementos que não dependem de <span class="math inline">\(y\)</span>.</p></li>
+</ul>
+</section>
+<section id="família-exponencial-2" class="slide level2">
+<h2>Família exponencial</h2>
+<ul>
+<li><p>Diversas distribuições são importantes membros da família exponencial.</p></li>
+<li><p>Por exemplo:</p>
+<ul>
+<li><p>Caso contínuo: Normal, Gama, e Beta;</p></li>
+<li><p>Binomial, Poisson, Binomial Negativa;</p></li>
+</ul></li>
+<li><p>Para verificar se uma certa distribuição pertence à família exponencial devemos identificar as funções <span class="math inline">\(h(y)\)</span>, <span class="math inline">\(c(\theta)\)</span>, <span class="math inline">\(t_i(y)\)</span> e <span class="math inline">\(\omega_i(\theta)\)</span>, e mostrar que a família pode ser escreta conforme foi expressado acima.</p></li>
+</ul>
+</section>
+<section id="família-exponencial-3" class="slide level2">
+<h2>Família exponencial</h2>
+<div id="exm-exm19" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 21</strong></span> Verifique se <span class="math inline">\(Y \sim Binomial(n,p)\)</span>, pertence à família exponencial, em que <span class="math inline">\(n\)</span> é um inteiro positivo e <span class="math inline">\(0&lt;p&lt;1\)</span>. Nosso parâmetro de interesse é <span class="math inline">\(p\)</span>.</p>
+</div>
+<p><span class="math display">\[
+\begin{array}{ccl}
+f(y|p)&amp;=&amp;{n\choose y}p^y(1-p)^{n-y}\\
+&amp;=&amp;{  n\choose y}(1-p)^{n}\left(\dfrac{p}{1-p}\right)^{y}\\
+&amp;=&amp;\underbrace{{n\choose y}}_{h(y)}\ \ \underbrace{(1-p)^{n}}_{c(p)}\ \ \ \exp\left\{\underbrace{y}_{t_{1}(y)}\ \ \underbrace{\log\left(\dfrac{p}{1-p}\right)}_{\omega_{1}(p)}\right\}
+\end{array}
+\]</span></p>
+<ul>
+<li><p>A família exponencial apresenta propriedades estatísticas interessantes.</p></li>
+<li><p>É possível tirar conclusões relevantes para uma família de distribuições sem realizar explicitamente os cálculos para cada caso específico.</p></li>
+</ul>
+</section>
+<section id="família-exponencial-4" class="slide level2">
+<h2>Família exponencial</h2>
+<div id="exm-exm19" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 22</strong></span> Considere <span class="math inline">\(Y=(Y_{1}, Y_{2}, \dots, Y_{n})\)</span> i.i.d <span class="math inline">\(N(\mu, \sigma^2)\)</span>. Assim a <span class="math inline">\(f(Y|\mu, \sigma^2)\)</span> é igual</p>
+</div>
+<p><span class="math display">\[
+\begin{array}{cll}
+&amp;=&amp; \prod\limits_{i=1}^{n}(2\pi \sigma^2)^{-1/2}\exp\left\{ -\dfrac{1}{2\sigma^2} (y_{i}-\mu)^2  \right\}I_{(-\infty,\infty)}(y_{i})\\
+&amp;=&amp;(2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}\prod\limits_{i=1}^{n}I_{(-\infty,\infty)}(y_{i})\\
+&amp;=&amp;\prod\limits_{i=1}^{n}\left[I_{(-\infty,\infty)}(y_{i})\right](2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left(\sum\limits_{i=1}^{n}y_{i}^2\right)+ \dfrac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}y_{i}\right\}\exp\left\{ -\dfrac{1}{2\sigma^2}n\mu^2  \right\}\\
+&amp;=&amp;\underbrace{\prod\limits_{i=1}^{n}\left[I_{(-\infty,\infty)}(y_{i})\right]}_{h(y)}\underbrace{(2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}n\mu^2  \right\}}_{c(\mu, \sigma^2)}\exp\left\{ \underbrace{-\dfrac{1}{2\sigma^2}}_{\omega_{1}(\mu, \sigma^2)}  \underbrace{\left(\sum\limits_{i=1}^{n}y_{i}^2\right)}_{t_{1}(y)}+ \underbrace{\dfrac{\mu}{\sigma^2}}_{\omega_{2}(\mu, \sigma^2)}\underbrace{\sum\limits_{i=1}^{n}y_{i}}_{t_{2}(y)}\right\}
+\end{array}
+\]</span></p>
+</section>
+<section id="família-exponencial-5" class="slide level2">
+<h2>Família exponencial</h2>
+<ul>
+<li>É fácil encontrar uma estatística suficiente para uma distribuição da família exponencial. Considere o teorema abaixo.</li>
+</ul>
+<div id="thm-thm6" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 6</strong></span> Sejam <span class="math inline">\(Y_{1}, Y_{2}, \dots, Y_{n}\)</span> observações i.i.d. de uma f.d. ou f.p <span class="math inline">\(f(Y\mid \theta)\)</span> que pertence à família exponencial dada por</p>
+</div>
+<p><span class="math display">\[f(y\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\},\]</span></p>
+<p>sendo <span class="math inline">\(\theta=(\theta_1, \theta_2, \dots, \theta_d), \ d\leq K\)</span>.</p>
+<p>Então, <span class="math inline">\(T(Y)=\left( t_{1}(y), t_{2}(y), \dots, t_{k}(y) \right)\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span>.</p>
+</section>
+<section id="família-exponencial-6" class="slide level2">
+<h2>Família exponencial</h2>
+<p><code>Prova:</code> Considere o teorema da fatoração de Neyman</p>
+<p><span class="math display">\[f(y\mid \theta)=h(x)\underbrace{c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\}}_{g(T(Y)\mid \theta)},\]</span></p>
+<ul>
+<li><p>Então, <span class="math inline">\(T(Y)=\left( t_{1}(y), t_{2}(y), \dots, t_{k}(y) \right)\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>No exemplo anterior (caso Normal) temos <span class="math inline">\(t_{1}(Y)=\sum\limits_{i=1}^{n}Y_{i}^{2}\)</span> e <span class="math inline">\(t_{2}(Y)=\sum\limits_{i=1}^{n}Y_{i}\)</span>.</p></li>
+</ul>
+<p>Então, <span class="math inline">\(\left(\sum\limits_{i=1}^{n}Y_{i}^{2}, \sum\limits_{i=1}^{n}Y_{i}\right)\)</span> é estatística suficiente para <span class="math inline">\((\mu, \sigma^2)\)</span>.</p>
+</section></section>
+<section>
+<section id="ancilaridade-e-completude" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Ancilaridade e Completude</span></h1>
+
+</section>
+<section id="ancilaridade" class="slide level2">
+<h2>Ancilaridade</h2>
+<ul>
+<li><p>Consideramos anteriormente as estatísticas suficientes. Estas estatísticas contêm toda a informação sobre <span class="math inline">\(\theta\)</span> que está disponível na amostra.</p></li>
+<li><p>Iremos introduzir agora um tipo diferente de estatística; ela apresenta um conceito oposto.</p></li>
+</ul>
+<div id="def-def11" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 12</strong></span> Uma estatística <span class="math inline">\(S(X)\)</span> cuja distribuição não depende do parâmetro de interesse <span class="math inline">\(\theta\)</span> é dita <code>estatística ancilar</code>.</p>
+</div>
+<ul>
+<li><p>Uma estatística ancilar não contém informação sobre <span class="math inline">\(\theta\)</span>. Ela é uma observação de uma variável aleatória cuja distribuição é fixa e conhecida (sem relação com <span class="math inline">\(\theta\)</span>).</p></li>
+<li><p>Paradoxalmente, uma estatística ancilar usada em conjunto com outras estatísticas pode conter informação sobre <span class="math inline">\(\theta\)</span>.</p></li>
+</ul>
+</section>
+<section id="ancilaridade-1" class="slide level2">
+<h2>Ancilaridade</h2>
+<div id="exm-exm20" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 23</strong></span> Sejam <span class="math inline">\(X_{1}, \dots, X_{n}\)</span> observações iid de uma distribuição pertencente à família de locação com f.d.a <span class="math inline">\(F(x-\theta)\)</span> sendo <span class="math inline">\(-\infty&lt;\theta&lt;\infty\)</span>. A diferença <span class="math inline">\(R=X_{(n)}-X_{(1)}\)</span> é uma estatística ancilar?</p>
+</div>
+<p>Assuma que <span class="math inline">\(X_{1}=Z_{1}+\theta, \ X_{2}=Z_{2}+\theta, \ \dots, \ X_{n}=Z_{n}+\theta\)</span> sendo <span class="math inline">\(Z_{1}, \dots, Z_{n}\)</span> observações iid com f.d.a. <span class="math inline">\(F(X)\)</span>.</p>
+<p>A f.d.a. de <span class="math inline">\(R\)</span> será</p>
+<p><span class="math display">\[
+F_{R}\left(r\left|\right. \theta  \right)=P\left[R\leq r\right]=P\left[\max_{i}(X_{i})-\min_{i}(X_{i})\leq r\right]\]</span></p>
+<p>Logo,</p>
+<p><span class="math display">\[
+\begin{array}{ccl}
+F_{R}\left(r\left|\right. \theta  \right)&amp;=&amp;P\left[\max_{i}(Z_{i}+\theta)-\min_{i}(Z_{i}+\theta)\leq r\right]\\
+&amp;=&amp;P\left[\max_{i}(Z_{i})+\theta-\min_{i}(Z_{i})-\theta\leq r\right]\\
+&amp;=&amp;P\left[\max_{i}(Z_{i})-\min_{i}(Z_{i})\leq r\right]\\
+\end{array}
+\]</span></p>
+<p>Esta f.d.a. não depende de <span class="math inline">\(\theta\)</span>, logo <span class="math inline">\(R\)</span> é uma estatística ancilar.</p>
+</section>
+<section id="ancilaridade-2" class="slide level2">
+<h2>Ancilaridade</h2>
+<div id="exm-exm21" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 24</strong></span> Sejam <span class="math inline">\(X_{1}, \dots, X_{n}\)</span> observações iid de uma distribuição pertencente à família de escala com f.d.a <span class="math inline">\(F(x/\sigma)\)</span> sendo <span class="math inline">\(0&lt;\theta&lt;\infty\)</span>. Qualquer estatística, que dependa da amostra apenas através de <span class="math inline">\(n-1\)</span> valores do tipo <span class="math inline">\(X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}\)</span> será ancilar.</p>
+</div>
+<p>Por exemplo:</p>
+<p><span class="math display">\[\dfrac{X_{1}+\dots+X_{n}}{X_{n}}=X_{1}/X_{n}+ \dots+ X_{n-1}/X_{n}+1, \ \text{é ancilar.
+}\]</span></p>
+<p>Seja <span class="math inline">\(Z_{1}, \dots, Z_{n}\)</span> observações iid com f.d.a <span class="math inline">\(F(x)\)</span> (temos aqui <span class="math inline">\(\sigma=1\)</span>). Defina <span class="math inline">\(X_{1}=\sigma Z_{1}, \dots, X_{n}=\sigma Z_{n}\)</span>.</p>
+<p>A f.d.a conjunta de <span class="math inline">\(X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}\)</span> é dada por</p>
+<p><span class="math display">\[
+\begin{array}{ccl}
+F\left(y_{1}, \dots, y_{n-1}\left|\right. \sigma  \right)&amp;=&amp;P\left[X_{1}/X_{n}\leq y_{1}, \dots, X_{n-1}/X_{n}\leq y_{n-1}\right]\\
+&amp;=&amp; P\left[\dfrac{\sigma Z_{1}}{\sigma Z_{n}}\leq y_{1}, \dots, \dfrac{\sigma Z_{n-1}}{\sigma Z_{n}}\leq y_{n-1}\right]\\
+&amp;=&amp; P\left[\dfrac{Z_{1}}{Z_{n}}\leq y_{1}, \dots, \dfrac{ Z_{n-1}}{ Z_{n}}\leq y_{n-1}\right]
+\end{array}
+\]</span></p>
+</section>
+<section id="ancilaridade-3" class="slide level2">
+<h2>Ancilaridade</h2>
+<p>A última probabilidade não depende de <span class="math inline">\(\sigma\)</span> visto que a distribuição de <span class="math inline">\(Z_{1}, \dots, Z_{n}\)</span> não depende de <span class="math inline">\(\sigma\)</span>.</p>
+<p>Portanto, a distribuição de <span class="math inline">\(X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}\)</span> não dependerá de <span class="math inline">\(\sigma\)</span>, assim como a distribuição de qualquer função destas quantidades.</p>
+<p>Caso particular: <span class="math inline">\(X_{1}\)</span> e <span class="math inline">\(X_{2}\)</span> são iid. <span class="math inline">\(N(0, \sigma^2)\)</span></p>
+<p>O resultado acima indica que <span class="math inline">\(X_{1}/X_{2}\)</span> tem distribuição que não depende de <span class="math inline">\(\sigma\)</span>.</p>
+<p>É possível mostrar que <span class="math inline">\(X_{1}/X_{2}\sim Cauchy(0,1)\)</span> para qualquer <span class="math inline">\(\sigma&gt;0\)</span></p>
+</section>
+<section id="ancilaridade-4" class="slide level2">
+<h2>Ancilaridade</h2>
+<ul>
+<li><p>Uma estatística suficiente minimal é aquela que atinge a maior redução de dados possível, mantendo toda informação sobre <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Intuitivamente, uma estatística suficiente minimal elimina toda a informação irrelevante na amostra, retendo apenas aquilo que interessa sobre <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>A distribuição de uma estatística ancilar não depende de <span class="math inline">\(\theta\)</span>, então poderíamos suspeitar que uma estatística suficiente minimal não tem relação com estatísticas acilares.</p></li>
+<li><p>Entretanto, isso não é necessariamente verdade.</p></li>
+<li><p>Investigaremos esta relação a seguir…</p></li>
+</ul>
+</section>
+<section id="ancilaridade-5" class="slide level2">
+<h2>Ancilaridade</h2>
+<ul>
+<li><p>É possível mostrar que se <span class="math inline">\(X_{1}, \dots, X_{n}\)</span> são iid com distribuição <span class="math inline">\(U(\theta, \theta+1)\)</span>, então <span class="math inline">\(\left[ X_{(n)}-X_{(1)} , \dfrac{X_{(1)}+X_{(n)}}{2}\right]\)</span> é uma estatística suficiente minimal para <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Temos também o seguinte resultado <span class="math inline">\(X_{(n)}-X_{(1)}\)</span> é estatística ancilar. <em>(Ver, Casella e Berger(2002), pag. 282 e 283)</em>.</p></li>
+<li><p>Neste caso, a estatística ancilar é uma <strong>componente importante</strong> na formulação da estatística minimal.</p></li>
+<li><p>Aqui, estes dois tipos de estatísticas não são independentes.</p></li>
+<li><p>Para dar uma ideia de como uma estatistica ancilar pode trazer informação sobre <span class="math inline">\(\theta\)</span>, considere o próximo exemplo.</p></li>
+</ul>
+</section>
+<section id="ancilaridade-6" class="slide level2">
+<h2>Ancilaridade</h2>
+<div id="exm-exm22" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 25</strong></span> Caso particular: <span class="math inline">\(X_{1}\)</span> e <span class="math inline">\(X_{2}\)</span> são iid com f.p.</p>
+</div>
+<p><span class="math display">\[P(X=\theta)=P(X=\theta+1)=P(X=\theta+2)=\dfrac{1}{3},\]</span></p>
+<p>sendo <span class="math inline">\(\theta\)</span> um inteiro desconhecido.</p>
+<p>Esta distribuição é da família de locação.</p>
+<p>Estatísticas de ordem: <span class="math inline">\(X_{(1)}\leq X_{(1)}\)</span>.</p>
+<p>Assuma <span class="math inline">\(R=X_{(2)}-X_{(1)}\)</span> e <span class="math inline">\(M=\dfrac{X_{(1)}+X_{(2)}}{2}\)</span>.</p>
+<p>Estatística suficiente minimal para <span class="math inline">\(\theta:[R,M]\)</span>.</p>
+<p>Estatística ancilar: <span class="math inline">\(R\)</span>.</p>
+<p>Considere o ponto <span class="math inline">\([R,M]=(r,m)\)</span>, sendo <span class="math inline">\(m\)</span> inteiro.</p>
+</section>
+<section id="ancilaridade-7" class="slide level2">
+<h2>Ancilaridade</h2>
+<ul>
+<li><span class="math inline">\(M=\dfrac{X_{(1)}+X_{(2)}}{2}\)</span> então temos as seguintes possibilidades para <span class="math inline">\(m\)</span>:</li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[
+\begin{array}{lllll}
+m&amp;=&amp; \dfrac{\theta+\theta}{2}&amp;=&amp; \theta\\
+m&amp;=&amp; \dfrac{\theta+(\theta+1)}{2}&amp;=&amp; \theta+\dfrac{1}{2}\\
+m&amp;=&amp; \dfrac{\theta+(\theta+2)}{2}&amp;=&amp; \theta+1\\
+m&amp;=&amp; \dfrac{(\theta+1)+(\theta+1)}{2}&amp;=&amp; \theta+1\\
+m&amp;=&amp; \dfrac{(\theta+1)+(\theta+2)}{2}&amp;=&amp; \theta+\dfrac{3}{2}\\
+m&amp;=&amp; \dfrac{(\theta+2)+(\theta+2)}{2}&amp;=&amp; \theta+2\\
+\end{array}
+\]</span></p>
+</div><div class="column">
+<p>Lembre que <span class="math inline">\(\theta\)</span> e <span class="math inline">\(m\)</span> são inteiros, logo podemos ter <span class="math inline">\(m=\theta\)</span>, <span class="math inline">\(m=\theta+1\)</span> ou <span class="math inline">\(m=\theta+2\)</span>, quando dispomos apenas da informação de <span class="math inline">\(M=m\)</span> (Estatística suficiente minimal).</p>
+</div>
+</div>
+</section>
+<section id="ancilaridade-8" class="slide level2">
+<h2>Ancilaridade</h2>
+<p>Suponha agora que <span class="math inline">\(R=2\)</span> é uma informação adicional obtida. <span class="math inline">\(R=X_{(2)}-X_{(1)}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(X_{(1)}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X_{(n)}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(m\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(r\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\theta+1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\theta+2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\theta+2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><code>Conclusão:</code> O conhecimento de uma estatística ancilar (<span class="math inline">\(R\)</span>) aumentou nosso conhecimento sobre <span class="math inline">\(\theta\)</span>.</p>
+<p>O conhecimento do valor de <span class="math inline">\(R\)</span> sozinho, não traria qualquer informação sobre o valor de <span class="math inline">\(\theta\)</span> (no caso r=2, saberíamos que <span class="math inline">\(X_{(1)}=\theta\)</span> e <span class="math inline">\(X_{(2)}=\theta+2\)</span> mas não teríamos <span class="math inline">\(m\)</span> para determinar <span class="math inline">\(\theta\)</span>).</p>
+</section>
+<section id="completude" class="slide level2">
+<h2>Completude</h2>
+<ul>
+<li><p>Para muitas situações, entretanto, nossa intuição de que uma <code>estatística suficiente minimal</code> é independente de qualquer <code>estatística ancilar</code> está correta.</p></li>
+<li><p>Os casos onde isso ocorre tem como base a seguinte definição:</p></li>
+</ul>
+<div id="def-def11" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 13</strong></span> Uma estatística <span class="math inline">\(T = T(X_1, \dots, X_n)\)</span> é dita ser completa em relação à família <span class="math inline">\(f(x\mid \theta)\)</span>, <span class="math inline">\(\theta\in \Theta\)</span>, se a única função real <span class="math inline">\(g\)</span>, definida no domínio de <span class="math inline">\(T\)</span>, tal que <span class="math inline">\(E(g(T)) = 0\)</span> para todo <span class="math inline">\(\theta\)</span> é a função nula, isto é, <span class="math inline">\(g(T) = 0\)</span> com probabilidade um.</p>
+<p>T é completa se, e somente se, <span class="math inline">\(E(g(T(\textbf{X}))) = 0\)</span>, <span class="math inline">\(\theta\in \Theta\)</span>, implicar que <span class="math inline">\(P(g(T(\textbf{X})) = 0) = 1\)</span>, <span class="math inline">\(\theta\in \Theta\)</span>.</p>
+</div>
+<ul>
+<li>Note que a <code>completude</code> é uma propriedade de uma família de distribuições, e não de uma distribuição particular.</li>
+</ul>
+</section>
+<section id="completude-1" class="slide level2">
+<h2>Completude</h2>
+<div id="exm-exm23" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 26</strong></span> <span class="math inline">\(X\sim N(0,1)\)</span> e <span class="math inline">\(g(X)=X\)</span>. Então,</p>
+</div>
+<p><span class="math display">\[E(g(X)=X)=E(X)=0.\]</span></p>
+<p>Entretando, <span class="math inline">\(P(g(X) = 0) = P(X = 0)\neq 1\)</span>. Note que a <span class="math inline">\(N(0,1)\)</span> é uma distribuição particular.</p>
+<div id="exm-exm23" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 27</strong></span> <span class="math inline">\(X\sim N(\theta,1)\)</span> com <span class="math inline">\(\theta\in \mathbb{R}\)</span>. Nenhuma função de <span class="math inline">\(X\)</span>, exceto <span class="math inline">\(g(X)=0\)</span> para todo <span class="math inline">\(\theta\)</span>, satisfaz <span class="math inline">\(E[g(X)]=0\)</span> para todo <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<p>Então temos que <span class="math inline">\(E[g(X)]=0\Rightarrow P(g(X) = 0) = 1, \ \forall \theta\)</span>.</p>
+<p>Dessa forma, a família de distribuições <span class="math inline">\(X\sim N(\theta,1)\)</span> é completa.</p>
+</section>
+<section id="completude-2" class="slide level2">
+<h2>Completude</h2>
+<div id="exm-exm24" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 28</strong></span> Suponha que <span class="math inline">\(T\sim Binomial (n,p)\)</span>, com <span class="math inline">\(0&lt;p&lt;1\)</span>.</p>
+</div>
+<p>Seja <span class="math inline">\(g\)</span> uma função tal que <span class="math inline">\(E_{p}(g(T))=0\)</span>.</p>
+<p>Então,</p>
+<p><span class="math display">\[
+\begin{array}{ccl}
+0=E_{p}\left[ g(T) \right]&amp;=&amp;\sum\limits_{t=0}^{n}g(t){n\choose t}p^{t}(1-p)^{n-t} \\
+&amp;=&amp;(1-p)^{n}\sum\limits_{t=0}^{n}g(t){n\choose t}\left(\dfrac{p}{1-p}\right)^{t}, \ \forall p.
+\end{array}
+\]</span></p>
+<p>O componente <span class="math inline">\((1-p)^{n}\neq 0\)</span> para qualquer <span class="math inline">\(p\in (0,1)\)</span>.</p>
+<p>Entao devemos ter:</p>
+<p><span class="math display">\[0=\sum\limits_{t=0}^{n}g(t){n\choose t}r^{t},\]</span></p>
+<p>com <span class="math inline">\(r=\dfrac{p}{1-p}\in (0,\infty)\)</span>.</p>
+</section>
+<section id="completude-3" class="slide level2">
+<h2>Completude</h2>
+<ul>
+<li><p>A última expressão é um polinômio de grau <span class="math inline">\(n\)</span> em <span class="math inline">\(r\)</span>, on de o coeficiente <span class="math inline">\(r^t\)</span> sera <span class="math inline">\(g(t){n\choose t}\)</span>. Para que o polinômio se <span class="math inline">\(0\)</span> <span class="math inline">\(\forall r\)</span> cada coeficiente deve ser <span class="math inline">\(0\)</span>.</p></li>
+<li><p>Veja, que <span class="math inline">\({n\choose t}\neq 0\)</span>, então <span class="math inline">\(g(t)=0\)</span>, para <span class="math inline">\(t=0,1,\dots, n\)</span>.</p></li>
+<li><p>Dado que <span class="math inline">\(T=0,1,\dots, n\)</span>, temos que <span class="math inline">\(E_{p}\left[ g(T) \right]=0 \Rightarrow P_{p}(g(T)=0)=1, \forall p\)</span>.</p></li>
+</ul>
+<p><code>Conclusão:</code> <span class="math inline">\(T\)</span> é uma estatística completa.</p>
+</section>
+<section id="completude-4" class="slide level2">
+<h2>Completude</h2>
+<ul>
+<li>O teorema abaixo usa a completude para estabelecer uma condição na qual uma estatística suficiente minimal é independente de toda estatística ancilar.</li>
+</ul>
+<div id="thm-thm6" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 7 (Teorema de Basu)</strong></span> Se <span class="math inline">\(T(X)\)</span> é uma estatística suficiente minimal completa, então <span class="math inline">\(T(X)\)</span> é independente de toda estatística ancilar.</p>
+</div>
+<ul>
+<li><p>O Teorema de Basu permite deduzir a independência de duas estatísticas sem ter que encontrar a distribuição conjunta delas.</p></li>
+<li><p>Para usar o Teorema de Basu, precisamos mostrar que a estatística é completa.</p></li>
+<li><p>Muitas vezes, isso é uma tarefa difícil em termos de análise.</p></li>
+<li><p>Felizmente, a maioria dos problemas que iremos trabalhar utilizam o seguinte resultado.</p></li>
+</ul>
+</section>
+<section id="completude-5" class="slide level2">
+<h2>Completude</h2>
+<div id="thm-thm7" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 8 (Estatistica completa da família exponencial.)</strong></span> &nbsp;</p>
+</div>
+<p>Seja <span class="math inline">\(X_{1}, \dots, X_{n}\)</span> observações iid de uma distribuição da Família Exponencial com f.d. ou f.p. do tipo</p>
+<p><span class="math display">\[f(x\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{j=1}^{k}\omega_{j}(\theta)t_j(x)\right\}, \ \theta=(\theta_1,\theta_2, \dots, \theta_k)'\]</span></p>
+<p>Então a estatística <span class="math inline">\(T(X)=\left[ \sum\limits_{i=1}^{n}t_{1}(x), \sum\limits_{i=1}^{n}t_{2}(x), \dots, \sum\limits_{i=1}^{n}t_{k}(x)\right]\)</span> é completa se e somente se <span class="math inline">\(\left\{[\omega_{1}(\theta), \dots, \omega_{k}(\theta)]:\theta \in \Theta \right\}\)</span> contém um conjunto aberto em <span class="math inline">\(\mathbb{R}^{k}\)</span>. :::</p>
+</section>
+<section id="completude-6" class="slide level2">
+<h2>Completude</h2>
+<ul>
+<li>A condição de que o espaço paramétrico contenha um conjunto aberto é necessária para evitar a seguinte situação:</li>
+</ul>
+<p>A <span class="math inline">\(N(\theta, \theta^2)\)</span> é membro da família exponencial.</p>
+<p>Verossimilhança: <span class="math inline">\((2\pi \theta^{2})^{-n/2}\exp\left\{ -\dfrac{1}{2\theta^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\theta\sum\limits_{i=1}^{n}y_{i}+ n\theta^2\right]\right\}\)</span></p>
+<p>Formulação da FE:</p>
+<p><span class="math inline">\(\underbrace{(2\pi)^{-n/2}}_{h(x)}\underbrace{\theta^{-n}}_{c(\theta)}\exp\left\{ \underbrace{\dfrac{1}{\theta^2}}_{\omega_{1}(\theta)}  \left[-\dfrac{1}{2}\underbrace{\sum\limits_{i=1}^{n}y_{i}^2}_{t_{1}(x)}\right]+\underbrace{\dfrac{1}{\theta}}_{\omega_{2}(\theta)}\underbrace{\sum\limits_{i=1}^{n}y_{i}}_{t_{1}(x)}\right\}\)</span></p>
+<p><span class="math inline">\(\left\{ \omega_{1}(\theta), \omega_{2}(\theta) \right\}=\left\{ \dfrac{1}{\theta^2}, \dfrac{1}{\theta}\right\}\)</span> que possui uma relação muito próxima com o espaço paramétrico <span class="math inline">\(\{\theta, \theta^2\}\)</span>.</p>
+</section>
+<section id="completude-7" class="slide level2">
+<h2>Completude</h2>
+<div class="columns">
+<div class="column">
+<p>!()[figura_aberto.jpg] <!-- \scalebox{0.8}{\includegraphics{figura_aberto.jpg}} --></p>
+</div><div class="column">
+<p><code>Conclusão:</code> <span class="math inline">\(\left\{ \omega_{1}(\theta), \omega_{2}(\theta) \right\}\)</span> não contém um aberto em <span class="math inline">\(\mathbb{R}^2\)</span>, então <span class="math inline">\(T(X)=\left[ t_{1}(x)=-\dfrac{1}{2}\sum_{i=1}^{n}X_{i}^{2}, t_{2}(x)=\sum_{i=1}^{n}X_{i} \right]\)</span> não é uma estatítica completa.</p>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

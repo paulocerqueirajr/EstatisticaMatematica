@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-# [Modelos estatísticos]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+# [Modelos estatísticos]{style="float:right;text-align:right;"} {background-color="#00008B"}
 
 ## Modelos Estatísticos
 
@@ -158,7 +158,7 @@ $$f(y; \theta)=\phi(y_{1}-\theta)\phi(y_{2}-\theta)$$
 
 
 
-# [Famílias de locação e escala]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+# [Famílias de locação e escala]{style="float:right;text-align:right;"} {background-color="#00008B"}
 
 ## Famílias de locação e escala
 
@@ -448,7 +448,8 @@ $$P(X\leq x)=P\left( \dfrac{X-\mu}{\sigma}\leq \dfrac{x-\mu}{\sigma} \right)=P\l
 
 
 
-# A função de verossimilhança
+# [A função de verossimilhança]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
 
 ## A função de verossimilhança
 
@@ -648,7 +649,7 @@ $$\theta^{9}(1-\theta)^{3},$$
 * Segundo o princípio da verossimilhança as inferências **devem ser a mesmas qualquer que tenha sido o processo experimental** (ou a regra de parada).
 
 
-# Estatísticas Suficientes
+# [Estatísticas Suficientes]{style="float:right;text-align:right;"} {background-color="#00008B"}
 
 ## Estatísticas Suficientes
 
@@ -1197,6 +1198,459 @@ A razão $\dfrac{f(x\mid \theta)}{f(y\mid \theta)}$ será constante como funçã
 <!-- #\scalebox{0.9}{\includegraphics{figura_uniforme2.jpg}} -->
 
 `Conclusão:` $T(X)=(x_{(1)}, x_{(n)})$ é uma estatística suficiente minimal para $\theta$. Neste caso, note que a dimensão é diferente da dimensão do parâmetro.
+
+
+
+
+# [Família Exponencial]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Família exponencial
+
+:::{#def-def10} 
+Dizemos que a distribuição da v.a. $Y$ pertence à família exponencial unidimensional se pudermos escrever sua f.p. ou f.d. como
+:::
+$$f(y\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\},$$
+ em que:
+
+* $h(x)\geq0$ e $t_i(y), i=1, \dots, k,$ são funções reais da observação $y$ e são elementos que não dependem de $\theta$.
+
+
+* $c(\theta)\geq0$ e $\omega_i(\theta), i=1, \dots, k,$ são funções reais de $\theta$ e são elementos que não dependem de $y$.
+
+
+
+## Família exponencial
+
+
+* Diversas distribuições são importantes membros da família exponencial.
+
+* Por exemplo:
+
+   - Caso contínuo: Normal, Gama, e Beta;
+   
+   - Binomial, Poisson, Binomial Negativa;
+   
+* Para verificar se uma certa distribuição pertence à família exponencial devemos identificar as funções $h(y)$, $c(\theta)$, $t_i(y)$ e $\omega_i(\theta)$, e mostrar que a família pode ser escreta conforme foi expressado acima.
+
+## Família exponencial
+
+
+:::{#exm-exm19}
+Verifique se $Y \sim Binomial(n,p)$, pertence à família exponencial, em que $n$ é um inteiro positivo e $0<p<1$. Nosso parâmetro de interesse é $p$.
+:::
+
+$$
+\begin{array}{ccl}
+f(y|p)&=&{n\choose y}p^y(1-p)^{n-y}\\
+&=&{  n\choose y}(1-p)^{n}\left(\dfrac{p}{1-p}\right)^{y}\\
+&=&\underbrace{{n\choose y}}_{h(y)}\ \ \underbrace{(1-p)^{n}}_{c(p)}\ \ \ \exp\left\{\underbrace{y}_{t_{1}(y)}\ \ \underbrace{\log\left(\dfrac{p}{1-p}\right)}_{\omega_{1}(p)}\right\}
+\end{array}
+$$
+
+* A família exponencial apresenta propriedades estatísticas interessantes.
+
+* É possível tirar conclusões relevantes para uma família de distribuições sem realizar explicitamente os cálculos para cada caso específico.
+
+
+## Família exponencial
+
+
+:::{#exm-exm19}
+Considere  $Y=(Y_{1}, Y_{2}, \dots, Y_{n})$ i.i.d $N(\mu, \sigma^2)$. Assim a $f(Y|\mu, \sigma^2)$ é igual
+:::
+
+$$
+\begin{array}{cll}
+&=& \prod\limits_{i=1}^{n}(2\pi \sigma^2)^{-1/2}\exp\left\{ -\dfrac{1}{2\sigma^2} (y_{i}-\mu)^2  \right\}I_{(-\infty,\infty)}(y_{i})\\
+&=&(2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\mu\sum\limits_{i=1}^{n}y_{i}+ n\mu^2\right]  \right\}\prod\limits_{i=1}^{n}I_{(-\infty,\infty)}(y_{i})\\
+&=&\prod\limits_{i=1}^{n}\left[I_{(-\infty,\infty)}(y_{i})\right](2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}  \left(\sum\limits_{i=1}^{n}y_{i}^2\right)+ \dfrac{2\mu}{2\sigma^2}\sum\limits_{i=1}^{n}y_{i}\right\}\exp\left\{ -\dfrac{1}{2\sigma^2}n\mu^2  \right\}\\
+&=&\underbrace{\prod\limits_{i=1}^{n}\left[I_{(-\infty,\infty)}(y_{i})\right]}_{h(y)}\underbrace{(2\pi \sigma^2)^{-n/2}\exp\left\{ -\dfrac{1}{2\sigma^2}n\mu^2  \right\}}_{c(\mu, \sigma^2)}\exp\left\{ \underbrace{-\dfrac{1}{2\sigma^2}}_{\omega_{1}(\mu, \sigma^2)}  \underbrace{\left(\sum\limits_{i=1}^{n}y_{i}^2\right)}_{t_{1}(y)}+ \underbrace{\dfrac{\mu}{\sigma^2}}_{\omega_{2}(\mu, \sigma^2)}\underbrace{\sum\limits_{i=1}^{n}y_{i}}_{t_{2}(y)}\right\}
+\end{array}
+$$
+
+
+
+## Família exponencial
+
+
+* É fácil encontrar uma estatística suficiente para uma distribuição da
+família exponencial. Considere o teorema abaixo.
+
+
+:::{#thm-thm6} 
+Sejam $Y_{1}, Y_{2}, \dots, Y_{n}$ observações i.i.d. de uma f.d. ou f.p $f(Y\mid \theta)$ que pertence à família exponencial dada por
+:::
+
+$$f(y\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\},$$
+
+
+sendo $\theta=(\theta_1, \theta_2, \dots, \theta_d), \ d\leq K$.
+
+
+Então, $T(Y)=\left( t_{1}(y), t_{2}(y), \dots, t_{k}(y) \right)$ é uma estatística suficiente para $\theta$.
+
+
+
+
+## Família exponencial
+
+
+`Prova:` Considere o teorema da fatoração de Neyman
+
+$$f(y\mid \theta)=h(x)\underbrace{c(\theta)\exp\left\{ \sum\limits_{i=1}^{k}\omega_{i}(\theta)t_i(y)\right\}}_{g(T(Y)\mid \theta)},$$
+
+
+* Então, $T(Y)=\left( t_{1}(y), t_{2}(y), \dots, t_{k}(y) \right)$ é uma estatística suficiente para $\theta$.
+
+
+* No exemplo anterior (caso Normal) temos $t_{1}(Y)=\sum\limits_{i=1}^{n}Y_{i}^{2}$ e $t_{2}(Y)=\sum\limits_{i=1}^{n}Y_{i}$.
+
+Então, $\left(\sum\limits_{i=1}^{n}Y_{i}^{2}, \sum\limits_{i=1}^{n}Y_{i}\right)$ é estatística suficiente para $(\mu, \sigma^2)$.
+
+
+# [Ancilaridade e Completude]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Ancilaridade
+
+
+* Consideramos anteriormente as estatísticas suficientes. Estas estatísticas contêm toda a informação sobre
+$\theta$ que está disponível na amostra.
+
+* Iremos introduzir agora um tipo diferente de estatística; ela apresenta um conceito oposto.
+
+:::{#def-def11}
+Uma estatística $S(X)$ cuja distribuição não depende do parâmetro de interesse $\theta$ é dita `estatística ancilar`.
+:::
+
+* Uma estatística ancilar não contém informação sobre $\theta$. Ela é uma observação de uma variável aleatória cuja distribuição é fixa e conhecida (sem relação com $\theta$).
+
+
+* Paradoxalmente, uma estatística ancilar usada em conjunto com outras estatísticas pode conter informação sobre $\theta$.
+
+
+## Ancilaridade
+
+
+:::{#exm-exm20}
+Sejam $X_{1}, \dots, X_{n}$ observações iid de uma distribuição pertencente à família de locação com f.d.a $F(x-\theta)$ sendo $-\infty<\theta<\infty$. A diferença $R=X_{(n)}-X_{(1)}$ é uma estatística ancilar?
+:::
+
+Assuma que $X_{1}=Z_{1}+\theta, \ X_{2}=Z_{2}+\theta, \ \dots, \ X_{n}=Z_{n}+\theta$ sendo $Z_{1}, \dots, Z_{n}$ observações iid com f.d.a. $F(X)$.
+
+
+A f.d.a. de $R$ será
+
+$$
+F_{R}\left(r\left|\right. \theta  \right)=P\left[R\leq r\right]=P\left[\max_{i}(X_{i})-\min_{i}(X_{i})\leq r\right]$$
+
+Logo,
+
+
+$$
+\begin{array}{ccl}
+F_{R}\left(r\left|\right. \theta  \right)&=&P\left[\max_{i}(Z_{i}+\theta)-\min_{i}(Z_{i}+\theta)\leq r\right]\\
+&=&P\left[\max_{i}(Z_{i})+\theta-\min_{i}(Z_{i})-\theta\leq r\right]\\
+&=&P\left[\max_{i}(Z_{i})-\min_{i}(Z_{i})\leq r\right]\\
+\end{array}
+$$
+
+
+Esta f.d.a. não depende de $\theta$, logo $R$ é uma estatística ancilar. 
+
+
+## Ancilaridade
+
+:::{#exm-exm21}
+Sejam $X_{1}, \dots, X_{n}$ observações iid de uma distribuição pertencente à família de escala com f.d.a $F(x/\sigma)$ sendo $0<\theta<\infty$. Qualquer estatística, que dependa da amostra apenas através de $n-1$ valores do tipo $X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}$ será ancilar.
+:::
+
+Por exemplo:
+
+$$\dfrac{X_{1}+\dots+X_{n}}{X_{n}}=X_{1}/X_{n}+ \dots+ X_{n-1}/X_{n}+1, \ \text{é ancilar.
+}$$
+
+
+Seja $Z_{1}, \dots, Z_{n}$ observações iid com f.d.a $F(x)$ (temos aqui $\sigma=1$). Defina $X_{1}=\sigma Z_{1}, \dots, X_{n}=\sigma Z_{n}$.
+
+
+A f.d.a conjunta de $X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}$ é dada por
+
+
+$$
+\begin{array}{ccl}
+F\left(y_{1}, \dots, y_{n-1}\left|\right. \sigma  \right)&=&P\left[X_{1}/X_{n}\leq y_{1}, \dots, X_{n-1}/X_{n}\leq y_{n-1}\right]\\
+&=& P\left[\dfrac{\sigma Z_{1}}{\sigma Z_{n}}\leq y_{1}, \dots, \dfrac{\sigma Z_{n-1}}{\sigma Z_{n}}\leq y_{n-1}\right]\\
+&=& P\left[\dfrac{Z_{1}}{Z_{n}}\leq y_{1}, \dots, \dfrac{ Z_{n-1}}{ Z_{n}}\leq y_{n-1}\right]
+\end{array}
+$$
+
+
+
+## Ancilaridade
+
+A última probabilidade não depende de $\sigma$ visto que a distribuição de $Z_{1}, \dots, Z_{n}$ não depende de $\sigma$. 
+
+
+Portanto, a distribuição de $X_{1}/X_{n}, \ \dots, X_{n-1}/X_{n}$ não dependerá de $\sigma$, assim como a distribuição de qualquer função destas quantidades.
+
+
+Caso particular: $X_{1}$ e $X_{2}$ são iid. $N(0, \sigma^2)$
+
+O resultado acima indica que $X_{1}/X_{2}$ tem distribuição que não depende de $\sigma$.
+
+É possível mostrar que $X_{1}/X_{2}\sim Cauchy(0,1)$ para qualquer $\sigma>0$
+
+
+
+## Ancilaridade
+
+* Uma estatística suficiente minimal é aquela que atinge a maior redução de dados possível, mantendo toda informação sobre $\theta$. 
+
+* Intuitivamente, uma estatística suficiente minimal elimina toda a informação irrelevante na amostra, retendo apenas aquilo que interessa sobre $\theta$.
+
+* A distribuição de uma estatística ancilar não depende de $\theta$, então
+poderíamos suspeitar que uma estatística suficiente minimal não tem relação com estatísticas acilares. 
+
+* Entretanto, isso não é necessariamente verdade. 
+
+* Investigaremos esta relação a seguir...
+
+
+
+
+## Ancilaridade
+
+* É possível mostrar que se $X_{1}, \dots, X_{n}$ são iid com distribuição $U(\theta, \theta+1)$, então $\left[ X_{(n)}-X_{(1)} , \dfrac{X_{(1)}+X_{(n)}}{2}\right]$ é uma estatística suficiente minimal para $\theta$.
+
+* Temos também o seguinte resultado $X_{(n)}-X_{(1)}$ é estatística ancilar. *(Ver, Casella e Berger(2002), pag. 282 e 283)*.
+
+* Neste caso, a estatística ancilar é uma **componente importante** na formulação da estatística minimal. 
+
+* Aqui, estes dois tipos de estatísticas não são independentes.
+
+* Para dar uma ideia de como uma estatistica ancilar pode trazer informação sobre $\theta$, considere o próximo exemplo.
+
+
+## Ancilaridade
+
+
+:::{#exm-exm22}
+Caso particular: $X_{1}$ e $X_{2}$ são iid com f.p.
+:::
+
+$$P(X=\theta)=P(X=\theta+1)=P(X=\theta+2)=\dfrac{1}{3},$$
+
+sendo $\theta$ um inteiro desconhecido.
+
+Esta distribuição é da família de locação.
+
+Estatísticas de ordem: $X_{(1)}\leq X_{(1)}$.
+
+Assuma $R=X_{(2)}-X_{(1)}$ e $M=\dfrac{X_{(1)}+X_{(2)}}{2}$.
+
+Estatística suficiente minimal para $\theta:[R,M]$.
+
+Estatística ancilar: $R$.
+
+
+Considere o ponto $[R,M]=(r,m)$, sendo $m$ inteiro.
+
+
+
+## Ancilaridade
+
+* $M=\dfrac{X_{(1)}+X_{(2)}}{2}$ então temos as seguintes possibilidades para $m$:
+
+
+:::columns
+:::: column
+
+$$
+\begin{array}{lllll}
+m&=& \dfrac{\theta+\theta}{2}&=& \theta\\ 
+m&=& \dfrac{\theta+(\theta+1)}{2}&=& \theta+\dfrac{1}{2}\\
+m&=& \dfrac{\theta+(\theta+2)}{2}&=& \theta+1\\
+m&=& \dfrac{(\theta+1)+(\theta+1)}{2}&=& \theta+1\\
+m&=& \dfrac{(\theta+1)+(\theta+2)}{2}&=& \theta+\dfrac{3}{2}\\
+m&=& \dfrac{(\theta+2)+(\theta+2)}{2}&=& \theta+2\\
+\end{array}
+$$
+
+::::
+:::: column
+
+Lembre que $\theta$ e $m$ são inteiros, logo podemos ter $m=\theta$, $m=\theta+1$ ou $m=\theta+2$, quando dispomos apenas da informação de $M=m$ (Estatística suficiente minimal).
+
+
+::::
+:::
+
+
+## Ancilaridade
+
+
+Suponha agora que $R=2$ é uma informação adicional obtida. $R=X_{(2)}-X_{(1)}$
+
+| $X_{(1)}$ | $X_{(n)}$ | $m$ | $r$ |
+|:---:|:---:|:---:|:---:|
+| $\theta$ | $\theta$ | $\theta$ | $0$ |
+| $\theta$ | $\theta+2$ | $\theta+1$ | $2$ |
+| $\theta+1$ | $\theta+1$ | $\theta+1$ | $0$ |
+| $\theta+2$ | $\theta+2$ | $\theta+2$ | $0$ |
+
+
+
+`Conclusão:` O conhecimento de uma estatística ancilar ($R$) aumentou nosso conhecimento sobre $\theta$.
+
+O conhecimento do valor de $R$ sozinho, não traria qualquer informação sobre o valor de $\theta$ (no caso r=2, saberíamos que $X_{(1)}=\theta$ e $X_{(2)}=\theta+2$ mas não teríamos $m$ para determinar $\theta$).
+
+
+
+
+## Completude
+
+
+* Para muitas situações, entretanto, nossa intuição de que uma `estatística suficiente minimal` é independente de qualquer `estatística ancilar` está correta. 
+
+* Os casos onde isso ocorre tem como base a seguinte definição:
+
+:::{#def-def11}
+Uma estatística $T = T(X_1, \dots, X_n)$ é dita ser completa em relação à família $f(x\mid \theta)$, $\theta\in \Theta$, se a única função real $g$, definida no domínio de $T$, tal que $E(g(T)) = 0$ para todo $\theta$ é a função nula, isto é, $g(T) = 0$ com probabilidade um.
+
+T é completa se, e somente se, $E(g(T(\textbf{X}))) = 0$, $\theta\in \Theta$, implicar que $P(g(T(\textbf{X})) = 0) = 1$, $\theta\in \Theta$.
+:::
+
+
+* Note que a `completude` é uma propriedade de uma família de distribuições, e não de uma distribuição particular.
+
+
+## Completude
+
+:::{#exm-exm23}
+$X\sim N(0,1)$ e $g(X)=X$. Então, 
+:::
+
+$$E(g(X)=X)=E(X)=0.$$
+
+Entretando, $P(g(X) = 0) = P(X = 0)\neq 1$. Note que a $N(0,1)$ é uma distribuição particular.
+
+
+
+:::{#exm-exm23}
+$X\sim N(\theta,1)$ com $\theta\in \mathbb{R}$. Nenhuma função de $X$, exceto $g(X)=0$ para todo $\theta$, satisfaz  $E[g(X)]=0$ para todo $\theta$.
+:::
+Então temos que $E[g(X)]=0\Rightarrow P(g(X) = 0) = 1, \ \forall \theta$.
+
+Dessa forma, a família de distribuições $X\sim N(\theta,1)$  é completa.
+
+
+## Completude
+
+:::{#exm-exm24}
+Suponha que $T\sim Binomial (n,p)$, com $0<p<1$.
+:::
+
+Seja $g$ uma função tal que $E_{p}(g(T))=0$.
+
+
+Então,
+
+$$
+\begin{array}{ccl}
+0=E_{p}\left[ g(T) \right]&=&\sum\limits_{t=0}^{n}g(t){n\choose t}p^{t}(1-p)^{n-t} \\
+&=&(1-p)^{n}\sum\limits_{t=0}^{n}g(t){n\choose t}\left(\dfrac{p}{1-p}\right)^{t}, \ \forall p.
+\end{array}
+$$
+
+O componente $(1-p)^{n}\neq 0$ para qualquer $p\in (0,1)$.
+
+Entao devemos ter: 
+
+$$0=\sum\limits_{t=0}^{n}g(t){n\choose t}r^{t},$$
+
+com $r=\dfrac{p}{1-p}\in (0,\infty)$.
+
+
+## Completude
+
+* A última expressão é um polinômio de grau $n$ em $r$, on de o coeficiente $r^t$ sera $g(t){n\choose t}$. Para que o polinômio se $0$ $\forall r$ cada coeficiente deve ser $0$. 
+
+* Veja, que ${n\choose t}\neq 0$, então $g(t)=0$, para $t=0,1,\dots, n$.
+
+
+* Dado que $T=0,1,\dots, n$, temos que $E_{p}\left[ g(T) \right]=0 \Rightarrow P_{p}(g(T)=0)=1, \forall p$.
+
+`Conclusão:` $T$ é uma estatística completa.
+
+
+## Completude
+
+
+* O teorema abaixo usa a completude para estabelecer uma condição na qual uma estatística suficiente minimal é independente de toda estatística ancilar.
+
+:::{#thm-thm6}
+## Teorema de Basu
+
+Se $T(X)$ é uma estatística suficiente minimal completa, então $T(X)$ é independente de toda estatística ancilar.
+:::
+
+* O Teorema de Basu permite deduzir a independência de duas estatísticas sem ter que encontrar a distribuição conjunta delas. 
+
+* Para usar o Teorema de Basu, precisamos mostrar que a estatística é completa. 
+
+* Muitas vezes, isso é uma tarefa difícil em termos de análise. 
+
+* Felizmente, a maioria dos problemas que iremos trabalhar utilizam o seguinte resultado.
+
+
+## Completude
+
+:::{#thm-thm7}
+## Estatistica completa da família exponencial.
+:::
+
+Seja $X_{1}, \dots, X_{n}$ observações iid de uma distribuição da Família Exponencial com f.d. ou f.p. do tipo
+
+$$f(x\mid \theta)=h(x)c(\theta)\exp\left\{ \sum\limits_{j=1}^{k}\omega_{j}(\theta)t_j(x)\right\}, \ \theta=(\theta_1,\theta_2, \dots, \theta_k)'$$
+
+Então a estatística $T(X)=\left[ \sum\limits_{i=1}^{n}t_{1}(x), \sum\limits_{i=1}^{n}t_{2}(x), \dots, \sum\limits_{i=1}^{n}t_{k}(x)\right]$ é completa se e somente se $\left\{[\omega_{1}(\theta), \dots, \omega_{k}(\theta)]:\theta \in \Theta \right\}$ contém um conjunto aberto em $\mathbb{R}^{k}$.
+:::
+
+
+## Completude
+
+* A condição de que o espaço paramétrico contenha um conjunto aberto é 
+necessária para evitar a seguinte situação:
+
+A $N(\theta, \theta^2)$ é membro da família exponencial.
+
+Verossimilhança: $(2\pi \theta^{2})^{-n/2}\exp\left\{ -\dfrac{1}{2\theta^2}  \left[\sum\limits_{i=1}^{n}y_{i}^2- 2\theta\sum\limits_{i=1}^{n}y_{i}+ n\theta^2\right]\right\}$
+
+
+Formulação da FE:
+
+$\underbrace{(2\pi)^{-n/2}}_{h(x)}\underbrace{\theta^{-n}}_{c(\theta)}\exp\left\{ \underbrace{\dfrac{1}{\theta^2}}_{\omega_{1}(\theta)}  \left[-\dfrac{1}{2}\underbrace{\sum\limits_{i=1}^{n}y_{i}^2}_{t_{1}(x)}\right]+\underbrace{\dfrac{1}{\theta}}_{\omega_{2}(\theta)}\underbrace{\sum\limits_{i=1}^{n}y_{i}}_{t_{1}(x)}\right\}$
+
+
+
+$\left\{ \omega_{1}(\theta), \omega_{2}(\theta) \right\}=\left\{ \dfrac{1}{\theta^2}, \dfrac{1}{\theta}\right\}$ que possui uma relação muito próxima com o espaço paramétrico $\{\theta, \theta^2\}$.
+
+
+## Completude
+
+
+:::columns
+:::: column
+
+!()[figura_aberto.jpg]
+<!-- \scalebox{0.8}{\includegraphics{figura_aberto.jpg}} -->
+::::
+:::: column
+
+`Conclusão:` $\left\{ \omega_{1}(\theta), \omega_{2}(\theta) \right\}$ não contém um aberto em $\mathbb{R}^2$, então $T(X)=\left[ t_{1}(x)=-\dfrac{1}{2}\sum_{i=1}^{n}X_{i}^{2}, t_{2}(x)=\sum_{i=1}^{n}X_{i} \right]$ não é uma estatítica completa.
+
+::::
+:::
 
 
 
