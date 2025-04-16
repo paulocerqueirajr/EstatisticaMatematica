@@ -1,0 +1,622 @@
+---
+format:
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    #logo: "faest.png"
+    #footer: "[https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)"
+    code-copy: true
+    center-title-slide: false
+    lang: pt
+    transition: fade
+    transition-speed: default
+highlight-style: a11y
+code-link: true
+height: 1080
+width: 1900
+execute: 
+  eval: true
+  echo: true
+---
+
+<h1> Estatística Matemática </h1>
+
+<h2> Estimação Pontual </h2>
+
+<hr>
+
+<br>
+
+<h3> Prof. Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br>
+Faculdade de Estatística - FAEST <br>
+Programa de Pós-Graduação em Matemática e Estatística - PPGME<br>
+Instituto de Ciências Exatas e Naturais - ICEN
+</h3>
+
+<h3>  </h3>
+<br>
+
+<h3> [https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)
+
+![](github.jpg){.absolute top=620 left=845 height="90"}
+
+
+![](ppgme.jpg){.absolute top=5 left=1400 height="200"}
+
+<!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# [Introdução]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Introdução
+<hr>
+
+* Assuma que os valores $x_1, x_2, \dots, x_n$ de uma amostra aleatória $X_1, X_2, \ldots, X_n$ com f.d ou f.p $f(\cdot; \theta)$ podem ser observados (a p.d.f. $f$ é conhecida, $\Theta$ é desconhecido).  
+
+* Tomando como base as observações $x_1, x_2, \ldots, x_n$ deseja-se estimar o valor do parâmetro desconhecido $\Theta$ ou o valor de alguma função $\tau(\Theta)$ do parâmetro desconhecido. Esta estimação pode ser feita de duas maneiras:  
+
+  - **Estimação pontual**: O valor de alguma estatística, ex. $l(x_1, \ldots, x_n)$, representará o desconhecido $\tau(\Theta)$. Esta estatística é chamada de `estimador pontual`.  
+
+  - **Estimação intervalar**: Definimos duas estatísticas  
+$$l_1(x_1, \ldots, x_n) < l_2(x_1, \ldots, x_n)$$  
+tal que  
+$$[l_1(x_1, \ldots, x_n), l_2(x_1, \ldots, x_n)]$$  
+constitui um intervalo para o qual a probabilidade de conter $\tau(\Theta)$ pode ser determinada.
+
+# [Métodos para encontrar estimadores pontuais]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+
+## Métodos para encontrar estimadores pontuais
+<hr>
+
+Um **estimador** é uma estatística que pode ser encarada tanto como:
+
+   - Variável aleatória;
+   
+   - Função de valores observados.
+
+Considere que $X_1, \ldots, X_n$ é uma amostra aleatória com p.d.f. $f(\cdot; \theta)$ e queremos estimar $T(\Theta)$, sendo:
+- $T(\cdot)$ é alguma função de $\theta$
+- $t(X_1, \ldots, X_n)$ é um estimador de $T(\theta)$
+
+> Representações do estimador:
+
+1. Como variável aleatória:
+$$T = t(X_1, \ldots, X_n)$$
+
+2. Como função de valores observados:
+$$t = t(x_1, \ldots, x_n)$$
+
+
+`Obs:` O valor numérico obtido é chamado de **estimativa**.
+   
+   
+## Estimador para a média populacional ($\mu$)
+<hr>
+
+**Como variável aleatória:**
+
+$$\overline{X}_n = \frac{1}{n} \sum_{i=1}^n X_i$$
+
+**Como estimativa baseada em dados observados:**
+
+$$ \overline{x}_n = \frac{1}{n} \sum_{i=1}^n x_i$$
+
+Neste caso, é um valor numérico representando uma estimativa para $\mu$ baseada na amostra $x_1, \ldots, x_n$.
+
+* Sobre a estimação de parâmetros:
+
+  - **Estimação de $\theta$**: Busca determinar o valor desconhecido do parâmetro $\theta$.
+  
+  - **Estimação de $\tau(\theta)$**: Busca determinar o valor que a função conhecida $\tau(\cdot)$ assume para o parâmetro desconhecido $\theta$.
+
+
+
+## Observações importantes
+<hr>
+
+1. **Candidatos naturais**:
+
+   - A média amostral é um candidato natural para estimar a média populacional.
+
+2. **Limitações da intuição**:
+
+   - Em casos mais complexos, a intuição pode falhar;
+   
+   - Técnicas formais são necessárias para sugerir estimadores adequados.
+
+3. **Aviso sobre qualidade**:
+
+   - As técnicas de estimação não garantem automaticamente bons estimadores;
+   
+   - Os estimadores obtidos devem sempre ser avaliados quanto à sua **qualidade**.
+
+> **Nota**: Todo estimador pontual deve ser cuidadosamente avaliado antes de ser considerado adequado para inferência estatística.   
+   
+
+# [Método dos Momentos]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+
+
+## Método dos Momentos
+<hr>
+<br/>
+
+* Este método é, talvez, o mais velho método para encontrar estimadores pontuais. Tem a virtude de ser bastante simples de usar e quase sempre fornece algum tipo de estimativa.
+
+* Em muitos casos, infelizmente, este método fornece estimadores que podem ser melhorados. Entretanto, ele é uma opção interessante quando outros métodos se mostram problemáticos.
+
+* Os estimadores do Método de Momentos são encontrados quando igualamos os primeiros $k$ momentos amostrais aos correspondentes $k$ momentos populacionais, e resolvemos os sistema resultante de equações simultâneas.
+
+* Seja $X_1, X_2, \ldots, X_n$ uma amostra aleatória de uma população com p.m.f. ou p.d.f. $f(x|\theta_1, \theta_2, \ldots, \theta_k)$.
+
+
+## Método dos Momentos
+<hr>
+
+
+* Seja $M_j^´$ o $j$-ésimo momento amostral.
+
+$$M_j^´ = \frac{1}{n} \sum_{i=1}^n X_i^j$$
+
+* Denote $\mu_j^´$ como o  $j$-ésimo momento populacional em relação à zero. $\mu_j^´ = E(X^j)$. 
+
+* O momento populacional $\mu_j^´$ será tipicamente uma função de $\theta_1, \ldots, \theta_k$; denote $\mu_j^´(\theta_1, \ldots, \theta_k)$.
+
+* Sistema de equações a ser resolvido:  
+
+$$M_1^´ = \mu_1^´(\theta_1, \ldots, \theta_k)$$
+
+$$M_2^´ = \mu_2^´(\theta_1, \ldots, \theta_k)$$
+
+$$\vdots$$
+
+$$M_k^´ = \mu_k^´(\theta_1, \ldots, \theta_k)$$
+
+
+## Método dos Momentos - Exemplos
+<hr>
+
+
+:::{#exm-exm1}
+Suponha $X_1, \ldots, X_n$ i.i.d. $N(\theta, \sigma^2)$. Determine o estimador pelo método de momentos.
+:::
+
+<br/>
+
+`Solução:` Na notação anterior, temos $\theta_1 = \theta$ e $\theta_2 = \sigma^2$:
+
+
+:::columns
+::::column
+
+* Momentos amostrais:
+
+$$M_1^´ = \frac{1}{n} \sum_{i=1}^n X_i^1 = \overline{X}$$
+
+$$M_2^´ = \frac{1}{n} \sum_{i=1}^n X_i^2$$
+::::
+:::: column
+
+* Momentos populacionais:
+
+$$\mu_1^´ = E(X^1) = \theta$$
+
+$$\mu_2^´ = E(X^2) = \text{Var}(X) + E^2(X)$$
+
+$$= \sigma^2 + \theta^2$$
+::::
+:::
+
+Equações:  
+$$\left\{
+\begin{array}{lll}
+\hat{\theta} &=& \overline{X}\\
+\hat{\sigma}^2 + \hat{\theta}^2 &=& \frac{1}{n} \sum_{i=1}^n X_i^2
+\end{array}
+\right.
+$$
+
+## Método dos Momentos - Exemplos
+<hr>
+
+* Continuação, substituindo $\hat{\theta}=\bar{X}$, temos
+
+$$\hat{\sigma}^2 + (\overline{X})^2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2$$
+
+$$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - \overline{X}^2 = \frac{1}{n} \sum_{i=1}^{n} X_i^2 - 2\overline{X}^2 + \overline{X}^2$$
+
+$$= \frac{1}{n} \sum_{i=1}^{n} X_i^2 - 2\overline{X} \frac{1}{n} \sum_{i=1}^{n} X_i + \overline{X}^2$$
+
+$$= \frac{1}{n} \sum_{i=1}^{n} [X_i^2 - 2\overline{X} X_i + \overline{X}^2] = \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^2$$
+
+* Neste exemplo, a solução do método de momentos coincide com nossa intuição. 
+
+* O método será mais útil, entretanto, quando nenhum estimador óbvio existir.
+
+
+## Método dos Momentos - Exemplos
+<hr>
+
+:::{#exm-exm2}
+Seja $X_1, \ldots, X_n$ i.i.d. Binomial $(k, p)$. Determine o estimador pelo método de momentos.
+:::
+
+<br/>
+
+
+$$P(X_i = x | k, p) = 
+\begin{pmatrix}
+k \\
+x
+\end{pmatrix} 
+p^x (1 - p)^{k - x}, \quad x = 0, 1, \ldots, k$$
+
+Assumimos que ambos $k$ e $p$ são desconhecidos e nós desejamos estimadores para ambos os parâmetros.
+
+:::columns
+::::column
+
+* Momentos amostrais:
+
+$$M_1^´ = \frac{1}{n} \sum_{i=1}^n X_i^1 = \overline{X}$$
+
+$$M_2^´ = \frac{1}{n} \sum_{i=1}^n X_i^2$$
+::::
+:::: column
+
+* Momentos populacionais:
+
+$$\mu_1^´ = E(X^1) = kp$$
+
+$$\mu_2^´ = E(X^2) = \text{Var}(X) + E^2(X)$$ 
+$$=kp (1 - p) + k^2 p^2$$
+
+::::
+:::
+
+
+## Método dos Momentos - Exemplos
+<hr>
+
+Equações :
+
+$$
+\left\{
+\begin{aligned}
+\bar{X} &= kp \\
+\frac{1}{n} \sum_{i=1}^{n} X_i^2 &= kp(1 - p) + (kp)^2
+\end{aligned}
+\right.
+$$
+
+Substituindo $kp = \bar{X}$, temos
+
+
+
+
+:::columns
+::::column
+$$
+\frac{1}{n} \sum_{i=1}^{n} X_i^2 = \bar{X}(1 - p) + \bar{X}^2
+$$
+
+$$
+\frac{1}{n} \sum_{i=1}^{n} X_i^2 = \bar{X} - p\bar{X} + \bar{X}^2
+$$
+
+$$
+\frac{1}{n} \left( \sum_{i=1}^{n} X_i^2 \right) - \bar{X}^2 = \bar{X} - p\bar{X}
+$$
+
+
+::::
+::::column
+
+$$
+\frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2 = \bar{X} - \bar{X}p
+$$
+
+$$
+\bar{X}p = \bar{X} - \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2
+$$
+
+$$
+\hat{p} = \frac{\bar{X} - \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2}{\bar{X}}
+$$
+::::
+:::
+
+
+## Método dos Momentos - Exemplos
+<hr>
+
+Logo,
+
+
+$$
+kp = \bar{X}
+$$
+
+$$
+\hat{k} = \frac{\bar{X}}{\hat{p}} = \frac{\bar{X}}{\dfrac{\bar{X} - \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2}{ \bar{X}}}= \frac{\bar{X}^2}{\bar{X} - \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2}
+$$
+
+* Estes não são os melhores estimadores para os parâmetros populacionais $k$ e $p$.
+
+* Veja que é possível obter **estimativas negativas** para estes parâmetros que são números positivos. Isso ocorre quando a média amostral é menor que a variância (**alto grau de variabilidade nos dados**). 
+
+* O método dos momentos, neste caso, pelo menos nos deu um conjunto de candidatos a estimadores pontuais para $k$ e $p$.
+
+
+
+## Método dos Momentos - Exemplos
+<hr>
+
+
+:::{#exm-exm3}
+Seja $X_1, \ldots, X_n$ uma amostra aleatória da Poisson($\lambda$). Determine o estimador pelo método de momentos.
+:::
+
+
+
+$$M_1^{´} = \frac{1}{n} \sum_{x=1}^n X_i = E(X) = \lambda$$
+
+$$\hat{\lambda} = \overline{X}$$
+
+* Então o estimador de $\lambda$, obtido pelo método de momentos, é $M_1' = \overline{X}$, ou seja, estimamos a média populacional $\lambda$ com a média amostral $\overline{X}$.
+
+
+
+# [Método da máxima verossimilhança]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+* Para introduzir este método, considere o seguinte problema:
+
+* Suponha que uma urna contenha bolas brancas e pretas. Sabemos também que a razão entre o nº de bolas brancas e pretas é $3/1$, entretanto, não se sabe qual das duas cores é mais numerosa dentro da urna. Isto é, a probabilidade de sortear uma bola preta pode ser tanto $1/4$ quanto $3/4$.
+
+* Se $n$ bolas são sorteadas (com reposição) desta urna, a distribuição de $X$ (variável $n^\circ$ de bolas pretas) é a Binomial:
+
+$$f(x|p) = 
+\begin{pmatrix}
+n \\
+x
+\end{pmatrix}
+p^x(1-p)^{n-x}, \quad \text{para} \ x = 0, 1, 2, \dots, n.$$
+
+
+sendo $p$ é a probabilidade de retirar uma bola preta. Temos que $p = \frac{1}{4}$ ou $p = \frac{3}{4}$.
+
+## Método da máxima verossimilhança
+<hr>
+
+
+`Estratégia:` Sortear três bolas da urna $(n = 3)$, com reposição, e tentar estimar o parâmetro $p$.
+
+* O problema de estimação é particularmente simples, neste caso, visto que devemos escolher entre dois números $0.25$ e $0.75$. Desta forma podemos avaliar todos os possíveis resultados desta amostragem:
+
+| Resultado: $x = n^o$ de bolas pretas | 0    | 1    | 2    | 3    |
+|---|---|---|---|---|
+| $f(x \mid p = 3/4)$ | $1/64$ | $9/64$ | $27/64$ | $27/64$ |
+| $f(x \mid p = 1/4)$ | $27/64$ | $27/64$ | $9/64$ | $1/64$ |
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+* Neste exemplo, se encontraremos $x = 0$ em uma amostra $n = 3$, a estimativa $p = 0.25$ será preferida com relação a $p = 0.75$ visto que
+
+$$f(x = 0 | p = 0.25) = \frac{27}{64} > f(x = 0 | p = 0.75) = \frac{1}{64}$$
+
+* Isto é, a amostra $x = 0$ é mais provável (no sentido de ter maior probabilidade) de surgir em uma população com $p = \frac{1}{4}$ do que em uma população com $p = \frac{3}{4}$.
+
+* Usando o raciocínio acima:
+
+  - Devemos estimar $p = 0.25$, quando $x = 0$ ou 1.
+  
+  - Devemos estimar $p = 0.75$, quando $x = 2$ ou 3.
+
+* O estimador pode ser definido como:
+
+$$\hat{p} = \hat{p}(x) = 
+\begin{cases} 
+0.25 & \text{para } x = 0 \text{ ou } 1. \\
+0.75 & \text{para } x = 2 \text{ ou } 3.
+\end{cases}$$
+
+## Método da máxima verossimilhança
+<hr>
+
+* O estimador seleciona para cada possível resultado $x$, o valor de $p = \hat{p}$ tal que $f(x|p^*) > f(x|p^*)$ sendo $p^*$ o valor alternativo de $p$.
+
+* De maneira geral, se diversos valores alternativos de $p$ forem possíveis, podemos proceder da seguinte forma:
+
+* Se encontraremos $x = 6$ em uma amostra com $n = 25$ de uma população Binomial, devemos substituir todos os possíveis valores de $p$ na expressão
+
+$$f(x = 6|p) = 
+\begin{pmatrix}
+25 \\
+6
+\end{pmatrix}
+p^6 (1-p)^{19},\quad \text{para} \ 0 \leq p \leq 1$$
+
+
+
+e escolher, como nossa estimativa, o valor de $p$ que maximiza $f(x = 6|p)$.
+
+* O valor de $p$, correspondente ao máximo, pode ser encontrado quando derivamos a função acima com respeito a $p$, e igualamos o resultado a zero. Ver a seguir...
+
+
+## Método da máxima verossimilhança
+<hr>
+
+$$\frac{d}{dp} f(x = 6 | p) = \left( \frac{25}{6} \right) \left[ 6 (p)^5 (1 - p)^{12} + p^6 19 (1 - p)^{18} (-1) \right]$$
+
+$$= \left( \frac{25}{6} \right) p^5 (1 - p)^{18} \left[ 6 (1 - p) - 19 p \right]$$
+
+* Igualando a zero
+
+$$\left( \frac{25}{6} \right) p^5 (1 - p)^{18} \left[ 6 - 25 p \right] = 0$$
+
+$$p^5 (1 - p)^{18} \left[ 6 - 25 p \right] = 0$$
+
+* Raízes $p = 0, \, p = 1 \, e \, p = \frac{6}{25}$
+
+* As primeiras duas raízes fornecem $f(x = 6 | p) = 0$. Portanto, nossa estimativa será $\hat{p} = \frac{6}{25}$.
+
+* A estimativa $\hat{p} = \frac{6}{25}$ tem a propriedade $f(x = 6 | \hat{p}) > f(x = 6 | p')$ sendo $p'$ qualquer outro valor de $p$ no intervalo $0 \leq p \leq 1$.
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+
+* Antes de definir os estimadores de máxima verossimilhança, considere a seguinte revisão:
+
+* A função de verossimilhança de $n$ variáveis aleatórias $X_1,X_2,...,X_n$ é definida pela p.m.f. ou p.d.f. conjunta $f(x_1,...,x_n|\theta)$, que é considerada uma função de $\theta$.
+
+* Em particular, se $X_1,X_2,...,X_n$ é uma amostra aleatória com f.d. ou f.p. $f(x|\theta)$, então temos:
+
+$$L(\theta; X_1, ..., X_n) = \prod_{i=1}^n f(X_i|\theta).$$
+
+* Notação $L(\theta; X_1,...,X_n)$ é usada para nos lembrar que a verossimilhança é encarada como uma função de $\theta$.
+
+
+## Método da máxima verossimilhança
+<hr>
+
+
+* Suponha que os valores observados na amostra sejam $x_1^´, x_2^´, \cdots, x_n^´$.  
+Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com maior chance. Em outras palavras:  
+
+  - Queremos saber de qual f.d. ou f.p. (qual valor de $\theta$) a verossimilhança apresentará seu maior valor tendo em vista que observamos $x_1^´, x_2^´, \cdots, x_n^´$.
+
+  - Desejamos encontrar o valor de $\theta \in \mathcal{\Theta}$, denotado por $\hat{\Theta}$, que irá maximizar a função de verossimilhança $L (\theta; x_1^´, \cdots, x_n^´)$.
+
+* $\hat{\theta}$ é em geral uma função da amostra aleatória  $X_1, \cdots, X_n$.
+
+* $\hat{\theta} = h(X_1, \cdots, X_n)$.
+
+$\hat{\theta}$ é chamado de Estimador de Máxima Verossimilhança (EMV) de $\theta$.
+
+* A definição formal é dada a seguir...
+
+
+## Método da máxima verossimilhança
+<hr>
+
+:::{#def-def1}
+## Estimador de Máxima Verossimilhança (EMV).
+
+Seja $L(\theta; x_1, \ldots, x_n)$ a função de verossimilhança associada às variáveis aleatórias $X_1, \ldots, X_n$. Se $\hat{\theta} = h(X_1, \ldots, X_n)$ é o valor de $\theta \in \Theta$ que maximiza $L(\theta; X_1, \ldots, X_n)$, então $\hat{\theta}$ é o EMV de $\theta$.
+:::
+
+* Para a amostra observada $x_1, \ldots, x_n$, o número calculado através da formulação  
+$\hat{\theta} = h(x_1, \ldots, x_n)$ será a estimativa de máxima verossimilhança de $\theta$.
+
+* Muitas funções de verossimilhança satisfazem condições de regularidade, tal que o EMV é obtido pela solução da equação:  $\frac{dL(\theta)}{d\theta} = 0$.
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+* Outro ponto importante é que $L(\theta; X_1, \ldots, X_n)$ e $\ln L(\theta; X_1, \ldots, X_n)$ apresentam ponto de máximo para o mesmo valor de $\theta$.
+
+* Muitas vezes é mais fácil encontrar o máximo usando o logaritmo da verossimilhança. 
+
+* Se a função de verossimilhança envolve $k$ parâmetros, isto é:
+
+$$L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = \prod_{i=1}^n f(X_i | \theta_1, \ldots, \theta_k),$$
+
+então os EMVs de $\theta_1, \ldots, \theta_k$ serão as variáveis aleatórias
+
+$$\hat{\theta}_1 = h_1(X_1, \ldots, X_n), \quad \hat{\theta}_2 = h_2(X_1, \ldots, X_n), \quad \hat{\theta}_k = h_k(X_1, \ldots, X_n)$$
+
+onde $\hat{\theta}_1, \hat{\theta}_2, \ldots, \hat{\theta}_k$ são os valores em $\theta$ que maximizam
+
+$$L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n).$$
+
+
+## Método da máxima verossimilhança
+<hr>
+
+
+* Se certas condições de regularidade são satisfeitas, o ponto onde a verossimilhança atinge seu máximo é solução do sistema de equações ao lado.
+
+$$\frac{\partial}{\partial \theta_1} \ln L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = 0$$
+
+$$\frac{\partial}{\partial \theta_2} \ln L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = 0$$
+
+$$\vdots$$
+
+$$\frac{\partial}{\partial \theta_k} \ln L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = 0$$
+
+* Neste caso, também pode ser mais fácil trabalhar com o log da verossimilhança.
+
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+
+:::{#exm-exm5}
+Suponha que uma amostra aleatória $X_1, X_2, \ldots, X_n$ é obtida a partir da distribuição Bernoulli(p).
+:::
+
+
+$$f(x | p) = p^x (1-p)^{1-x}, \quad 0 \leq p \leq 1$$
+
+* A amostra $x_1, \ldots, x_n$ será uma sequência de 0's e 1's.
+
+* Função de verossimilhança:
+
+$$L(p; x_1, \ldots, x_n) = \prod_{i=1}^n p^{x_i} (1-p)^{1-x_i} = p^{\sum_{i=1}^n x_i} (1-p)^{n-\sum_{i=1}^n x_i}$$
+
+* Para simplificar a notação considere
+
+$$y = \sum_{i=1}^n x_i$$
+
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+
+* Aplicando o logaritmo:
+
+$$\ln L(p; x_1, \ldots, x_n) = y \ln p + (n - y) \ln (1 - p)$$
+
+* Derivando em relação a $p$:
+
+$$\frac{d}{dp} \ln L(p; x_1, \ldots, x_n) = \frac{y}{p} - \frac{n - y}{1 - p}$$
+
+* Igualando a zero:
+
+$$\frac{y}{p} - \frac{n - y}{1 - p} = 0$$
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+* Resolvendo:
+
+$$y(1 - p) = p(n - y)$$
+$$y - yp = pn - yp$$
+$$y = pn$$
+$$\hat{p} = \frac{y}{n} = \frac{1}{n}\sum_{i=1}^n x_i = \overline{x}$$
+
+* Neste caso o EMV coincide com o estimador do método dos momentos.
