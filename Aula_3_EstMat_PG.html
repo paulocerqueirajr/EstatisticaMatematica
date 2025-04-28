@@ -331,7 +331,7 @@
 Estatística Matemática
 </h1>
 <h2>
-Estimação Pontual
+Estimação Pontual - Aula 1
 </h2>
 <hr>
 <p><br></p>
@@ -688,7 +688,7 @@ p^x(1-p)^{n-x}, \quad \text{para} \ x = 0, 1, 2, \dots, n.\]</span></p>
 <h2>Método da máxima verossimilhança</h2>
 <hr>
 <ul>
-<li><p>O estimador seleciona para cada possível resultado <span class="math inline">\(x\)</span>, o valor de <span class="math inline">\(p = \hat{p}\)</span> tal que <span class="math inline">\(f(x|p^*) &gt; f(x|p^*)\)</span> sendo <span class="math inline">\(p^*\)</span> o valor alternativo de <span class="math inline">\(p\)</span>.</p></li>
+<li><p>O estimador seleciona para cada possível resultado <span class="math inline">\(x\)</span>, o valor de <span class="math inline">\(p = \hat{p}\)</span> tal que <span class="math inline">\(f(x|\hat{p}) &gt; f(x|p^*)\)</span> sendo <span class="math inline">\(p^*\)</span> o valor alternativo de <span class="math inline">\(p\)</span>.</p></li>
 <li><p>De maneira geral, se diversos valores alternativos de <span class="math inline">\(p\)</span> forem possíveis, podemos proceder da seguinte forma:</p></li>
 <li><p>Se encontraremos <span class="math inline">\(x = 6\)</span> em uma amostra com <span class="math inline">\(n = 25\)</span> de uma população Binomial, devemos substituir todos os possíveis valores de <span class="math inline">\(p\)</span> na expressão</p></li>
 </ul>
@@ -745,7 +745,9 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <li><p><span class="math inline">\(\hat{\theta}\)</span> é em geral uma função da amostra aleatória <span class="math inline">\(X_1, \cdots, X_n\)</span>.</p></li>
 <li><p><span class="math inline">\(\hat{\theta} = h(X_1, \cdots, X_n)\)</span>.</p></li>
 </ul>
+<blockquote>
 <p><span class="math inline">\(\hat{\theta}\)</span> é chamado de Estimador de Máxima Verossimilhança (EMV) de <span class="math inline">\(\theta\)</span>.</p>
+</blockquote>
 <ul>
 <li>A definição formal é dada a seguir…</li>
 </ul>
@@ -787,7 +789,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p><span class="math display">\[\vdots\]</span></p>
 <p><span class="math display">\[\frac{\partial}{\partial \theta_k} \ln L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = 0\]</span></p>
 <ul>
-<li>Neste caso, também pode ser mais fácil trabalhar com o log da verossimilhança.</li>
+<li>Neste caso, também pode ser mais fácil trabalhar com <code>o log da verossimilhança</code>.</li>
 </ul>
 </section>
 <section id="método-da-máxima-verossimilhança---exemplos" class="slide level2">
@@ -805,7 +807,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <ul>
 <li>Para simplificar a notação considere</li>
 </ul>
-<p><span class="math display">\[y = \sum_{i=1}^n x_i\]</span></p>
+<p><span class="math display">\[y = \sum_{i=1}^n x_i.\]</span></p>
 </section>
 <section id="método-da-máxima-verossimilhança---exemplos-1" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
@@ -832,6 +834,222 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p><span class="math display">\[y(1 - p) = p(n - y)\]</span> <span class="math display">\[y - yp = pn - yp\]</span> <span class="math display">\[y = pn\]</span> <span class="math display">\[\hat{p} = \frac{y}{n} = \frac{1}{n}\sum_{i=1}^n x_i = \overline{x}\]</span></p>
 <ul>
 <li>Neste caso o EMV coincide com o estimador do método dos momentos.</li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-3" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<div id="exm-exm6" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 5</strong></span> Considere <span class="math inline">\(X_1, \dots, X_n\)</span> uma amostra aleatória da distribuição <span class="math inline">\(N(\mu, \sigma^2)\)</span>.</p>
+</div>
+<ul>
+<li>Função de verossimilhança:</li>
+</ul>
+<p><span class="math display">\[L(\mu, \sigma^2; x_1, ..., x_n) = \prod_{i=1}^n (2\pi\sigma^2)^{-1/2} \exp\left\{ -\frac{1}{2\sigma^2}(x_i - \mu)^2 \right\}\]</span></p>
+<p><span class="math display">\[= (2\pi\sigma^2)^{-n/2} \exp\left\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2 \right\} \quad \sigma &gt; 0, \ -\infty &lt; \mu &lt; \infty\]</span></p>
+<p><span class="math display">\[\ln L = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2\]</span></p>
+<ul>
+<li>Derivando:</li>
+</ul>
+<p><span class="math display">\[\frac{\partial \ln L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \mu) = \frac{n}{\sigma^2} (\overline{x} - \mu)\]</span></p>
+<p><span class="math display">\[\frac{\partial \ln L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (x_i - \mu)^2\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-4" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<ul>
+<li>Igualando a zero os resultados anteriores iremos obter:</li>
+</ul>
+<blockquote>
+<p>Equação 1:</p>
+</blockquote>
+<p><span class="math display">\[\frac{n}{\sigma^2} \left( \overline{x} - \mu \right) = 0\]</span></p>
+<p><span class="math display">\[\overline{x} - \mu = 0\]</span></p>
+<p><span class="math display">\[\hat{\mu} = \overline{x}\]</span></p>
+<blockquote>
+<p>Equação 2:</p>
+</blockquote>
+<p><span class="math display">\[-\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (x_i - \overline{x})^2 = 0, \ \text{usando} \ \mu = \overline{x}\]</span></p>
+<p><span class="math display">\[-\frac{n}{2\sigma^2} \left[ 1 - \frac{1}{n\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 \right] = 0\]</span></p>
+<p><span class="math display">\[\frac{1}{n\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 = 1\]</span></p>
+<p><span class="math display">\[\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2.\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-5" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<div id="exm-exm7" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 6</strong></span> Suponha que a variável aleatória <span class="math inline">\(X\)</span> tenha distribuição Uniforme.</p>
+</div>
+<p><span class="math display">\[f(x|\theta) =
+\begin{cases}
+\frac{1}{\theta} &amp; \text{se } \theta - \frac{1}{2} \leq x \leq \theta + \frac{1}{2} \\
+0 &amp; \text{caso contrário}
+\end{cases}\]</span></p>
+<p><span class="math display">\[f(x|\theta) = \mathbf{1}_{\left[\theta - \frac{1}{2}, \theta + \frac{1}{2}\right]} (x)\]</span></p>
+<p>sendo <span class="math inline">\(-\infty &lt; \theta &lt; \infty\)</span>.</p>
+<ul>
+<li>A função de verossimilhança para uma amostra de tamanho <span class="math inline">\(n\)</span> será:</li>
+</ul>
+<p><span class="math display">\[L(\theta; x_1, \ldots, x_n) = \prod_{i=1}^n f(x_i | \theta) = \prod\limits_{i=1}^n \mathbf{1}_{\left[\theta - \frac{1}{2}, \theta + \frac{1}{2}\right]} (x_i)\]</span></p>
+<ul>
+<li><p>O produtório resultará em 1 se e somente se todos os <span class="math inline">\(x_i\)</span> pertencerem ao intervalo <span class="math inline">\([ \theta - \frac{1}{2}, \theta + \frac{1}{2}]\)</span>.</p></li>
+<li><p>Isso será verdade somente se <span class="math inline">\(\theta - 1/2 \leq x_{(1)}\)</span> e <span class="math inline">\(x_{(n)} \leq \theta + 1/2\)</span> onde <span class="math inline">\(x_{(1)} = \min\{x_1, \ldots, x_n\}\)</span> e <span class="math inline">\(x_{(n)} = \max\{x_1, \ldots, x_n\}\)</span>.</p></li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-6" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<ul>
+<li>Veja que:</li>
+</ul>
+<p><span class="math display">\[\theta - \frac{1}{2} \leq X_{(1)}, \quad \theta \leq X_{(1)} + \frac{1}{2}\]</span></p>
+<ul>
+<li>Então temos</li>
+</ul>
+<p><span class="math display">\[X_{(n)} - \frac{1}{2} \leq \theta \leq X_{(1)} + \frac{1}{2}\]</span></p>
+<ul>
+<li>A função de verossimilhança será reescrita como segue:</li>
+</ul>
+<p><span class="math display">\[L = \prod_{i=1}^{n} I_{[\theta - \frac{1}{2}, \theta + \frac{1}{2}]}(x_i) = I_{[X_{(n)} - \frac{1}{2}, X_{(1)} + \frac{1}{2}]}(\theta)\]</span></p>
+<ul>
+<li><p>Esta verossimilhança será igual a 1 ou 0.</p></li>
+<li><p>O ponto de máximo ocorrerá para qualquer valor de <span class="math inline">\(\theta\)</span> satisfazendo</p></li>
+</ul>
+<p><span class="math display">\[X_{(n)} - \frac{1}{2} \leq \theta \leq X_{(1)} + \frac{1}{2}\]</span></p>
+<p>Conclusão:<br>
+<span class="math inline">\(\hat{\theta}\)</span> é qualquer valor no intervalo <span class="math inline">\([X_{(n)} - \frac{1}{2}, X_{(1)} + \frac{1}{2}]\)</span>.</p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-7" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<div id="exm-exm8" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 7</strong></span> <span class="math inline">\(X_1, \ldots, X_n\)</span> uma amostra aleatória com p.d.f.<span class="math inline">\(f(x|\theta) = \theta x^{-2}, \quad 0 &lt; \theta \leq x &lt; \infty\)</span>.</p>
+</div>
+<ul>
+<li>A função de verossimilhança:</li>
+</ul>
+<p><span class="math display">\[L(\theta; X_1, \ldots, X_n) = \prod_{i=1}^n \left( \theta x_i^{-2} I_{[\theta, \infty)} (x_i) \right) = \theta^n \prod_{i=1}^n x_i^{-2}  I_{[\theta, \infty)}(x_i)\]</span></p>
+<ul>
+<li><p>Este produtório não resultará em zero, somente se todos os <span class="math inline">\(x_i\)</span> satisfizerem <span class="math inline">\(\theta \leq x_i &lt; \infty\)</span>.</p></li>
+<li><p>Se <span class="math inline">\(\theta \leq x_{(1)} = \min\{x_1, \ldots, x_n\}\)</span> então todos os <span class="math inline">\(x_i\)</span> são maiores que <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Conclusão: Podemos escrever</p></li>
+</ul>
+<p><span class="math display">\[\prod_{i=1}^n x_i^{-2} \textbf{I}_{[\theta, \infty)}(x_i) = \left( \prod_{i=1}^n x_i^{-2} \right) \textbf{I}_{\left(-\infty, x_{(1)}\right)}(\theta)\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-8" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<ul>
+<li>A verossimilhança será:</li>
+</ul>
+<p><span class="math display">\[L = \theta^n \left( \prod_{i=1}^n x_i^{-2} \right) I _{[0, x_{(1)}]}(\theta)\]</span></p>
+<ul>
+<li>Visto que esta expressão envolve uma função indicadora dependendo de <span class="math inline">\(\theta\)</span>, <code>será inapropriado aplicar o log e calcular derivadas.</code></li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-9" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<ul>
+<li>Veja que <span class="math inline">\(\theta^n\)</span> é uma função crescente de <span class="math inline">\(\theta\)</span> e <span class="math inline">\(\prod_{i=1}^n x_i^{-2}\)</span> não depende de <span class="math inline">\(\theta\)</span>.</li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><img data-src="Ex8_Ind.png"></p>
+</div><div class="column">
+<ul>
+<li><p>Se <span class="math inline">\(0 &lt; \theta \leq x_{(1)} \Rightarrow L = \theta^n \prod_{i=1}^n x_i^{-2}\)</span></p></li>
+<li><p>Se <span class="math inline">\(\theta &gt; x_{(1)} \Rightarrow L = 0\)</span></p></li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Podemos ver que o valor máximo de <span class="math inline">\(L(\theta; X_1, \cdots, X_n)\)</span> é obtido quando <span class="math inline">\(\theta = x_{(1)}\)</span>. Portanto <span class="math inline">\(\hat{\theta} = X_{(1)} = \min\{X_1, \cdots, X_n\}\)</span> é o EMV de <span class="math inline">\(\theta\)</span>.</li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-10" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Observação:</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math display">\[E(X|\theta) = \int_{\theta}^{\infty} x \theta x^{-2} dx = \theta \int_{\theta}^{\infty} x^{-1} dx = \theta \ln x \Big|_{\theta}^{\infty} = \infty\]</span></p>
+<ul>
+<li><p>O primeiro momento populacional não existe.</p></li>
+<li><p>Então, o estimador do método dos momentos para <span class="math inline">\(\theta\)</span> <code>não existe</code> neste caso.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="método-da-máxima-verossimilhança-11" class="slide level2">
+<h2>Método da máxima verossimilhança</h2>
+<hr>
+<p>Os quatro exemplos que acabamos de estudar ilustram a aplicação do método da máxima verossimilhança.</p>
+<ul>
+<li><p>Os dois últimos exemplos mostram que não devemos sempre confiar no procedimento de derivação para identificar o ponto de máximo.</p></li>
+<li><p>A verossimilhança pode ser representada, por exemplo, pelo gráfico:</p></li>
+</ul>
+
+<img data-src="Ex9_Vero.png" width="200" class="r-stretch"><ul>
+<li>Aqui, o verdadeiro máximo está em <span class="math inline">\(\hat{\theta}\)</span>, mas a derivada de <span class="math inline">\(L\)</span> igualada a zero iria localizar <span class="math inline">\(\theta'\)</span> como máximo.</li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança-12" class="slide level2">
+<h2>Método da máxima verossimilhança</h2>
+<hr>
+<ul>
+<li>Devemos lembrar também que a equação <span class="math inline">\(\partial L/\partial\theta = 0\)</span> localiza pontos de mínimo ou de máximo.</li>
+</ul>
+<blockquote>
+<p>Teste da 2ª derivada:</p>
+</blockquote>
+<ul>
+<li><p>Se <span class="math inline">\(\frac{\partial^2 L}{\partial \theta^2} &lt; 0\)</span> então <span class="math inline">\(\hat{\theta}\)</span> é um ponto de máximo.</p></li>
+<li><p>Se <span class="math inline">\(\frac{\partial^2 L}{\partial \theta^2} &gt; 0\)</span> então <span class="math inline">\(\hat{\theta}\)</span> é um ponto de mínimo.</p></li>
+<li><p>Se <span class="math inline">\(\frac{\partial^2 L}{\partial \theta^2} = 0\)</span> então <span class="math inline">\(\hat{\theta}\)</span> pode ser um ponto de inflexão.</p></li>
+</ul>
+</section>
+<section id="método-da-máxima-verossimilhança-13" class="slide level2">
+<h2>Método da máxima verossimilhança</h2>
+<hr>
+<div id="thm-thmA3_1" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 1 (Invariância dos EMVs.)</strong></span> Se <span class="math inline">\(\hat{\theta}\)</span> é o EMV de <span class="math inline">\(\theta\)</span>, então para qualquer função <span class="math inline">\(T(\theta)\)</span>, o EMV de <span class="math inline">\(T(\theta)\)</span> será <span class="math inline">\(T(\hat{\theta})\)</span>.</p>
+<p><em>Prova:</em> [ver Casella e Berger (2002), pag. 320].</p>
+</div>
+<div id="exm-A3_1" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 8</strong></span> Para o caso <span class="math inline">\(N(\mu_0, \sigma^2)\)</span> com média <span class="math inline">\(\mu_0\)</span> conhecida, o EMV de<br>
+<span class="math display">\[\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \mu_0)^2.\]</span></p>
+</div>
+<ul>
+<li><p>Pela propriedade da invariância, o EMV de <span class="math inline">\(\hat{\sigma} = \sqrt{\hat{\sigma}^2}\)</span></p></li>
+<li><p>Ou seja,</p></li>
+</ul>
+<p><span class="math display">\[\hat{\sigma} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \mu_0)^2}\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---invariância" class="slide level2">
+<h2>Método da máxima verossimilhança - Invariância</h2>
+<hr>
+<div id="exm-A3_2" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 9</strong></span> &nbsp;</p>
+<ul>
+<li><p>Para o caso <span class="math inline">\(N(\theta, \sigma^2)\)</span> temos que o EMV de <span class="math inline">\(\theta\)</span> é <span class="math inline">\(\overline{X}\)</span>.</p></li>
+<li><p>Usando o <a href="#/método-da-máxima-verossimilhança-13" class="quarto-xref">Teorema&nbsp;1</a>, podemos ver que o EMV de <span class="math inline">\(\theta^2\)</span> será <span class="math inline">\(\overline{X}^2\)</span>.</p></li>
+</ul>
+</div>
+<div id="exm-A3_3" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 10</strong></span> Seja <span class="math inline">\(\hat{p}\)</span> o EMV de <span class="math inline">\(p =\)</span> probabilidade de sucesso da Binomial.<br>
+Temos que o EMV de <span class="math inline">\(\sqrt{p(1-p)}\)</span> é dado por <span class="math inline">\(\sqrt{\hat{p}(1-\hat{p})}\)</span>.</p>
+</div>
+<ul>
+<li><p>A propriedade de invariância dos EMVs também é válida para o caso multivariado (<span class="math inline">\(\theta\)</span> pode ser um vetor no <a href="#/método-da-máxima-verossimilhança-13" class="quarto-xref">Teorema&nbsp;1</a>).</p></li>
+<li><p>Se o EMV de <span class="math inline">\((\theta_1, \ldots, \theta_k)\)</span> é <span class="math inline">\((\hat{\theta}_1, \ldots, \hat{\theta}_k)\)</span> e se <span class="math inline">\(t(\theta_1, \ldots, \theta_k)\)</span> é qualquer função dos parâmetros, o EMV de <span class="math inline">\(t(\theta_1, \ldots, \theta_k)\)</span> será <span class="math inline">\(t(\hat{\theta}_1, \ldots, \hat{\theta}_k)\)</span>.</p></li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

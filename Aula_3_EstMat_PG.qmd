@@ -21,7 +21,7 @@ execute:
 
 <h1> Estatística Matemática </h1>
 
-<h2> Estimação Pontual </h2>
+<h2> Estimação Pontual - Aula 1 </h2>
 
 <hr>
 
@@ -437,7 +437,7 @@ $$\hat{p} = \hat{p}(x) =
 ## Método da máxima verossimilhança
 <hr>
 
-* O estimador seleciona para cada possível resultado $x$, o valor de $p = \hat{p}$ tal que $f(x|p^*) > f(x|p^*)$ sendo $p^*$ o valor alternativo de $p$.
+* O estimador seleciona para cada possível resultado $x$, o valor de $p = \hat{p}$ tal que $f(x|\hat{p}) > f(x|p^*)$ sendo $p^*$ o valor alternativo de $p$.
 
 * De maneira geral, se diversos valores alternativos de $p$ forem possíveis, podemos proceder da seguinte forma:
 
@@ -508,7 +508,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 
 * $\hat{\theta} = h(X_1, \cdots, X_n)$.
 
-$\hat{\theta}$ é chamado de Estimador de Máxima Verossimilhança (EMV) de $\theta$.
+> $\hat{\theta}$ é chamado de Estimador de Máxima Verossimilhança (EMV) de $\theta$.
 
 * A definição formal é dada a seguir...
 
@@ -518,6 +518,7 @@ $\hat{\theta}$ é chamado de Estimador de Máxima Verossimilhança (EMV) de $\th
 
 :::{#def-def1}
 ## Estimador de Máxima Verossimilhança (EMV).
+
 
 Seja $L(\theta; x_1, \ldots, x_n)$ a função de verossimilhança associada às variáveis aleatórias $X_1, \ldots, X_n$. Se $\hat{\theta} = h(X_1, \ldots, X_n)$ é o valor de $\theta \in \Theta$ que maximiza $L(\theta; X_1, \ldots, X_n)$, então $\hat{\theta}$ é o EMV de $\theta$.
 :::
@@ -563,7 +564,7 @@ $$\vdots$$
 
 $$\frac{\partial}{\partial \theta_k} \ln L(\theta_1, \ldots, \theta_k; X_1, \ldots, X_n) = 0$$
 
-* Neste caso, também pode ser mais fácil trabalhar com o log da verossimilhança.
+* Neste caso, também pode ser mais fácil trabalhar com `o log da verossimilhança`.
 
 
 
@@ -587,7 +588,7 @@ $$L(p; x_1, \ldots, x_n) = \prod_{i=1}^n p^{x_i} (1-p)^{1-x_i} = p^{\sum_{i=1}^n
 
 * Para simplificar a notação considere
 
-$$y = \sum_{i=1}^n x_i$$
+$$y = \sum_{i=1}^n x_i.$$
 
 
 
@@ -620,3 +621,255 @@ $$y = pn$$
 $$\hat{p} = \frac{y}{n} = \frac{1}{n}\sum_{i=1}^n x_i = \overline{x}$$
 
 * Neste caso o EMV coincide com o estimador do método dos momentos.
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+:::{#exm-exm6} 
+Considere $X_1, \dots, X_n$ uma amostra aleatória da distribuição $N(\mu, \sigma^2)$.
+:::
+
+* Função de verossimilhança:
+
+$$L(\mu, \sigma^2; x_1, ..., x_n) = \prod_{i=1}^n (2\pi\sigma^2)^{-1/2} \exp\left\{ -\frac{1}{2\sigma^2}(x_i - \mu)^2 \right\}$$
+
+$$= (2\pi\sigma^2)^{-n/2} \exp\left\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2 \right\} \quad \sigma > 0, \ -\infty < \mu < \infty$$
+
+$$\ln L = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2$$
+
+* Derivando:
+
+$$\frac{\partial \ln L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \mu) = \frac{n}{\sigma^2} (\overline{x} - \mu)$$
+
+$$\frac{\partial \ln L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (x_i - \mu)^2$$
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+* Igualando a zero os resultados anteriores iremos obter:
+
+> Equação 1:
+
+$$\frac{n}{\sigma^2} \left( \overline{x} - \mu \right) = 0$$
+
+$$\overline{x} - \mu = 0$$
+
+$$\hat{\mu} = \overline{x}$$
+
+> Equação 2:
+
+$$-\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (x_i - \overline{x})^2 = 0, \ \text{usando} \ \mu = \overline{x}$$
+
+$$-\frac{n}{2\sigma^2} \left[ 1 - \frac{1}{n\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 \right] = 0$$
+
+$$\frac{1}{n\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 = 1$$
+
+$$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2.$$
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+:::{#exm-exm7} 
+Suponha que a variável aleatória $X$ tenha distribuição Uniforme.
+:::
+
+$$f(x|\theta) = 
+\begin{cases} 
+\frac{1}{\theta} & \text{se } \theta - \frac{1}{2} \leq x \leq \theta + \frac{1}{2} \\
+0 & \text{caso contrário}
+\end{cases}$$
+
+$$f(x|\theta) = \mathbf{1}_{\left[\theta - \frac{1}{2}, \theta + \frac{1}{2}\right]} (x)$$
+
+sendo $-\infty < \theta < \infty$.
+
+* A função de verossimilhança para uma amostra de tamanho $n$ será:
+
+$$L(\theta; x_1, \ldots, x_n) = \prod_{i=1}^n f(x_i | \theta) = \prod\limits_{i=1}^n \mathbf{1}_{\left[\theta - \frac{1}{2}, \theta + \frac{1}{2}\right]} (x_i)$$
+
+* O produtório resultará em 1 se e somente se todos os $x_i$ pertencerem ao intervalo $[ \theta - \frac{1}{2}, \theta + \frac{1}{2}]$.
+
+* Isso será verdade somente se $\theta - 1/2 \leq x_{(1)}$ e $x_{(n)} \leq \theta + 1/2$ onde $x_{(1)} = \min\{x_1, \ldots, x_n\}$ e $x_{(n)} = \max\{x_1, \ldots, x_n\}$.
+
+
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+* Veja que:  
+
+$$\theta - \frac{1}{2} \leq X_{(1)}, \quad \theta \leq X_{(1)} + \frac{1}{2}$$
+
+* Então temos  
+
+$$X_{(n)} - \frac{1}{2} \leq \theta \leq X_{(1)} + \frac{1}{2}$$
+
+* A função de verossimilhança será reescrita como segue:
+
+$$L = \prod_{i=1}^{n} I_{[\theta - \frac{1}{2}, \theta + \frac{1}{2}]}(x_i) = I_{[X_{(n)} - \frac{1}{2}, X_{(1)} + \frac{1}{2}]}(\theta)$$
+
+* Esta verossimilhança será igual a 1 ou 0.  
+
+* O ponto de máximo ocorrerá para qualquer valor de $\theta$ satisfazendo  
+
+$$X_{(n)} - \frac{1}{2} \leq \theta \leq X_{(1)} + \frac{1}{2}$$
+
+Conclusão:  
+$\hat{\theta}$ é qualquer valor no intervalo $[X_{(n)} - \frac{1}{2}, X_{(1)} + \frac{1}{2}]$.
+
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
+:::{#exm-exm8} 
+
+$X_1, \ldots, X_n$ uma amostra aleatória com p.d.f.$f(x|\theta) = \theta x^{-2}, \quad 0 < \theta \leq x < \infty$.
+:::
+
+* A função de verossimilhança:
+
+$$L(\theta; X_1, \ldots, X_n) = \prod_{i=1}^n \left( \theta x_i^{-2} I_{[\theta, \infty)} (x_i) \right) = \theta^n \prod_{i=1}^n x_i^{-2}  I_{[\theta, \infty)}(x_i)$$
+
+* Este produtório não resultará em zero, somente se todos os $x_i$ satisfizerem $\theta \leq x_i < \infty$.
+
+* Se $\theta \leq x_{(1)} = \min\{x_1, \ldots, x_n\}$ então todos os $x_i$ são maiores que $\theta$.
+
+* Conclusão: Podemos escrever
+
+$$\prod_{i=1}^n x_i^{-2} \textbf{I}_{[\theta, \infty)}(x_i) = \left( \prod_{i=1}^n x_i^{-2} \right) \textbf{I}_{\left(-\infty, x_{(1)}\right)}(\theta)$$
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+* A verossimilhança será:
+
+$$L = \theta^n \left( \prod_{i=1}^n x_i^{-2} \right) I _{[0, x_{(1)}]}(\theta)$$
+
+* Visto que esta expressão envolve uma função indicadora dependendo de $\theta$, `será inapropriado aplicar o log e calcular derivadas.`
+
+
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+* Veja que $\theta^n$ é uma função crescente de $\theta$ e $\prod_{i=1}^n x_i^{-2}$ não depende de $\theta$.
+
+
+:::columns
+::::column
+
+![](Ex8_Ind.png)
+
+::::
+::::column
+
+* Se $0 < \theta \leq x_{(1)} \Rightarrow L = \theta^n \prod_{i=1}^n x_i^{-2}$  
+
+* Se $\theta > x_{(1)} \Rightarrow L = 0$
+::::
+:::
+
+
+* Podemos ver que o valor máximo de $L(\theta; X_1, \cdots, X_n)$ é obtido quando $\theta = x_{(1)}$. Portanto $\hat{\theta} = X_{(1)} = \min\{X_1, \cdots, X_n\}$ é o EMV de $\theta$.
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+:::{.callout-note}
+## Observação:
+
+$$E(X|\theta) = \int_{\theta}^{\infty} x \theta x^{-2} dx = \theta \int_{\theta}^{\infty} x^{-1} dx = \theta \ln x \Big|_{\theta}^{\infty} = \infty$$
+
+* O primeiro momento populacional não existe. 
+
+* Então, o estimador do método dos momentos para $\theta$ `não existe` neste caso.
+:::
+
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+
+Os quatro exemplos que acabamos de estudar ilustram a aplicação do método da máxima verossimilhança. 
+
+* Os dois últimos exemplos mostram que não devemos sempre confiar no procedimento de derivação para identificar o ponto de máximo. 
+
+* A verossimilhança pode ser representada, por exemplo, pelo gráfico:
+
+![](Ex9_Vero.png){width=200}
+
+* Aqui, o verdadeiro máximo está em $\hat{\theta}$, mas a derivada de $L$ igualada a zero iria localizar $\theta'$ como máximo.
+
+
+## Método da máxima verossimilhança
+<hr>
+
+
+* Devemos lembrar também que a equação $\partial L/\partial\theta = 0$ localiza pontos de mínimo ou de máximo.
+
+
+
+> Teste da 2ª derivada:
+
+* Se $\frac{\partial^2 L}{\partial \theta^2} < 0$ então $\hat{\theta}$ é um ponto de máximo.  
+
+* Se $\frac{\partial^2 L}{\partial \theta^2} > 0$ então $\hat{\theta}$ é um ponto de mínimo.  
+
+* Se $\frac{\partial^2 L}{\partial \theta^2} = 0$ então $\hat{\theta}$ pode ser um ponto de inflexão.
+
+
+
+## Método da máxima verossimilhança
+<hr>
+
+:::{#thm-thmA3_1}
+## Invariância dos EMVs.
+
+
+Se $\hat{\theta}$ é o EMV de $\theta$, então para qualquer função $T(\theta)$, o EMV de $T(\theta)$ será $T(\hat{\theta})$.
+
+*Prova:* [ver Casella e Berger (2002), pag. 320].
+:::
+
+:::{#exm-A3_1}
+
+Para o caso $N(\mu_0, \sigma^2)$ com média $\mu_0$ conhecida, o EMV de  
+$$\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \mu_0)^2.$$
+:::
+
+* Pela propriedade da invariância, o EMV de $\hat{\sigma} = \sqrt{\hat{\sigma}^2}$
+
+* Ou seja, 
+
+$$\hat{\sigma} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \mu_0)^2}$$
+
+
+
+## Método da máxima verossimilhança - Invariância
+<hr>
+
+:::{#exm-A3_2}
+
+* Para o caso $N(\theta, \sigma^2)$ temos que o EMV de $\theta$ é $\overline{X}$.
+
+* Usando o @thm-thmA3_1, podemos ver que o EMV de $\theta^2$ será $\overline{X}^2$.
+:::
+
+:::{#exm-A3_3}
+
+Seja $\hat{p}$ o EMV de $p =$ probabilidade de sucesso da Binomial.  
+Temos que o EMV de $\sqrt{p(1-p)}$ é dado por $\sqrt{\hat{p}(1-\hat{p})}$.
+:::
+
+* A propriedade de invariância dos EMVs também é válida para o caso multivariado ($\theta$ pode ser um vetor no  @thm-thmA3_1).  
+
+* Se o EMV de $(\theta_1, \ldots, \theta_k)$ é $(\hat{\theta}_1, \ldots, \hat{\theta}_k)$ e se $t(\theta_1, \ldots, \theta_k)$ é qualquer função dos parâmetros, o EMV de $t(\theta_1, \ldots, \theta_k)$ será $t(\hat{\theta}_1, \ldots, \hat{\theta}_k)$.
