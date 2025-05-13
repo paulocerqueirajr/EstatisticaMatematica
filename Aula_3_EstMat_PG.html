@@ -848,13 +848,17 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p><span class="math display">\[L(\mu, \sigma^2; x_1, ..., x_n) = \prod_{i=1}^n (2\pi\sigma^2)^{-1/2} \exp\left\{ -\frac{1}{2\sigma^2}(x_i - \mu)^2 \right\}\]</span></p>
 <p><span class="math display">\[= (2\pi\sigma^2)^{-n/2} \exp\left\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2 \right\} \quad \sigma &gt; 0, \ -\infty &lt; \mu &lt; \infty\]</span></p>
 <p><span class="math display">\[\ln L = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-4" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
 <ul>
 <li>Derivando:</li>
 </ul>
 <p><span class="math display">\[\frac{\partial \ln L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \mu) = \frac{n}{\sigma^2} (\overline{x} - \mu)\]</span></p>
 <p><span class="math display">\[\frac{\partial \ln L}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{i=1}^n (x_i - \mu)^2\]</span></p>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-4" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-5" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <ul>
@@ -866,6 +870,10 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p><span class="math display">\[\frac{n}{\sigma^2} \left( \overline{x} - \mu \right) = 0\]</span></p>
 <p><span class="math display">\[\overline{x} - \mu = 0\]</span></p>
 <p><span class="math display">\[\hat{\mu} = \overline{x}\]</span></p>
+</section>
+<section id="método-da-máxima-verossimilhança---exemplos-6" class="slide level2">
+<h2>Método da máxima verossimilhança - Exemplos</h2>
+<hr>
 <blockquote>
 <p>Equação 2:</p>
 </blockquote>
@@ -874,7 +882,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p><span class="math display">\[\frac{1}{n\sigma^2} \sum_{i=1}^n (x_i - \overline{x})^2 = 1\]</span></p>
 <p><span class="math display">\[\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2.\]</span></p>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-5" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-7" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <div id="exm-exm7" class="theorem example">
@@ -896,7 +904,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <li><p>Isso será verdade somente se <span class="math inline">\(\theta - 1/2 \leq x_{(1)}\)</span> e <span class="math inline">\(x_{(n)} \leq \theta + 1/2\)</span> onde <span class="math inline">\(x_{(1)} = \min\{x_1, \ldots, x_n\}\)</span> e <span class="math inline">\(x_{(n)} = \max\{x_1, \ldots, x_n\}\)</span>.</p></li>
 </ul>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-6" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-8" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <ul>
@@ -919,7 +927,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <p>Conclusão:<br>
 <span class="math inline">\(\hat{\theta}\)</span> é qualquer valor no intervalo <span class="math inline">\([X_{(n)} - \frac{1}{2}, X_{(1)} + \frac{1}{2}]\)</span>.</p>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-7" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-9" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <div id="exm-exm8" class="theorem example">
@@ -936,7 +944,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 </ul>
 <p><span class="math display">\[\prod_{i=1}^n x_i^{-2} \textbf{I}_{[\theta, \infty)}(x_i) = \left( \prod_{i=1}^n x_i^{-2} \right) \textbf{I}_{\left(-\infty, x_{(1)}\right)}(\theta)\]</span></p>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-8" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-10" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <ul>
@@ -947,7 +955,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <li>Visto que esta expressão envolve uma função indicadora dependendo de <span class="math inline">\(\theta\)</span>, <code>será inapropriado aplicar o log e calcular derivadas.</code></li>
 </ul>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-9" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-11" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <ul>
@@ -967,7 +975,7 @@ Queremos saber de qual f.d. ou f.p. este conjunto de valores é proveniente com 
 <li>Podemos ver que o valor máximo de <span class="math inline">\(L(\theta; X_1, \cdots, X_n)\)</span> é obtido quando <span class="math inline">\(\theta = x_{(1)}\)</span>. Portanto <span class="math inline">\(\hat{\theta} = X_{(1)} = \min\{X_1, \cdots, X_n\}\)</span> é o EMV de <span class="math inline">\(\theta\)</span>.</li>
 </ul>
 </section>
-<section id="método-da-máxima-verossimilhança---exemplos-10" class="slide level2">
+<section id="método-da-máxima-verossimilhança---exemplos-12" class="slide level2">
 <h2>Método da máxima verossimilhança - Exemplos</h2>
 <hr>
 <div class="callout callout-note callout-titled callout-style-default">

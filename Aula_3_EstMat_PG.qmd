@@ -639,6 +639,10 @@ $$= (2\pi\sigma^2)^{-n/2} \exp\left\{ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \
 
 $$\ln L = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (x_i - \mu)^2$$
 
+## Método da máxima verossimilhança - Exemplos
+<hr>
+
+
 * Derivando:
 
 $$\frac{\partial \ln L}{\partial \mu} = \frac{1}{\sigma^2} \sum_{i=1}^n (x_i - \mu) = \frac{n}{\sigma^2} (\overline{x} - \mu)$$
@@ -659,6 +663,9 @@ $$\frac{n}{\sigma^2} \left( \overline{x} - \mu \right) = 0$$
 $$\overline{x} - \mu = 0$$
 
 $$\hat{\mu} = \overline{x}$$
+
+## Método da máxima verossimilhança - Exemplos
+<hr>
 
 > Equação 2:
 
