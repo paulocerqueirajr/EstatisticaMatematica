@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="pt"><head>
+<script src="Aula_4_EstMat_PG_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Aula_4_EstMat_PG_files/libs/quarto-html/tabby.min.js"></script>
+<script src="Aula_4_EstMat_PG_files/libs/quarto-html/popper.min.js"></script>
+<script src="Aula_4_EstMat_PG_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="Aula_4_EstMat_PG_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Aula_4_EstMat_PG_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="Aula_4_EstMat_PG_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="Aula_4_EstMat_PG_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <title>aula_4_estmat_pg</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Aula_4_EstMat_PG_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="Aula_4_EstMat_PG_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="Aula_4_EstMat_PG_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="Aula_4_EstMat_PG_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="Aula_4_EstMat_PG_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="Aula_4_EstMat_PG_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="Aula_4_EstMat_PG_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level2">
+
+<h1>
+Estatística Matemática
+</h1>
+<h2>
+Estimação Pontual - Aula 2
+</h2>
+<hr>
+<p><br></p>
+<h3>
+Prof.&nbsp;Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br> Faculdade de Estatística - FAEST <br> Programa de Pós-Graduação em Matemática e Estatística - PPGME<br> Instituto de Ciências Exatas e Naturais - ICEN
+</h3>
+<h3>
+</h3>
+<p><br></p>
+<h3>
+<p><a href="https://https://github.com/paulocerqueirajr">https://github.com/paulocerqueirajr</a></p>
+<p><img data-src="github.jpg" class="absolute" style="top: 620px; left: 845px; height: 90px; "></p>
+<p><img data-src="ppgme.jpg" class="absolute" style="top: 5px; left: 1400px; height: 200px; "></p>
+<!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
+</h3></section>
+<section>
+<section id="propriedades-dos-estimadores" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Propriedades dos estimadores</span></h1>
+
+</section>
+<section id="introdução" class="slide level2">
+<h2>Introdução</h2>
+<hr>
+<ul>
+<li><p>Nas últimas subseções apresentamos métodos para obter estimadores pontuais.</p></li>
+<li><p>Investigaremos agora algumas propriedades que ajudam a decidir se um estimador é melhor que outro.</p></li>
+<li><p>Assim como a qualidade dos estimadores.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="erro-quadrático-médio-eqm" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Erro Quadrático Médio (EQM)</span></h1>
+
+</section>
+<section id="erro-quadrático-médio-eqm-1" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li>Uma medida da aproximação de um estimador <span class="math inline">\(t(X_1, \ldots, X_n)\)</span> em relação o parâmetro alvo <span class="math inline">\(\tau(\theta)\)</span> é o que chamamos de EQM do estimador.</li>
+</ul>
+<div id="def-defa401" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 1 (EQM)</strong></span> Seja <span class="math inline">\(T = t(X_1, \ldots, X_n)\)</span> um estimador para <span class="math inline">\(\tau(\theta)\)</span>. Então, <span class="math inline">\(E\left[ (T - \tau(\theta))^2 \right]\)</span> é dito ser o EQM de <span class="math inline">\(T = t(X_1, \ldots, X_n).\)</span></p>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Observação:</strong></p>
+</div>
+<div class="callout-content">
+<p>O subscrito <span class="math inline">\(\theta\)</span> no símbolo da esperança <span class="math inline">\(E_\theta\)</span> indica a p.d.f. da família sendo considerada, a partir da qual a amostra é proveniente.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-quadrático-médio-eqm-2" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<p><span class="math display">\[E_\theta \left[ (T - \tau(\theta))^2 \right] = E_\theta \left[ (t(X_1, \ldots, X_n) - \tau(\theta))^2 \right]\]</span></p>
+<p><span class="math display">\[= \int \cdots \int (t(x_1, \ldots, x_n) - \tau(\theta))^2 f(x_1|\theta) \cdots f(x_n|\theta) dx_1 \cdots dx_n\]</span></p>
+<p>onde <span class="math inline">\(f(x|\theta)\)</span> é a p.d.f. da qual a amostra aleatória foi selecionada.</p>
+<ul>
+<li><p>O nome “Erro Quadrático Médio” pode ser justificado considerando o fato de que a diferença <span class="math inline">\(t - \tau(\theta)\)</span>, sendo <span class="math inline">\(t\)</span> o valor de <span class="math inline">\(T\)</span> usado para estimar <span class="math inline">\(\tau(\theta)\)</span>, representa o <code>erro na estimação</code> de <span class="math inline">\(\tau(\theta)\)</span>.</p></li>
+<li><p>Trabalhamos com <span class="math inline">\((T - \tau(\theta))^2\)</span> o que leva ao termo “Quadrático”.</p></li>
+<li><p>O termo “Médio” está associado ao cálculo do valor esperado.</p></li>
+<li><p>Note que <span class="math inline">\(E_\theta \left[ (T - \tau(\theta))^2 \right]\)</span> é uma medida do distanciamento de <span class="math inline">\(T\)</span> em relação a <span class="math inline">\(\tau(\theta)\)</span>, assim como a variância de uma variável aleatória é a medida do distanciamento dos possíveis valores em relação a sua média.</p></li>
+</ul>
+</section>
+<section id="erro-quadrático-médio-eqm-3" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li><p>Se formos comparar estimadores em termos do EQM, naturalmente iremos preferir aquele com menor EQM.</p></li>
+<li><p>Podemos pensar em obter um estimador com o menor EQM, mas tal estimador raramente existe.</p></li>
+<li><p>Em geral, o EQM de um estimador depende de <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p>Para dois estimadores <span class="math inline">\(T_1 = t_1(X_1, \ldots, X_n) \quad \text{e} \quad T_2 = t_2(X_1, \ldots, X_n)\)</span><br>
+de <span class="math inline">\(\tau(\theta)\)</span>, seus respectivos EQMs são funções de <span class="math inline">\(\theta\)</span> e podem se cruzar; ou seja, para algum <span class="math inline">\(\theta\)</span> temos:</p>
+<ul>
+<li><span class="math inline">\(T_1\)</span> com o menor EQM e para outros <span class="math inline">\(\theta'\)</span>, temos<br>
+</li>
+<li><span class="math inline">\(T_2\)</span> com o menor EQM.</li>
+</ul></li>
+</ul>
+</section>
+<section id="erro-quadrático-médio-eqm-4" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+
+<img data-src="compEQM.png" class="r-stretch"></section>
+<section id="erro-quadrático-médio-eqm-5" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li><p>Em geral, qualquer função crescente da distância absoluta <span class="math inline">\(|T - \tau(\theta)|\)</span> serviria para medir a qualidade de um estimador.</p></li>
+<li><p>O “Erro Absoluto Médio” <span class="math inline">\(E_\theta[|T - \tau(\theta)|]\)</span> é uma alternativa razoável, mas o EQM tem pelo menos duas vantagens sobre outras medidas de distância:</p>
+<ol type="1">
+<li><p>É mais fácil de manipular analiticamente.</p></li>
+<li><p>Possui a seguinte interpretação.</p></li>
+</ol></li>
+</ul>
+<p><span class="math display">\[
+E_\theta[(W - \theta)^2] = \text{Var}_\theta W + (E_\theta(W) - \theta)^2 = \text{Var}_\theta W + [\text{Viés}_\theta(W)]^2
+\]</span></p>
+<ul>
+<li>O resultado acima é obtido a partir de:<br>
+<span class="math display">\[
+\text{Var}_\theta(x) = \mathbb{E}(x^2) - \mathbb{E}^2(x)
+\]</span></li>
+</ul>
+<p><code>Note que:</code> <span class="math inline">\(\text{Var}_\theta(W - \theta) = \text{Var}_\theta(W)\)</span> pois <span class="math inline">\(\theta\)</span> é constante</p>
+<p><span class="math display">\[
+\text{Var}_\theta(W) = \text{Var}_\theta(W - \theta) = \mathbb{E}_\theta[(W - \theta)^2] - \mathbb{E}_\theta^2[W - \theta]
+\]</span></p>
+</section>
+<section id="erro-quadrático-médio-eqm-6" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<div id="def-defa401" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 2 (Viés, Vício ou tendenciosidade.)</strong></span> Um estimador <span class="math inline">\(T = t(X_{i_1}, \ldots, X_{n})\)</span> é dito não viciado para <span class="math inline">\(T(\theta)\)</span><br>
+se e somente se <span class="math inline">\(E_{\theta}(T) = E_{\theta}[\overline{t}(X_{j_1}, \ldots, X_{n})] = T(\theta)\)</span> para todo <span class="math inline">\(\theta \in \Theta\)</span>.</p>
+</div>
+<ul>
+<li>O vício de um estimador pontual <span class="math inline">\(W\)</span> de um parâmetro <span class="math inline">\(\theta\)</span> é dado pela diferença entre <span class="math inline">\(E(W)\)</span> e <span class="math inline">\(\theta\)</span>, isto é</li>
+</ul>
+<p><span class="math display">\[\text{Vício}(W) = E_{\theta}(W) - \Theta\]</span></p>
+<ul>
+<li><p>Pode ser tanto positivo, negativo ou zero.</p></li>
+<li><p>Se o vício for igual a zero, dizemos que o estimador <span class="math inline">\(W\)</span> é não viciado para <span class="math inline">\(\theta\)</span>.</p></li>
+</ul>
+</section>
+<section id="erro-quadrático-médio-eqm-7" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li>Veja que:</li>
+</ul>
+<p><span class="math display">\[EQM = E_\theta[(W - \theta)^2] = V(W) + [E_\Theta(W) - \theta]^2\]</span></p>
+<ul>
+<li><p>Incorpora dois componentes:</p>
+<ul>
+<li>um medindo a variabilidade do estimador (precisão).<br>
+</li>
+<li>outro medindo seu vício.</li>
+</ul></li>
+<li><p>Um bom estimador terá valores pequenos para esses componentes.</p></li>
+<li><p>Para encontrar estimadores com boas propriedades de EQM, precisamos encontrar aqueles que controlam a variabilidade e o vício.</p></li>
+<li><p>Claramente, estimadores não viciados (vício = 0) serão preferidos.</p></li>
+<li><p>Para um estimador não viciado temos <span class="math inline">\(E_\theta[(W - \theta)^2] = V(W),\)</span> ou seja, o EQM é igual à variância do estimador.</p></li>
+</ul>
+</section>
+<section id="erro-quadrático-médio-eqm-8" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<div id="exm-exma401" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 1</strong></span> Exemplo: Seja <span class="math inline">\(X_1, \ldots, X_n\)</span> uma amostra aleatória da <span class="math inline">\(N(\mu, \sigma^2)\)</span>. Sabemos que <span class="math inline">\(\overline{X}\)</span> e <span class="math inline">\(S^2\)</span> são estimadores não viciados, então <span class="math inline">\(E(\overline{X}) = \mu \quad e \quad E(S^2) = \sigma^2\)</span>. Este resultado também é válido se não usarmos a suposição de normalidade dos dados.</p>
+</div>
+<p><strong>EQMS:</strong></p>
+<ul>
+<li>Considere <span class="math inline">\(\theta = (\mu, \sigma^2) \quad \text{com ou sem a suposição de normalidade}\)</span>,</li>
+</ul>
+<p><span class="math display">\[E_{\theta}[(X - \mu)^2] = Var(\bar{X}) = \sigma^2/n\]</span></p>
+<p><span class="math display">\[E_{\theta}[(S^2 - \sigma^2)^2] = Var(S^2) = \frac{2\sigma^4}{\sqrt{n-1}}\]</span></p>
+<ul>
+<li>Lembre que:</li>
+</ul>
+<p><span class="math display">\[\frac{n-1}{\sigma^2} S^2 \sim \chi_{n-1}^2\]</span></p>
+</section>
+<section id="erro-quadrático-médio-eqm-9" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li>Este resultado só é verdade se <span class="math inline">\(X_1, \ldots, X_n\)</span> são i.i.d. <span class="math inline">\(N(\mu, \sigma^2)\)</span>.</li>
+</ul>
+<p><span class="math display">\[Var(S^2) = Var\left( \frac{\sigma^2}{n-1} \frac{n-1}{\sigma^2} S^2 \right) = \frac{\sigma^4}{(n-1)^2} Var\left( \frac{n-1}{\sigma^2} S^2 \right) = 2(n-1)\]</span></p>
+<p><span class="math display">\[= \frac{\sigma^4}{(n-1)^2} \cdot 2(n-1) =\frac{2\sigma^4}{\sqrt{n-1}}.\]</span></p>
+<ul>
+<li>A expressão do EQM para <span class="math inline">\(S^2\)</span> não permanece a mesma se retirarmos a suposição de normalidade.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota:</strong></p>
+</div>
+<div class="callout-content">
+<p>Embora muitos estimadores não viciados são também razoáveis em termos de EQM, esteja avisado que <code>controlar o vício não garante que o EQM seja controlado</code>.</p>
+<p>Em particular, pode ocorrer uma troca entre a variância e o vício do estimador de tal forma que um aumento pequeno no vício leva a uma maior diminuição na variância, resultado em um EQM melhor (menor).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="erro-quadrático-médio-eqm-10" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<div id="exm-exma402" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 2</strong></span> <span class="math inline">\(X_1, \ldots, X_n\)</span> são i.i.d. <span class="math inline">\(N(\mu, \sigma^2)\)</span>. Um estimador alternativo para <span class="math inline">\(\sigma^2\)</span> é o EMV dado por</p>
+</div>
+<p><span class="math display">\[\hat{\sigma}^2 = \frac{1}{n} \sum_{x=1}^{n} (X_i - \overline{X})^2 = \frac{n-1}{n} S^2\]</span></p>
+<ul>
+<li>Veja que</li>
+</ul>
+<p><span class="math display">\[E(\hat{\sigma}^2) = E\left( \frac{n-1}{n} S^2 \right) = \frac{n-1}{n} E(S^2) = \left( \frac{n-1}{n} \right) \sigma^2.\]</span></p>
+<ul>
+<li>Portanto, <span class="math inline">\(\hat{\sigma}^2\)</span> é um estimador viciado para <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+</section>
+<section id="erro-quadrático-médio-eqm-11" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li>A variância dos estimador:</li>
+</ul>
+<p><span class="math display">\[V(\hat{\sigma}^2) = V \left( \frac{n-1}{n} S^2 \right) = \left( \frac{n-1}{n} \right)^2 V(S^2) = \left( \frac{n-1}{n} \right)^2 \frac{2\sigma^4}{n-1}\]</span></p>
+<p><span class="math display">\[= \frac{(n-1) \cdot 2\sigma^4}{n^2}\]</span></p>
+<ul>
+<li>Desta forma o EQM será: <span class="math inline">\(E\left[ (\hat{\sigma}^2 - \sigma^2)^2 \right] = V(\hat{\sigma}^2) + [Vício(\hat{\sigma}^2)]^2\)</span>.</li>
+</ul>
+<p><span class="math display">\[= \frac{(n-1) \cdot 2\sigma^4}{n^2} + \left[ \frac{n-1}{n} \sigma^2 - \sigma^2 \right]^2 = \frac{(n-1) \cdot 2\sigma^4}{n^2} + \sigma^4 \left[ -\frac{1}{n} \right]^2 = (2n-1) \frac{\sigma^4}{n^2}.\]</span></p>
+</section>
+<section id="erro-quadrático-médio-eqm-12" class="slide level2">
+<h2>Erro Quadrático Médio (EQM)</h2>
+<hr>
+<ul>
+<li>Concluindo o exemplo…</li>
+</ul>
+<p><span class="math display">\[\text{EQM}(\hat{\sigma}^2)=E\left[(\hat{\sigma}^2 - \sigma^2)^2\right] = \frac{(2n-1)}{n^2} \sigma^4 &lt; \left( \frac{2}{n-1} \right) \sigma^4 = E\left[ (S^2 - \sigma^2)^2 \right]=\text{EQM}(S^2)\]</span></p>
+<ul>
+<li><p>Ou seja, <span class="math inline">\(\hat{\sigma}^2\)</span> tem menor EQM que <span class="math inline">\(S^2\)</span>. Se ignorarmos o problema do vício e usarmos <span class="math inline">\(\hat{\sigma}^2\)</span>, iremos obter um EQM menor.</p></li>
+<li><p>O exemplo acima não implica que <span class="math inline">\(S^2\)</span> deva ser abandonado como estimador de <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>O argumento acima indica que, em média, <span class="math inline">\(\hat{\sigma}^2\)</span> será mais próximo de <span class="math inline">\(\sigma^2\)</span> do que <span class="math inline">\(S^2\)</span> se o EQM for usado como critério de comparação.</p></li>
+<li><p>Entretanto, <span class="math inline">\(\hat{\sigma}^2\)</span> é viciado e irá, em média, subestimar <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>Este fato é forte o bastante para nos deixar preocupados sobre o uso de <span class="math inline">\(\hat{\sigma}^2\)</span> como estimador de <span class="math inline">\(\sigma^2\)</span>.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="consistência" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Consistência</span></h1>
+
+</section>
+<section id="consistência-no-eqm" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<ul>
+<li><p>As definições de EQM e Vício para um estimador consideram que o tamanho amostral <span class="math inline">\(n\)</span> é fixo. A próxima propriedade a ser introduzida considera uma avaliação para a situação onde <span class="math inline">\(n\)</span> cresce.</p></li>
+<li><p>Assuma que <span class="math inline">\(T_n = t_n(X_1, \ldots, X_n)\)</span> representa um estimador de <span class="math inline">\(\tau(\theta)\)</span> baseado em uma amostra de tamanho <span class="math inline">\(n\)</span>. Iremos considerar uma sequência de estimadores:</p></li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><span class="math display">\[T_1 = t_1(X_1)\]</span></p>
+<p><span class="math display">\[T_2 = t_2(X_1, X_2)\]</span></p>
+<p><span class="math display">\[T_3 = t_3(X_1, X_2, X_3)\]</span></p>
+<p><span class="math display">\[\vdots\]</span></p>
+<p><span class="math display">\[T_n = t_n(X_1, \ldots, X_n)\]</span></p>
+</div><div class="column">
+<ul>
+<li>Um exemplo óbvio é</li>
+</ul>
+<p><span class="math display">\[T_n = t_n(X_1, \ldots, X_n) = \frac{1}{n} \sum_{i=1}^n X_i\]</span></p>
+<ul>
+<li>As funções <span class="math inline">\(t_n\)</span> na sequência serão o mesmo tipo de função para cada n.</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>Quando consideramos uma sequência de estimadores, parece razoável pensar que uma boa sequência de estimadores deverá ter valores que se aproximam da quantidade a ser estimada conforme o tamanho amostral aumenta.</li>
+</ul>
+</section>
+<section id="consistência-no-eqm-1" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<div id="def-defa402" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 3 (Consistência baseada no EQM.)</strong></span> Seja <span class="math inline">\(T_1, T_2, \ldots, T_n, \ldots\)</span> uma sequência de estimadores de <span class="math inline">\(\tau(\theta)\)</span>, sendo <span class="math inline">\(T_n = t_n(X_1, \ldots, X_n)\)</span> baseado em uma amostra de tamanho <span class="math inline">\(n\)</span>. Esta sequência de estimadores é dita “Consistente no EQM” para <span class="math inline">\(\tau(\theta)\)</span> se e somente se</p>
+</div>
+<p><span class="math display">\[\lim_{n \to \infty} E_\theta[(T_n - \tau(\theta))^2] = 0 \quad \text{para todo} \quad \theta \in \mathbb{R}\]</span></p>
+<p><code>Observação:</code> Consistência no EQM implica que ambos o vício e a variância de <span class="math inline">\(T_n\)</span> se aproximam de zero visto que</p>
+<p><span class="math display">\[E_\theta[(T_n - \tau(\theta))^2] = Var_\theta[T_n] + [\tau(\theta) - E_\theta(T_n)]^2\]</span></p>
+</section>
+<section id="consistência-no-eqm-2" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<div id="exm-exma403" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 3</strong></span> Considere uma amostra aleatória obtida de uma p.d.f. com média <span class="math inline">\(\mu\)</span> e variância <span class="math inline">\(\sigma^2\)</span>.</p>
+</div>
+<ul>
+<li><p>Seja<br>
+<span class="math display">\[\overline{X}_n = \frac{1}{n} \sum_{i=1}^n X_i \quad e \quad S_n^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X}_n)^2\]</span></p></li>
+<li><p>Considere as sequências <span class="math inline">\(\overline{X}_1, \overline{X}_2, \overline{X}_3, \ldots \quad e \quad S_1^2, S_2^2, S_3^2, \ldots\)</span></p></li>
+<li><p>Lembre que: <span class="math inline">\(\overline{X}_n \text{ estima } \mu \quad e \quad S_n^2 \text{ estima } \sigma^2.\)</span></p></li>
+<li><p>Para <span class="math inline">\(\overline{X}_n\)</span>:</p></li>
+</ul>
+<p><span class="math display">\[EQM(\overline{X}_n) = E[(\overline{X}_n - \mu)^2] = Var(\overline{X}_n) = \frac{\sigma^2}{n}\]</span></p>
+<p><span class="math display">\[\lim_{n \to \infty} E[(\overline{X}_n - \mu)^2] = \lim_{n \to \infty} \frac{\sigma^2}{n} = 0\]</span></p>
+</section>
+<section id="consistência-no-eqm-3" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<ul>
+<li>Para <span class="math inline">\(S_n^2\)</span>:</li>
+</ul>
+<p><span class="math display">\[EQM(S_n^2) = E[(S_n^2 - \sigma^2)^2] = Var(S_n^2) = \frac{1}{n} \left[ \mu_4 - \frac{n-3}{n-1} \sigma^4 \right]\]</span></p>
+<p><span class="math display">\[\lim_{n \to \infty} \left[ \frac{\mu_4}{n} - \frac{n-3}{n-1} \sigma^4 \right] = \lim_{n \to \infty} \frac{\mu_4}{n} - \lim_{n \to \infty} \frac{n-3}{n-1} \sigma^4 = 0 - 0 = 0\]</span></p>
+<p><code>Conclusão:</code> <span class="math inline">\(\{ \overline{X}_n \}\)</span> e <span class="math inline">\(\{ S_n^2 \}\)</span> são sequências consistentes no EQM para seus respectivos parâmetros alvo.</p>
+<ul>
+<li>Note que se <span class="math inline">\(T_n = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X}_n)^2\)</span>, então, <span class="math inline">\(\{ T_n \}\)</span> também será uma sequência consistente no EQM para <span class="math inline">\(\sigma^2.\)</span></li>
+</ul>
+</section>
+<section id="consistência-no-eqm-4" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<div id="def-defa402" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 4 (Consistência simples.)</strong></span> Seja <span class="math inline">\(T_1, T_2, T_3, \ldots, T_n, \ldots\)</span> uma sequência de estimadores de <span class="math inline">\(t(\theta)\)</span>, sendo <span class="math inline">\(T_n = t_n(x_1, \ldots, x_n)\)</span>. A sequência <span class="math inline">\(\{T_n\}\)</span> é dita consistente (forma mais simples ou fraca) para <span class="math inline">\(t(\theta)\)</span> se para todo <span class="math inline">\(\epsilon &gt; 0\)</span> temos</p>
+<p><span class="math display">\[\lim_{n \to \infty} P[|T_n - t(\theta)| &lt; \epsilon] = 1,\]</span></p>
+<p>ou equivalentemente</p>
+<p><span class="math display">\[\lim_{n \to \infty} P[|T_n - t(\theta)| \geq \epsilon] = 0.\]</span></p>
+</div>
+<ul>
+<li><p>Note que a definição acima coincide com aquela que especificamos para a convergência em probabilidade. Esta definição tem relação com a lei fraca dos grandes números.</p></li>
+<li><p>Se um estimador é consistente no EQM, ele também atende a consistência simples. A relação contrária não necessariamente será verdade.</p></li>
+</ul>
+</section>
+<section id="consistência-no-eqm-5" class="slide level2">
+<h2>Consistência no EQM</h2>
+<hr>
+<ul>
+<li>A prova considera a desigualdade de Chebychev estudada anteriormente.</li>
+</ul>
+<p><span class="math display">\[P(|T_n - t(\theta)| \geq \epsilon) &lt; E[(T_n - t(\theta))^2] / \epsilon^2.\]</span></p>
+<ul>
+<li>Se <span class="math inline">\(T_n\)</span> é consistente no EQM, conforme <span class="math inline">\(n \to \infty\)</span>,</li>
+</ul>
+<p><span class="math display">\[E[(T_n - t(\theta))^2] \to 0 \Rightarrow P(|T_n - t(\theta)| \geq \epsilon) \to 0.\]</span></p>
+</section></section>
+<section>
+<section id="melhores-estimadores-não-viciados" class="title-slide slide level1" data-background-color="#00008B">
+<h1><span style="float:right;text-align:right;">Melhores Estimadores Não Viciados</span></h1>
+
+</section>
+<section id="melhores-estimadores-não-viciados-1" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<ul>
+<li><p>Conforme visto anteriormente, uma comparação de estimadores baseada no EQM pode não determinar um favorito.</p></li>
+<li><p>Na verdade não existe um estimador com o “melhor EQM”.</p></li>
+<li><p>A razão disto é que a classe de todos os estimadores é muito grande.</p></li>
+<li><p>Por exemplo, o estimador <span class="math inline">\(\hat{\theta} = 17\)</span> não pode ser batido em termos de EQM para estimar <span class="math inline">\(\theta = 17\)</span>, mas este é um estimador ruim se <span class="math inline">\(\theta \neq 17\)</span>.</p></li>
+<li><p>Uma maneira de tornar mais acessível o problema de encontrar um “melhor estimador” é limitar a grande classe de estimadores.</p></li>
+<li><p>Uma forma de restringir a grande classe de estimadores será considerar apenas os estimadores não viciados.</p></li>
+<li><p>Se <span class="math inline">\(W_1\)</span> e <span class="math inline">\(W_2\)</span> são ambos estimadores não viciados do parâmetro <span class="math inline">\(\theta\)</span>, isto é,<br>
+<span class="math inline">\(E(W_1) = E(W_2) = \theta\)</span>, então seus EQMs serão iguais às suas variâncias.</p></li>
+<li><p>Portanto, iremos escolher o estimador com a menor variância. Este será o<br>
+“melhor estimador não viciado”.</p></li>
+<li><p>Embora estejamos lidando com estimadores não viciados, os resultados apresentados aqui são na verdade mais gerais.</p></li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-2" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="def-dea404" class="theorem definition">
+<p><span class="theorem-title"><strong>Definição 5</strong></span> Um estimador <span class="math inline">\(W^*\)</span> é dito o “Melhor Estimador Não Viciado” para <span class="math inline">\(\tau(\theta)\)</span> se satisfaz:</p>
+</div>
+<p><span class="math display">\[E_\theta(W^*) = \tau(\theta),\]</span></p>
+<p>para todo <span class="math inline">\(\theta\)</span> e para qualquer outro estimador <span class="math inline">\(W\)</span> com</p>
+<p><span class="math display">\[E_\theta(W) = \tau(\theta),\]</span></p>
+<p>temos</p>
+<p><span class="math display">\[Var_{\theta}(W^*) \leq Var_{\theta}(W)\]</span></p>
+<p>para todo <span class="math inline">\(\theta\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(W^*\)</span> é também chamado de <code>Estimador Não Viciado de Variância Uniformemente Mínima</code> (ENVVUM) para <span class="math inline">\(\tau(\theta)\)</span>.</p></li>
+<li><p>Encontrar o <code>melhor estimador não viciado</code> (se existir) não é uma tarefa fácil por várias razões, duas delas são ilustradas a seguir.</p></li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-3" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="exm-exma404" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 4</strong></span> Seja <span class="math inline">\(X_1, \ldots, X_n\)</span> i.i.d. Poisson<span class="math inline">\((\lambda)\)</span> e considere <span class="math inline">\(\overline{X}\)</span> e <span class="math inline">\(S^2\)</span> (a média e variância amostral). Lembre que na distribuição Poisson, tanto a média quanto a variância são iguais a <span class="math inline">\(\lambda\)</span>.</p>
+</div>
+<ul>
+<li><p>Então <span class="math inline">\(E_{\lambda}(\overline{X}) = \lambda\)</span> e <span class="math inline">\(E_{\lambda}(S^2) = \lambda\)</span> para todo <span class="math inline">\(\lambda.\)</span></p></li>
+<li><p>Logo: <span class="math inline">\(\overline{X}\)</span> e <span class="math inline">\(S^2\)</span> são estimadores não viciados para <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Para determinar qual destes é o melhor estimador, iremos comparar suas variâncias.</p></li>
+<li><p>Sabemos que <span class="math inline">\(Var_{\lambda}(\overline{X}) = \lambda/n.\)</span> .</p></li>
+<li><p>O cálculo de <span class="math inline">\(Var_{\lambda}(S^2)\)</span> é longo (iremos omitir aqui!).</p></li>
+<li><p>É possível mostrar que <span class="math inline">\(Var_{\lambda}(\overline{X}) \leq Var_{\lambda}(S^2)\)</span> para todo <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Mesmo com o resultado acima estabelecendo que <span class="math inline">\(\overline{X}\)</span> é melhor que <span class="math inline">\(S^2\)</span>, considere a seguinte classe de estimadores para <span class="math inline">\(\lambda\)</span>:</p></li>
+</ul>
+<p><span class="math display">\[W_{\alpha}(\overline{X}, S^2) = \alpha \overline{X} + (1 - \alpha) S^2\]</span></p>
+<ul>
+<li><p>Veja que para qualquer constante “<span class="math inline">\(\alpha\)</span>” temos <span class="math inline">\(E_{\lambda}[W_{\alpha}(\overline{X}, S^2)] = \lambda.\)</span></p></li>
+<li><p>Portanto, há <code>infinitos</code> estimadores não viciados para <span class="math inline">\(\lambda\)</span>.</p></li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-4" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<ul>
+<li><p>Mesmo que <span class="math inline">\(\bar{X}\)</span> seja melhor que <span class="math inline">\(S^2\)</span>, seria ele <span class="math inline">\(\bar{X}\)</span> melhor que todo <span class="math inline">\(W_\alpha(\bar{X}, S^2)\)</span>? Como podemos ter certeza de que não existe algum outro melhor estimador não viciado?</p></li>
+<li><p>Suponha que, para estimar o parâmetro <span class="math inline">\(\tau(\theta)\)</span> de uma distribuição <span class="math inline">\(f(x|\theta)\)</span>, podemos especificar um limite inferior <span class="math inline">\(\beta(\theta)\)</span> para a variância de qualquer estimador não viciado para <span class="math inline">\(\tau(\theta)\)</span>. Se podemos então encontrar um estimador não viciado <span class="math inline">\(W^*\)</span> satisfazendo</p></li>
+</ul>
+<p><span class="math display">\[Var_{\theta}(W^*) = \beta(\theta),\]</span></p>
+<ul>
+<li><p>teremos encontrado o melhor estimador não viciado.</p></li>
+<li><p>A abordagem acima considera o que chamamos de limite inferior de Cramér-Rao.</p></li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-5" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="thm-thma401" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 1 (Desigualdade de Cramér-Rao.)</strong></span> Seja <span class="math inline">\(X = (X_1, \ldots, X_n)\)</span> uma amostra (variáveis não necessariamente independentes) com p.d.f. <span class="math inline">\(f(x|\theta)\)</span>.</p>
+</div>
+<ul>
+<li>Considere <span class="math inline">\(W(X) = W(X_1, \ldots, X_n)\)</span> como qualquer estimador satisfazendo<br>
+<span class="math display">\[\frac{d}{d\theta} E_\theta [W(X)] = \int_X \frac{\partial}{\partial\theta} [W(x)f(x|\theta)] \, dx\]</span></li>
+</ul>
+<p>e <span class="math inline">\(Var_\theta [W(X)] &lt; \infty\)</span>. Então,</p>
+<p><span class="math display">\[Var_\theta [W(X)] \geq \frac{\left( \frac{d}{d\theta} E_\theta [W(X)] \right)^2}{E_\theta \left( \left[ \frac{\partial}{\partial\theta} \log f(x|\theta) \right]^2 \right)}\]</span></p>
+</section>
+<section id="melhores-estimadores-não-viciados-6" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="cor-cora401" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corolário 1 (Desigualdade de Cramér-Rao (caso i.i.d.).)</strong></span> Se as suposições do Teorema 3.4.1 estão satisfeitas e além disso <span class="math inline">\(X_1, \ldots, X_n\)</span> são i.i.d. com p.d.f. <span class="math inline">\(f(X | \theta)\)</span>, então</p>
+<p><span class="math display">\[Var_{\theta}[W(X)] \geq \frac{\left(\frac{d}{d\theta} E_{\theta}[W(X)]\right)^2}{nE_{\theta}\left[\left(\frac{\partial}{\partial \theta} \log f(X_i | \theta)\right)^2\right]}\]</span></p>
+</div>
+</section>
+<section id="melhores-estimadores-não-viciados-7" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<p><strong>Observação 1:</strong> Embora o limite inferior de Cramér-Rao tenha sido apresentado para variáveis aleatórias contínuas, este resultado também é válido para o caso discreto. Se <span class="math inline">\(f(x|\theta)\)</span> é uma p.m.f., então devemos ser capazes de permutar a diferenciação e o somatório. Assumimos que mesmo <span class="math inline">\(f(x|\theta)\)</span> sendo uma p.m.f. não diferenciável em <span class="math inline">\(x\)</span>, ela é diferenciável em <span class="math inline">\(\theta\)</span> (este é o caso das p.m.f.’s mais comuns).</p>
+<p><strong>Observação 2:</strong> A quantidade <span class="math display">\[E_{\theta} \left[ \left( \frac{\partial}{\partial\theta} \log f(X|\theta) \right)^2 \right]\]</span></p>
+<p>é chamada de <strong>Informação de Fisher amostral</strong>.</p>
+<ul>
+<li>Esta terminologia reflete o fato de que a Informação de Fisher fornece um limite para a variância do melhor estimador não viciado de <span class="math inline">\(\theta\)</span>. Conforme o valor da Informação de Fisher aumenta e obtemos mais informação sobre <span class="math inline">\(\theta\)</span>, teremos um limite menor para a variância do melhor estimador não viciado.</li>
+</ul>
+<p><strong>Notação:</strong><br>
+<span class="math display">\[I_n(\theta) = E_{\theta} \left[ \left( \frac{\partial}{\partial\theta} \log f(X|\theta) \right)^2 \right]\]</span></p>
+<ul>
+<li>Informação de Fisher esperada para uma amostra de tamanho <span class="math inline">\(n\)</span>.</li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-8" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="lem-lema401" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lema 1</strong></span> Se <span class="math inline">\(f(x|\theta)\)</span> satisfaz<br>
+<span class="math display">\[\frac{d}{d\theta} E_\theta \left[ \frac{\partial}{\partial\theta} \log f(x|\theta) \right] = \int_{-\infty}^{\infty} \left( \frac{\partial}{\partial\theta} \log f(x|\theta) \right) f(x|\theta) dx\]</span></p>
+<p>Isso será verdade para distribuições da família exponencial. Então</p>
+<p><span class="math display">\[I_n(\theta) = E_\theta \left[ \left( \frac{\partial}{\partial\theta} \log f(x|\theta) \right)^2 \right] = -E_\theta \left( \frac{\partial^2}{\partial\theta^2} \log f(x|\theta) \right)\]</span></p>
+</div>
+<p><strong>Observação 3:</strong> Uma alternativa para o cálculo da Informação de Fisher é considerar o caso “observado” ao invés do “esperado”.</p>
+</section>
+<section id="melhores-estimadores-não-viciados-9" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<p><strong>Informação de Fisher observada:</strong></p>
+<p><span class="math display">\[\hat{I}_n(\hat{\theta}) = -\frac{\partial^2}{\partial\theta^2} \log L(\theta; x)\bigg|_{\theta = \hat{\theta}}\]</span></p>
+<ul>
+<li>Veja que aqui não aplicamos o cálculo do valor esperado.</li>
+</ul>
+<p><strong>Observação 4:</strong> Uma das suposições para aplicarmos o Teorema é a exigência de sermos capazes de permutar a derivada e a integral em <span class="math inline">\(d/d\theta E_\theta[W(X)]\)</span>.</p>
+<ul>
+<li>As p.d.f.’s da família exponencial atendem esse critério. Se o domínio de <span class="math inline">\(f(x|\theta)\)</span> depende de <span class="math inline">\(\theta\)</span>, o Teorema não será apropriado (ex.: <span class="math inline">\(f(x|\theta) = 1/\theta\)</span> para <span class="math inline">\(0 &lt; x &lt; \theta\)</span>).</li>
+</ul>
+</section>
+<section id="melhores-estimadores-não-viciados-10" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<div id="exm-exma405" class="theorem example">
+<p><span class="theorem-title"><strong>Exemplo 5</strong></span> <span class="math inline">\(X_1, \ldots, X_n\)</span> são i.i.d. Poisson(<span class="math inline">\(\lambda\)</span>).</p>
+<p><span class="math display">\[f(X_i | \lambda) = \frac{e^{-\lambda} \lambda^{X_i}}{x_i!} \in L(\lambda; X) = \prod_{i=1}^n f(X_i | \lambda)\]</span></p>
+</div>
+<ul>
+<li>Temos</li>
+</ul>
+<p><span class="math display">\[I_n(\lambda) = E\left[ \left( \frac{\partial}{\partial \lambda} \log \prod_{i=1}^n f(X_i | \lambda) \right)^2 \right] = -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} \log f(X_i | \lambda) \right]\]</span></p>
+<p><span class="math display">\[= -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} \log \left( \frac{e^{-\lambda} \lambda^{x_i}}{x_i!} \right) \right] = -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} (- \lambda + x_i \log \lambda - \log x_i!) \right]\]</span></p>
+<p><span class="math display">\[= -n E_\lambda \left[ \frac{\partial}{\partial \lambda} (-1 + \frac{x_i}{\lambda}) \right] = -n E_\lambda \left[ -\frac{x_i}{\lambda^2} \right] = n \frac{1}{\lambda^2} E(X_i) = n \frac{\lambda}{\lambda^2} = \frac{n}{\lambda}\]</span></p>
+</section>
+<section id="melhores-estimadores-não-viciados-11" class="slide level2">
+<h2>Melhores Estimadores Não Viciados</h2>
+<hr>
+<ul>
+<li>Portanto, qualquer estimador <span class="math inline">\(W\)</span>, não viciado para <span class="math inline">\(\lambda\)</span>, terá</li>
+</ul>
+<p><span class="math display">\[Var_{\lambda}(W) \geq \frac{1}{n/\lambda} = \frac{\lambda}{n}\]</span></p>
+<p>Como <span class="math inline">\(W\)</span> é não viciado,</p>
+<p><span class="math display">\[\frac{d}{d\lambda} E_\lambda [W] = \frac{d}{d\lambda} \lambda = 1\]</span></p>
+<ul>
+<li><p>Lembre que <span class="math inline">\(\overline{X}\)</span> tem variância <span class="math inline">\(\frac{\lambda}{n}\)</span>, então sua variância atinge o limite inferior de Cramér-Rao.</p></li>
+<li><p><span class="math inline">\(\overline{X}\)</span> é o melhor estimador não viciado para <span class="math inline">\(\lambda\)</span>.</p></li>
+</ul>
+<div class="quarto-auto-generated-content">
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="Aula_4_EstMat_PG_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1900,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copiada");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copiada");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

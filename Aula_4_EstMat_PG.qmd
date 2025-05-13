@@ -1,0 +1,639 @@
+---
+format:
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    #logo: "faest.png"
+    #footer: "[https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)"
+    code-copy: true
+    center-title-slide: false
+    lang: pt
+    transition: fade
+    transition-speed: default
+highlight-style: a11y
+code-link: true
+height: 1080
+width: 1900
+execute: 
+  eval: true
+  echo: true
+---
+
+<h1> Estatística Matemática </h1>
+
+<h2> Estimação Pontual - Aula 2 </h2>
+
+<hr>
+
+<br>
+
+<h3> Prof. Paulo Cerqueira Jr - cerqueirajr@ufpa.br <br>
+Faculdade de Estatística - FAEST <br>
+Programa de Pós-Graduação em Matemática e Estatística - PPGME<br>
+Instituto de Ciências Exatas e Naturais - ICEN
+</h3>
+
+<h3>  </h3>
+<br>
+
+<h3> [https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)
+
+![](github.jpg){.absolute top=620 left=845 height="90"}
+
+
+![](ppgme.jpg){.absolute top=5 left=1400 height="200"}
+
+<!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+# [Propriedades dos estimadores]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Introdução
+<hr>
+
+* Nas últimas subseções apresentamos métodos para obter estimadores pontuais. 
+
+* Investigaremos agora algumas propriedades que ajudam a decidir se um estimador é melhor que outro.
+
+* Assim como a qualidade dos estimadores.
+
+
+# [Erro Quadrático Médio (EQM)]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Erro Quadrático Médio (EQM)
+<hr>
+* Uma medida da aproximação de um estimador $t(X_1, \ldots, X_n)$ em relação o parâmetro alvo $\tau(\theta)$ é o que chamamos de EQM do estimador.
+
+:::{#def-defa401} 
+## EQM
+
+Seja $T = t(X_1, \ldots, X_n)$ um estimador para $\tau(\theta)$. Então, $E\left[ (T - \tau(\theta))^2 \right]$ é dito ser o EQM de $T = t(X_1, \ldots, X_n).$
+
+:::
+
+:::{.callout-note} 
+## Observação: 
+
+O subscrito $\theta$ no símbolo da esperança $E_\theta$ indica a p.d.f. da família sendo considerada, a partir da qual a amostra é proveniente.
+
+:::
+
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+
+$$E_\theta \left[ (T - \tau(\theta))^2 \right] = E_\theta \left[ (t(X_1, \ldots, X_n) - \tau(\theta))^2 \right]$$
+
+$$= \int \cdots \int (t(x_1, \ldots, x_n) - \tau(\theta))^2 f(x_1|\theta) \cdots f(x_n|\theta) dx_1 \cdots dx_n$$
+
+onde $f(x|\theta)$ é a p.d.f. da qual a amostra aleatória foi selecionada.
+
+* O nome "Erro Quadrático Médio" pode ser justificado considerando o fato de que a diferença $t - \tau(\theta)$, sendo $t$ o valor de $T$ usado para estimar $\tau(\theta)$, representa o `erro na estimação` de $\tau(\theta)$. 
+
+
+* Trabalhamos com $(T - \tau(\theta))^2$ o que leva ao termo "Quadrático". 
+
+* O termo "Médio" está associado ao cálculo do valor esperado.
+
+* Note que $E_\theta \left[ (T - \tau(\theta))^2 \right]$ é uma medida do distanciamento de $T$ em relação a $\tau(\theta)$, assim como a variância de uma variável aleatória é a medida do distanciamento dos possíveis valores em relação a sua média.
+
+
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+* Se formos comparar estimadores em termos do EQM, naturalmente iremos preferir aquele com menor EQM.
+
+* Podemos pensar em obter um estimador com o menor EQM, mas tal estimador raramente existe. 
+
+* Em geral, o EQM de um estimador depende de $\theta$.
+
+* Para dois estimadores $T_1 = t_1(X_1, \ldots, X_n) \quad \text{e} \quad T_2 = t_2(X_1, \ldots, X_n)$  
+de $\tau(\theta)$, seus respectivos EQMs são funções de $\theta$ e podem se cruzar;
+ou seja, para algum $\theta$ temos:
+
+   - $T_1$ com o menor EQM e para outros $\theta'$, temos  
+   - $T_2$ com o menor EQM.
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+
+![](compEQM.png)
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+* Em geral, qualquer função crescente da distância absoluta $|T - \tau(\theta)|$ serviria para medir a qualidade de um estimador. 
+
+* O "Erro Absoluto Médio" $E_\theta[|T - \tau(\theta)|]$ é uma alternativa razoável, mas o EQM tem pelo menos duas vantagens sobre outras medidas de distância:
+
+  1. É mais fácil de manipular analiticamente.  
+  
+  2. Possui a seguinte interpretação.
+
+$$
+E_\theta[(W - \theta)^2] = \text{Var}_\theta W + (E_\theta(W) - \theta)^2 = \text{Var}_\theta W + [\text{Viés}_\theta(W)]^2
+$$
+
+* O resultado acima é obtido a partir de:  
+$$
+\text{Var}_\theta(x) = \mathbb{E}(x^2) - \mathbb{E}^2(x)
+$$
+
+`Note que:` $\text{Var}_\theta(W - \theta) = \text{Var}_\theta(W)$ pois $\theta$ é constante
+
+$$
+\text{Var}_\theta(W) = \text{Var}_\theta(W - \theta) = \mathbb{E}_\theta[(W - \theta)^2] - \mathbb{E}_\theta^2[W - \theta]
+$$
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+
+:::{#def-defa401}    
+## Viés, Vício ou tendenciosidade.
+
+Um estimador $T = t(X_{i_1}, \ldots, X_{n})$ é dito não viciado para $T(\theta)$  
+se e somente se $E_{\theta}(T) = E_{\theta}[\overline{t}(X_{j_1}, \ldots, X_{n})] = T(\theta)$ para todo $\theta \in \Theta$.
+:::
+
+* O vício de um estimador pontual $W$ de um parâmetro $\theta$ é dado pela diferença entre $E(W)$ e $\theta$, isto é  
+
+$$\text{Vício}(W) = E_{\theta}(W) - \Theta$$  
+
+* Pode ser tanto positivo, negativo ou zero.  
+
+* Se o vício for igual a zero, dizemos que o estimador $W$ é não viciado para $\theta$.
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+* Veja que: 
+
+$$EQM = E_\theta[(W - \theta)^2] = V(W) + [E_\Theta(W) - \theta]^2$$
+
+* Incorpora dois componentes:  
+   - um medindo a variabilidade do estimador (precisão).  
+   - outro medindo seu vício.  
+
+* Um bom estimador terá valores pequenos para esses componentes. 
+
+* Para encontrar estimadores com boas propriedades de EQM, precisamos encontrar aqueles que controlam a variabilidade e o vício. 
+
+* Claramente, estimadores não viciados (vício = 0) serão preferidos.  
+
+* Para um estimador não viciado temos $E_\theta[(W - \theta)^2] = V(W),$ ou seja, o EQM é igual à variância do estimador.  
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+:::{#exm-exma401} 
+
+Exemplo: Seja $X_1, \ldots, X_n$ uma amostra aleatória da $N(\mu, \sigma^2)$. Sabemos que $\overline{X}$ e $S^2$ são estimadores não viciados, então $E(\overline{X}) = \mu \quad e \quad E(S^2) = \sigma^2$. Este resultado também é válido se não usarmos a suposição de normalidade dos dados.  
+:::
+
+
+**EQMS:**  
+
+* Considere  $\theta = (\mu, \sigma^2) \quad \text{com ou sem a suposição de normalidade}$,  
+
+$$E_{\theta}[(X - \mu)^2] = Var(\bar{X}) = \sigma^2/n$$  
+
+$$E_{\theta}[(S^2 - \sigma^2)^2] = Var(S^2) = \frac{2\sigma^4}{\sqrt{n-1}}$$  
+
+* Lembre que:  
+
+$$\frac{n-1}{\sigma^2} S^2 \sim \chi_{n-1}^2$$  
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+* Este resultado só é verdade se $X_1, \ldots, X_n$ são i.i.d. $N(\mu, \sigma^2)$.
+
+$$Var(S^2) = Var\left( \frac{\sigma^2}{n-1} \frac{n-1}{\sigma^2} S^2 \right) = \frac{\sigma^4}{(n-1)^2} Var\left( \frac{n-1}{\sigma^2} S^2 \right) = 2(n-1)$$  
+
+$$= \frac{\sigma^4}{(n-1)^2} \cdot 2(n-1) =\frac{2\sigma^4}{\sqrt{n-1}}.$$  
+
+* A expressão do EQM para $S^2$ não permanece a mesma se retirarmos a suposição de normalidade.
+
+
+:::{.callout-note}
+## Nota: 
+
+Embora muitos estimadores não viciados são também razoáveis em termos de EQM, esteja avisado que `controlar o vício não garante que o EQM seja controlado`. 
+
+Em particular, pode ocorrer uma troca entre a variância e o vício do estimador de tal forma que um aumento pequeno no vício leva a uma maior diminuição na variância, resultado em um EQM melhor (menor).
+
+:::
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+
+:::{#exm-exma402} 
+$X_1, \ldots, X_n$ são i.i.d. $N(\mu, \sigma^2)$. Um estimador alternativo para
+$\sigma^2$ é o EMV dado por 
+:::
+
+$$\hat{\sigma}^2 = \frac{1}{n} \sum_{x=1}^{n} (X_i - \overline{X})^2 = \frac{n-1}{n} S^2$$
+
+* Veja que
+
+$$E(\hat{\sigma}^2) = E\left( \frac{n-1}{n} S^2 \right) = \frac{n-1}{n} E(S^2) = \left( \frac{n-1}{n} \right) \sigma^2.$$
+
+* Portanto, $\hat{\sigma}^2$ é um estimador viciado para $\sigma^2$. 
+
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+* A variância dos estimador:
+
+$$V(\hat{\sigma}^2) = V \left( \frac{n-1}{n} S^2 \right) = \left( \frac{n-1}{n} \right)^2 V(S^2) = \left( \frac{n-1}{n} \right)^2 \frac{2\sigma^4}{n-1}$$
+
+$$= \frac{(n-1) \cdot 2\sigma^4}{n^2}$$
+
+* Desta forma o EQM será: $E\left[ (\hat{\sigma}^2 - \sigma^2)^2 \right] = V(\hat{\sigma}^2) + [Vício(\hat{\sigma}^2)]^2$.
+
+$$= \frac{(n-1) \cdot 2\sigma^4}{n^2} + \left[ \frac{n-1}{n} \sigma^2 - \sigma^2 \right]^2 = \frac{(n-1) \cdot 2\sigma^4}{n^2} + \sigma^4 \left[ -\frac{1}{n} \right]^2 = (2n-1) \frac{\sigma^4}{n^2}.$$
+
+## Erro Quadrático Médio (EQM)
+<hr>
+
+
+
+* Concluindo o exemplo...
+
+$$\text{EQM}(\hat{\sigma}^2)=E\left[(\hat{\sigma}^2 - \sigma^2)^2\right] = \frac{(2n-1)}{n^2} \sigma^4 < \left( \frac{2}{n-1} \right) \sigma^4 = E\left[ (S^2 - \sigma^2)^2 \right]=\text{EQM}(S^2)$$
+
+
+
+* Ou seja, $\hat{\sigma}^2$ tem menor EQM que $S^2$. Se ignorarmos o problema do vício e usarmos $\hat{\sigma}^2$, iremos obter um EQM menor.
+
+* O exemplo acima não implica que $S^2$ deva ser abandonado como estimador de $\sigma^2$. 
+
+* O argumento acima indica que, em média, $\hat{\sigma}^2$ será mais próximo de $\sigma^2$ do que $S^2$ se o EQM for usado como critério de comparação.
+
+* Entretanto, $\hat{\sigma}^2$ é viciado e irá, em média, subestimar $\sigma^2$.
+
+* Este fato é forte o bastante para nos deixar preocupados sobre o uso de $\hat{\sigma}^2$ como estimador de $\sigma^2$.
+
+
+
+# [Consistência]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+
+## Consistência no EQM
+<hr>
+
+
+* As definições de EQM e Vício para um estimador consideram que o tamanho amostral $n$ é fixo. A próxima propriedade a ser introduzida considera uma avaliação para a situação onde $n$ cresce.
+
+* Assuma que $T_n = t_n(X_1, \ldots, X_n)$ representa um estimador de $\tau(\theta)$ baseado em uma amostra de tamanho $n$. Iremos considerar uma sequência de estimadores:
+
+
+:::columns
+::::column
+$$T_1 = t_1(X_1)$$
+
+$$T_2 = t_2(X_1, X_2)$$
+
+$$T_3 = t_3(X_1, X_2, X_3)$$
+
+$$\vdots$$
+
+$$T_n = t_n(X_1, \ldots, X_n)$$
+::::
+::::column
+* Um exemplo óbvio é
+
+$$T_n = t_n(X_1, \ldots, X_n) = \frac{1}{n} \sum_{i=1}^n X_i$$
+
+* As funções $t_n$ na sequência serão o mesmo tipo de função para cada n.
+::::
+:::
+
+* Quando consideramos uma sequência de estimadores, parece razoável pensar que uma boa sequência de estimadores deverá ter valores que se aproximam da quantidade a ser estimada conforme o tamanho amostral aumenta.
+
+
+## Consistência no EQM
+<hr>
+
+
+
+:::{#def-defa402}
+## Consistência baseada no EQM.
+
+Seja $T_1, T_2, \ldots, T_n, \ldots$ uma sequência de estimadores de $\tau(\theta)$, sendo $T_n = t_n(X_1, \ldots, X_n)$ baseado em uma amostra de tamanho $n$. Esta sequência de estimadores é dita "Consistente no EQM" para $\tau(\theta)$ se e somente se
+:::
+
+$$\lim_{n \to \infty} E_\theta[(T_n - \tau(\theta))^2] = 0 \quad \text{para todo} \quad \theta \in \mathbb{R}$$
+
+`Observação:` Consistência no EQM implica que ambos o vício e a variância de $T_n$ se aproximam de zero visto que
+
+$$E_\theta[(T_n - \tau(\theta))^2] = Var_\theta[T_n] + [\tau(\theta) - E_\theta(T_n)]^2$$
+
+## Consistência no EQM
+<hr>
+
+
+
+:::{#exm-exma403} 
+Considere uma amostra aleatória obtida de uma p.d.f. com média $\mu$ e variância $\sigma^2$.
+:::
+
+* Seja  
+$$\overline{X}_n = \frac{1}{n} \sum_{i=1}^n X_i \quad e \quad S_n^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X}_n)^2$$
+
+* Considere as sequências $\overline{X}_1, \overline{X}_2, \overline{X}_3, \ldots \quad e \quad S_1^2, S_2^2, S_3^2, \ldots$
+
+* Lembre que: $\overline{X}_n \text{ estima } \mu \quad e \quad S_n^2 \text{ estima } \sigma^2.$
+
+* Para $\overline{X}_n$:
+
+$$EQM(\overline{X}_n) = E[(\overline{X}_n - \mu)^2] = Var(\overline{X}_n) = \frac{\sigma^2}{n}$$
+
+$$\lim_{n \to \infty} E[(\overline{X}_n - \mu)^2] = \lim_{n \to \infty} \frac{\sigma^2}{n} = 0$$
+
+
+## Consistência no EQM
+<hr>
+
+
+* Para $S_n^2$:
+
+
+$$EQM(S_n^2) = E[(S_n^2 - \sigma^2)^2] = Var(S_n^2) = \frac{1}{n} \left[ \mu_4 - \frac{n-3}{n-1} \sigma^4 \right]$$
+
+$$\lim_{n \to \infty} \left[ \frac{\mu_4}{n} - \frac{n-3}{n-1} \sigma^4 \right] = \lim_{n \to \infty} \frac{\mu_4}{n} - \lim_{n \to \infty} \frac{n-3}{n-1} \sigma^4 = 0 - 0 = 0$$
+
+`Conclusão:` $\{ \overline{X}_n \}$ e $\{ S_n^2 \}$ são sequências consistentes no EQM para seus respectivos parâmetros alvo.
+
+* Note que se $T_n = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X}_n)^2$, então, $\{ T_n \}$ também será uma sequência consistente no EQM para  $\sigma^2.$
+
+
+
+## Consistência no EQM
+<hr>
+
+
+
+
+
+:::{#def-defa402}
+## Consistência simples.
+
+Seja $T_1, T_2, T_3, \ldots, T_n, \ldots$ uma sequência de estimadores de $t(\theta)$, sendo $T_n = t_n(x_1, \ldots, x_n)$. A sequência $\{T_n\}$ é dita consistente (forma mais simples ou fraca) para $t(\theta)$ se para todo $\epsilon > 0$ temos
+
+$$\lim_{n \to \infty} P[|T_n - t(\theta)| < \epsilon] = 1,$$
+
+ou equivalentemente
+
+$$\lim_{n \to \infty} P[|T_n - t(\theta)| \geq \epsilon] = 0.$$
+:::
+
+* Note que a definição acima coincide com aquela que especificamos para a convergência em probabilidade. Esta definição tem relação com a lei fraca dos grandes números.
+
+* Se um estimador é consistente no EQM, ele também atende a consistência simples. A relação contrária não necessariamente será verdade.
+
+
+## Consistência no EQM
+<hr>
+
+
+* A prova considera a desigualdade de Chebychev estudada anteriormente.
+
+$$P(|T_n - t(\theta)| \geq \epsilon) < E[(T_n - t(\theta))^2] / \epsilon^2.$$
+
+* Se $T_n$ é consistente no EQM, conforme $n \to \infty$,
+
+$$E[(T_n - t(\theta))^2] \to 0 \Rightarrow P(|T_n - t(\theta)| \geq \epsilon) \to 0.$$
+
+
+# [Melhores Estimadores Não Viciados]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+* Conforme visto anteriormente, uma comparação de estimadores baseada no EQM pode não determinar um favorito. 
+
+*  Na verdade não existe um estimador com o "melhor EQM". 
+
+* A razão disto é que a classe de todos os estimadores é muito grande.  
+
+* Por exemplo, o estimador $\hat{\theta} = 17$ não pode ser batido em termos de EQM para estimar $\theta = 17$, mas este é um estimador ruim se $\theta \neq 17$.  
+
+* Uma maneira de tornar mais acessível o problema de encontrar um "melhor estimador" é limitar a grande classe de estimadores.  
+
+* Uma forma de restringir a grande classe de estimadores será considerar apenas os estimadores não viciados.  
+
+* Se $W_1$ e $W_2$ são ambos estimadores não viciados do parâmetro $\theta$, isto é,  
+$E(W_1) = E(W_2) = \theta$, então seus EQMs serão iguais às suas variâncias.
+
+* Portanto, iremos escolher o estimador com a menor variância. Este será o  
+"melhor estimador não viciado".  
+
+* Embora estejamos lidando com estimadores não viciados, os resultados apresentados aqui são na verdade mais gerais.  
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+:::{#def-dea404} 
+Um estimador $W^*$ é dito o "Melhor Estimador Não Viciado" para $\tau(\theta)$ se satisfaz:
+:::
+$$E_\theta(W^*) = \tau(\theta),$$
+
+para todo $\theta$ e para qualquer outro estimador $W$ com
+
+$$E_\theta(W) = \tau(\theta),$$
+
+temos
+
+$$Var_{\theta}(W^*) \leq Var_{\theta}(W)$$
+
+para todo $\theta$.
+
+* $W^*$ é também chamado de `Estimador Não Viciado de Variância Uniformemente Mínima` (ENVVUM) para $\tau(\theta)$.
+
+* Encontrar o `melhor estimador não viciado` (se existir) não é uma tarefa fácil por várias razões, duas delas são ilustradas a seguir.
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+:::{#exm-exma404}
+Seja $X_1, \ldots, X_n$ i.i.d. Poisson$(\lambda)$ e considere $\overline{X}$ e $S^2$ (a média e variância amostral). Lembre que na distribuição Poisson, tanto a média quanto a variância são iguais a $\lambda$.
+:::
+
+
+* Então $E_{\lambda}(\overline{X}) = \lambda$ e $E_{\lambda}(S^2) = \lambda$ para todo $\lambda.$
+
+* Logo: $\overline{X}$ e $S^2$ são estimadores não viciados para $\lambda$.
+
+* Para determinar qual destes é o melhor estimador, iremos comparar suas variâncias.
+
+* Sabemos que $Var_{\lambda}(\overline{X}) = \lambda/n.$ . 
+
+
+* O cálculo de $Var_{\lambda}(S^2)$ é longo (iremos omitir aqui!).
+
+* É possível mostrar que $Var_{\lambda}(\overline{X}) \leq Var_{\lambda}(S^2)$ para todo $\lambda$.
+
+* Mesmo com o resultado acima estabelecendo que $\overline{X}$ é melhor que $S^2$, considere a seguinte classe de estimadores para $\lambda$:  
+
+$$W_{\alpha}(\overline{X}, S^2) = \alpha \overline{X} + (1 - \alpha) S^2$$
+
+* Veja que para qualquer constante "$\alpha$" temos $E_{\lambda}[W_{\alpha}(\overline{X}, S^2)] = \lambda.$
+
+* Portanto, há `infinitos` estimadores não viciados para $\lambda$.
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+* Mesmo que $\bar{X}$ seja melhor que $S^2$, seria ele $\bar{X}$ melhor que todo $W_\alpha(\bar{X}, S^2)$? Como podemos ter certeza de que não existe algum outro melhor estimador não viciado?
+
+* Suponha que, para estimar o parâmetro $\tau(\theta)$ de uma distribuição $f(x|\theta)$, podemos especificar um limite inferior $\beta(\theta)$ para a variância de qualquer estimador não viciado para $\tau(\theta)$. Se podemos então encontrar um estimador não viciado $W^*$ satisfazendo
+
+$$Var_{\theta}(W^*) = \beta(\theta),$$
+
+* teremos encontrado o melhor estimador não viciado.
+
+* A abordagem acima considera o que chamamos de limite inferior de Cramér-Rao.
+
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+:::{#thm-thma401}
+## Desigualdade de Cramér-Rao.
+
+Seja $X = (X_1, \ldots, X_n)$ uma amostra (variáveis não necessariamente independentes) com p.d.f. $f(x|\theta)$.
+:::
+
+* Considere $W(X) = W(X_1, \ldots, X_n)$ como qualquer estimador satisfazendo  
+$$\frac{d}{d\theta} E_\theta [W(X)] = \int_X \frac{\partial}{\partial\theta} [W(x)f(x|\theta)] \, dx$$
+
+e $Var_\theta [W(X)] < \infty$. Então,  
+
+$$Var_\theta [W(X)] \geq \frac{\left( \frac{d}{d\theta} E_\theta [W(X)] \right)^2}{E_\theta \left( \left[ \frac{\partial}{\partial\theta} \log f(x|\theta) \right]^2 \right)}$$
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+:::{#cor-cora401} 
+
+## Desigualdade de Cramér-Rao (caso i.i.d.).
+
+Se as suposições do Teorema 3.4.1 estão satisfeitas e além disso $X_1, \ldots, X_n$ são i.i.d. com p.d.f. $f(X | \theta)$, então
+
+$$Var_{\theta}[W(X)] \geq \frac{\left(\frac{d}{d\theta} E_{\theta}[W(X)]\right)^2}{nE_{\theta}\left[\left(\frac{\partial}{\partial \theta} \log f(X_i | \theta)\right)^2\right]}$$
+:::
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+**Observação 1:** Embora o limite inferior de Cramér-Rao tenha sido apresentado para variáveis aleatórias contínuas, este resultado também é válido para o caso discreto. Se $f(x|\theta)$ é uma p.m.f., então devemos ser capazes de permutar a diferenciação e o somatório. Assumimos que mesmo $f(x|\theta)$ sendo uma p.m.f. não diferenciável em $x$, ela é diferenciável em $\theta$ (este é o caso das p.m.f.'s mais comuns).
+
+**Observação 2:** A quantidade $$E_{\theta} \left[ \left( \frac{\partial}{\partial\theta} \log f(X|\theta) \right)^2 \right]$$
+
+é chamada de **Informação de Fisher amostral**.
+
+* Esta terminologia reflete o fato de que a Informação de Fisher fornece um limite para a variância do melhor estimador não viciado de $\theta$. Conforme o valor da Informação de Fisher aumenta e obtemos mais informação sobre $\theta$, teremos um limite menor para a variância do melhor estimador não viciado.
+
+**Notação:**  
+$$I_n(\theta) = E_{\theta} \left[ \left( \frac{\partial}{\partial\theta} \log f(X|\theta) \right)^2 \right]$$
+
+* Informação de Fisher esperada para uma amostra de tamanho $n$.  
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+:::{#lem-lema401} 
+Se $f(x|\theta)$ satisfaz  
+$$\frac{d}{d\theta} E_\theta \left[ \frac{\partial}{\partial\theta} \log f(x|\theta) \right] = \int_{-\infty}^{\infty} \left( \frac{\partial}{\partial\theta} \log f(x|\theta) \right) f(x|\theta) dx$$  
+
+Isso será verdade para distribuições da família exponencial. Então  
+
+$$I_n(\theta) = E_\theta \left[ \left( \frac{\partial}{\partial\theta} \log f(x|\theta) \right)^2 \right] = -E_\theta \left( \frac{\partial^2}{\partial\theta^2} \log f(x|\theta) \right)$$  
+:::
+
+**Observação 3:** Uma alternativa para o cálculo da Informação de Fisher é considerar o caso "observado" ao invés do "esperado".  
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+**Informação de Fisher observada:**  
+
+$$\hat{I}_n(\hat{\theta}) = -\frac{\partial^2}{\partial\theta^2} \log L(\theta; x)\bigg|_{\theta = \hat{\theta}}$$  
+
+* Veja que aqui não aplicamos o cálculo do valor esperado.  
+
+**Observação 4:** Uma das suposições para aplicarmos o Teorema é a exigência de sermos capazes de permutar a derivada e a integral em $d/d\theta E_\theta[W(X)]$.  
+
+* As p.d.f.'s da família exponencial atendem esse critério. Se o domínio de $f(x|\theta)$ depende de $\theta$, o Teorema não será apropriado (ex.: $f(x|\theta) = 1/\theta$ para $0 < x < \theta$).  
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+:::{#exm-exma405}
+$X_1, \ldots, X_n$ são i.i.d. Poisson($\lambda$).
+
+$$f(X_i | \lambda) = \frac{e^{-\lambda} \lambda^{X_i}}{x_i!} \in L(\lambda; X) = \prod_{i=1}^n f(X_i | \lambda)$$
+:::
+
+* Temos
+
+$$I_n(\lambda) = E\left[ \left( \frac{\partial}{\partial \lambda} \log \prod_{i=1}^n f(X_i | \lambda) \right)^2 \right] = -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} \log f(X_i | \lambda) \right]$$
+
+$$= -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} \log \left( \frac{e^{-\lambda} \lambda^{x_i}}{x_i!} \right) \right] = -n E_\lambda \left[ \frac{\partial^2}{\partial \lambda^2} (- \lambda + x_i \log \lambda - \log x_i!) \right]$$
+
+$$= -n E_\lambda \left[ \frac{\partial}{\partial \lambda} (-1 + \frac{x_i}{\lambda}) \right] = -n E_\lambda \left[ -\frac{x_i}{\lambda^2} \right] = n \frac{1}{\lambda^2} E(X_i) = n \frac{\lambda}{\lambda^2} = \frac{n}{\lambda}$$
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+* Portanto, qualquer estimador $W$, não viciado para $\lambda$, terá
+
+$$Var_{\lambda}(W) \geq \frac{1}{n/\lambda} = \frac{\lambda}{n}$$
+
+Como $W$ é não viciado,
+
+$$\frac{d}{d\lambda} E_\lambda [W] = \frac{d}{d\lambda} \lambda = 1$$
+
+* Lembre que $\overline{X}$ tem variância $\frac{\lambda}{n}$, então sua variância atinge o limite inferior de Cramér-Rao.
+
+* $\overline{X}$ é o melhor estimador não viciado para $\lambda$.
+
+
