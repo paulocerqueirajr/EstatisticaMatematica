@@ -41,7 +41,7 @@ Instituto de Ciências Exatas e Naturais - ICEN
 ![](github.jpg){.absolute top=620 left=845 height="90"}
 
 
-![](ppgme.jpg){.absolute top=5 left=1400 height="200"}
+![](ppgme.jpg){.absolute top=5 left=1700 height="210"}
 
 <!-- ![](https://www.faest.icen.ufpa.br/images/110.png){.absolute top=5 left=1400 height="200"} -->
 
@@ -161,7 +161,7 @@ $$
 <hr>
 
 
-:::{#def-defa401}    
+:::{#def-defa402}    
 ## Viés, Vício ou tendenciosidade.
 
 Um estimador $T = t(X_{i_1}, \ldots, X_{n})$ é dito não viciado para $T(\theta)$  
@@ -335,7 +335,7 @@ $$T_n = t_n(X_1, \ldots, X_n) = \frac{1}{n} \sum_{i=1}^n X_i$$
 
 
 
-:::{#def-defa402}
+:::{#def-defa403}
 ## Consistência baseada no EQM.
 
 Seja $T_1, T_2, \ldots, T_n, \ldots$ uma sequência de estimadores de $\tau(\theta)$, sendo $T_n = t_n(X_1, \ldots, X_n)$ baseado em uma amostra de tamanho $n$. Esta sequência de estimadores é dita "Consistente no EQM" para $\tau(\theta)$ se e somente se
@@ -394,7 +394,7 @@ $$\lim_{n \to \infty} \left[ \frac{\mu_4}{n} - \frac{n-3}{n-1} \sigma^4 \right] 
 
 
 
-:::{#def-defa402}
+:::{#def-defa404}
 ## Consistência simples.
 
 Seja $T_1, T_2, T_3, \ldots, T_n, \ldots$ uma sequência de estimadores de $t(\theta)$, sendo $T_n = t_n(x_1, \ldots, x_n)$. A sequência $\{T_n\}$ é dita consistente (forma mais simples ou fraca) para $t(\theta)$ se para todo $\epsilon > 0$ temos
@@ -456,7 +456,7 @@ $E(W_1) = E(W_2) = \theta$, então seus EQMs serão iguais às suas variâncias.
 ## Melhores Estimadores Não Viciados
 <hr>
 
-:::{#def-dea404} 
+:::{#def-dea405} 
 Um estimador $W^*$ é dito o "Melhor Estimador Não Viciado" para $\tau(\theta)$ se satisfaz:
 :::
 $$E_\theta(W^*) = \tau(\theta),$$
@@ -635,5 +635,430 @@ $$\frac{d}{d\lambda} E_\lambda [W] = \frac{d}{d\lambda} \lambda = 1$$
 * Lembre que $\overline{X}$ tem variância $\frac{\lambda}{n}$, então sua variância atinge o limite inferior de Cramér-Rao.
 
 * $\overline{X}$ é o melhor estimador não viciado para $\lambda$.
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+**Observação 5:** Na busca do melhor estimador não viciado devemos ter em mente que, mesmo que o cálculo do limite inferior de Cramér-Rao seja aplicável, não existe garantia de que este limite seja igual à variância de algum estimador não viciado para aquele parâmetro de interesse. O limite inferior pode não ser atingível.
+
+
+:::{#exm-exma406} 
+Sejam $X_1, \ldots, X_n$ i.i.d $N(\mu, \sigma^2)$ e considere o interesse em estimar $\sigma^2$, sendo $\mu$ desconhecido. 
+:::
+
+* A p.d.f. da Normal pertence à família exponencial. Veja que:
+
+$$\frac{\partial^2}{\partial (\sigma^2)^2} \log \left[ (2\pi\sigma^2)^{1/2} \exp\left\{ -\frac{1}{2\sigma^2}(X_i - \mu)^2 \right\} \right] = \frac{\partial^2}{\partial (\sigma^2)^2} \left[ -\frac{1}{2} \log 2\pi - \frac{1}{2} \log \sigma^2 - \frac{1}{2\sigma^2}(X_i - \mu)^2 \right]$$
+
+$$= \frac{\partial}{\partial (\sigma^2)} \left[ -\frac{1}{2} \frac{1}{\sigma^2} + \frac{(X_i - \mu)^2}{2\sigma^4} \right] = \frac{1}{2\sigma^4} - \frac{(X_i - \mu)^2}{\sigma^6}$$
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+$$-n E \left[ \frac{\partial^2}{\partial (\sigma^2)^2} \log f(X_i, \mu, \sigma^2) \right] = -n E \left[ \frac{1}{2\sigma^4} - \frac{(X_i - \mu)^2}{\sigma^6} \right]$$
+
+$$= -n \left[ \frac{1}{2\sigma^4} - \frac{1}{\sigma^6} E[(X_i - \mu)^2] \right]$$
+
+$$= -n \left[ \frac{1}{2\sigma^4} - \frac{\sigma^2}{\sigma^6} \right] = -n \left[ \frac{1}{2\sigma^4} - \frac{1}{\sigma^4} \right] = -n \left[ -\frac{1}{2\sigma^4} \right] = \frac{n}{2\sigma^4}.$$
+
+* Portanto, qualquer estimador não viciado $W$ para $\sigma^2$ deve satisfazer
+
+$$\text{Var}(W) \geq \frac{1}{n/2\sigma^4} = \frac{2\sigma^4}{n}.$$
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+* Sabemos que $\text{Var}(S^2) = \frac{2\sigma^4}{n-1}$. Logo, $S^2$ não atinge o limite inferior de Cramér-Rao.
+
+* Esta resposta nos deixa com a seguinte dúvida: 
+
+> Existe um estimador não viciado para $\sigma^2$ melhor do que $S^2$? Ou o limite inferior de Cramér-Rao não pode ser atingido neste caso?
+
+* É possível mostrar que se $\mu$ é desconhecido, o limite inferior calculado no exemplo acima não pode ser atingido; ver Casella e Berger (2002), pag. 341.
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+* Até o momento, o conceito de suficiência não foi usado em nossa busca por estimadores não viciados. 
+
+* Veremos agora que a suficiência é na verdade uma ferramenta importante.
+
+
+:::{#thm-thma402}
+## Teorema de Rao-Blackwell.
+
+Seja $W$ qualquer estimador não viciado de $\tau(\theta)$, e seja $T$ uma estatística suficiente para $\theta$. Defina $\phi(T) = E(W|T)$. Então $E[\phi(T)] = \tau(\theta)$ e $\text{Var}_\theta[\phi(T)] \leq \text{Var}_\theta[W]$ para todo $\theta$, isto é, $\phi(T)$ é um Estimador Não-viciado Uniformemente Melhor para $\tau(\theta)$.
+:::
+
+
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+:::{#exm-exma407} 
+## Condicionando em uma estatística não suficiente.
+
+Seja $X_1, X_2 \sim N(\theta, 1)$. A estatística $\overline{X} = (X_1 + X_2)/2$ apresenta
+:::
+
+$$E(\overline{X}) = \theta \quad \text{e} \quad Var(\overline{X}) = \frac{1}{4} [Var(X_1) + Var(X_2)] = \frac{1}{4}(1+1) = \frac{1}{2}$$
+
+* Condicionando em $X_1$ (que não é suficiente), seja $\phi(X_1) = E[\overline{X}|X_1]$.
+
+* Temos então:
+
+$$E[\phi(X_1)] = E[E(\overline{X}|X_1)] = E(\overline{X}) = \theta$$
+
+$$Var[\phi(X_1)] = Var[E(\overline{X}|X_1)] = Var(\overline{X}) - E[Var(\overline{X}|X_1)] \leq Var(\overline{X})$$
+
+* Logo $\phi(X_1)$ é melhor do que $\overline{X}$.
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+* Entretanto:
+
+$$\phi(X_1) = E[\overline{X}|X_1] = \frac{1}{2} E[X_1|X_1] + \frac{1}{2} E[X_2|X_1]$$
+
+$$= \frac{1}{2} X_1 + \frac{1}{2} \theta = \frac{1}{2}(X_1 + \theta)$$
+
+* Visto que $E(X_2|X_1) = E(X_2) = \theta$ por independência.
+
+* A formulação de $\phi(X_1)$ depende de $\theta$, então $\phi(X_1)$ não é um estimador.
+
+
+
+## Melhores Estimadores Não Viciados
+<hr>
+
+
+
+* Sabemos agora que, na busca pelo melhor estimador não viciado de $t(\theta)$, precisamos considerar apenas estimadores baseados em estatísticas suficientes. 
+
+* A questão será: se tivermos 
+
+$$E[\phi] = t(\theta)$$ 
+
+e $\phi$ sendo baseado em uma estatística suficiente, isto é, 
+
+$$E(\phi|T) = \phi$$ 
+
+como saberemos que $\phi$ é o melhor estimador não viciado? 
+
+* Claro que, se $\phi$ atinge o limite inferior de Cramér-Rao, então ele é o melhor estimador, entretanto, se ele não atinge o limite de Cramér-Rao teremos ganhado alguma coisa?
+
+:::{#thm-thma403}
+Se $W$ é um "melhor estimador não viciado" para $t(\theta)$, então $W$ é único.
+:::
+
+
+:::{#thm-thma404} 
+Seja $T$ uma estatística suficiente completa para $\theta$, e seja $\varphi(T)$ qualquer estimador baseado apenas em $T$. Então $\varphi(T)$ é o único "melhor estimador não viciado" para seu valor esperado $E[\varphi(T)]$.
+:::
+
+* O teorema de *Lehmann-Scheffé* representa um avanço importante em estatística-matemática unindo os conceitos de suficiência, completude e unicidade. 
+
+* Este teorema é uma junção dos dois últimos teoremas.
+
+:::{#thm-thma405} 
+## Teorema de *Lehmann-Scheffé*. 
+
+Estimadores não viciados baseados em estatísticas suficientes completas são únicos.
+:::
+
+
+
+# [Eficiência]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Eficiência
+<hr>
+
+
+* A propriedade da `Consistência` está relacionada com a aproximação  
+assintótica de um estimador. 
+
+* O estimador converge para o valor real do parâmetro alvo? 
+
+* Agora iremos estudar a propriedade de `Eficiência` que está focada na variância assintótica de um estimador.
+
+* No cálculo da variância assintótica, considere a seguinte definição:
+
+* Para um estimador, se  
+$$\sqrt{n} (T_n - \theta) \xrightarrow{d} N(0, \sigma^2)$$  
+
+sendo $k_n$ uma sequência de constantes, então $\sigma^2$ é chamado de `variância limite` ou `limite das variâncias`.
+
+
+
+## Eficiência
+<hr>
+
+:::{#exm-exma408} 
+Para a média $\overline{X}_n$ de $n$ observações i.i.d. da Normal com  
+$E(X) = \mu$ e $Var(X) = \sigma^2$. 
+
+Se $T_n = \overline{X}_n$, então  
+$$\lim_{n \to \infty} n Var(\overline{X}_n) = \lim_{n \to \infty} n \frac{\sigma^2}{n} = \sigma^2$$  
+é a variância limite de $T_n$.
+:::
+
+
+## Eficiência
+<hr>
+
+
+:::{#def-dea406} 
+Para um estimador $T_n$, suponha que
+:::
+
+$$\sqrt{n} (T_n - \tau(\theta)) \xrightarrow{d} N(0, \sigma^2)$$
+
+* O parâmetro $\sigma^2$ é chamado de variância assintótica ou variância da distribuição limite de $T_n$.
+
+* É interessante notar que a variância assintótica é sempre menor que a variância limite. Não mostraremos este resultado, mas ele pode ser encontrado em Casella e Berger (2002), pag. 471.
+
+* Considerando o limite inferior de Cramér-Rao, podemos determinar uma variância assintótica ótima.
+
+:::{#def-dea407} 
+Uma sequência de estimadores $W_n$ é assintoticamente eficiente para um parâmetro $\tau(\theta)$ se
+:::
+
+
+$$\nu(\theta) = \frac{[\tau'(\theta)]^2}{E\left[\left(\frac{\partial}{\partial\theta} \log f(X|\theta)\right)^2\right]}.$$
+
+isto é, a variância assintótica de $W_n$ atinge o limite inferior de Cramér-Rao (caso: 1 observação amostral).
+
+
+
+# [Propriedades assintóticas dos EMVs]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+1. Os EMVs são estimadores consistentes de seus parâmetros alvo.
+
+* Para ter essa propriedade, a p.m.f. ou p.d.f., definida no problema, deverá  
+satisfazer algumas "condições de regularidade".
+ 
+   a. Observamos $X_1,...,X_n$ sendo $X_i \sim f(x|\theta)$ i.i.d.'s;  
+   
+   b. O parâmetro $\theta$ é identificável, isto é, se $\theta \neq \theta'$ então $f(x|\theta) \neq f(x|\theta')$;  
+   
+   c. A p.m.f.s ou p.d.f.s $f(x|\theta)$ possuem domínio (suporte) comum, e $f(x|\theta)$ é derivável em relação a $\theta$;  
+   
+   d. O espaço paramétrico $\Theta$ contém um "conjunto aberto" $A$ para o qual o verdadeiro valor $\theta_0$ do parâmetro $\theta$ é um "ponto interior".
+
+* Estas condições de regularidade estarão atendidas em todos os problemas estudados neste curso. 
+
+* Não precisaremos nos preocupar com elas aqui, mas é importante saber que elas existem.
+
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+:::{#thm-thma405} 
+## Consistência dos EMVs.
+
+Sejam $X_1, X_2, X_3, \ldots$ i.i.d.'s com p.m.f. ou p.d.f. $f(x|\theta)$.
+::: 
+
+Considere $L(\theta;X) = \prod_{i=1}^n f(x_i;\theta)$ a função de verossimilhança e $\hat{\theta}$ representa o EMV de $\theta$. 
+
+* Defina $U(\theta)$ como uma função contínua de $\theta$. 
+
+* Se as condições de regularidade **a**, **b**, **c** e **d** forem atendidas, então para todo $\xi > 0$ e todo $\theta \in \Theta$,
+
+$$\lim_{n \to \infty} P[| U(\hat{\theta}) - U(\theta)| \geq \xi ] = 0$$
+
+isto é, $U(\hat{\theta})$ é um estimador consistente para $U(\theta)$.
+
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+2. Os EMVs são estimadores assintoticamente eficientes.
+
+* Para ter essa propriedade, a p.m.f. ou p.d.f., definida no problema, deverá satisfazer as condições a, b, c, d e também:
+
+   e. Para todo $x \in X$, a p.m.f. ou p.d.f. $f(x|\theta)$ é três vezes derivável com respeito a $\theta$. A terceira derivada é contínua em $\theta$, e  
+$$\int f(x|\theta) \, dx$$  
+pode ser derivada três vezes sob o sinal de integração.
+
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+   f. Para qualquer $\theta_0 \in \Theta$, existe um número positivo $c$ e uma função contínua $M(x)$, tal que 
+   
+   $$\left| \frac{\partial^3}{\partial \theta^3} \log f(x|\theta) \right| \leq M(x) \text{ para todo } x \in X,$$  
+$$\theta_0 - c < \theta < \theta_0 + c \quad \text{com } \quad E_\theta[M(x)] < \infty$$
+
+* Novamente, ressaltamos que estas condições de regularidade estarão atendidas para todos os problemas propostos neste curso.
+
+
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+:::{#thm-thma405} 
+## Eficiência assintótica dos EMVs.
+Sejam $X_1, X_2, X_3, \ldots$ i.i.d.'s com p.m.f. ou p.d.f. $f(x|\theta)$.
+:::
+
+Denote $\hat{\theta}$ como o EMV de $\theta$, e considere $U(\theta)$ uma função contínua de $\theta$. Se as condições de regularidade **a**, **b**, **c**, **d**, **e** e **f** para $f(x|\theta)$ forem atendidas, então:
+
+$$\sqrt{n} \left[ U(\hat{\theta}) - U(\theta) \right] \xrightarrow{d} N(0, r(\theta))$$
+
+sendo $r(\theta) = \frac{[U'(\theta)]^2}{I_1(\theta)}$ o limite inferior de Cramér-Rao (para 1 observação). Isto é, $U(\hat{\theta})$ é estimador consistente e assintoticamente eficiente para $U(\theta)$.
+
+
+
+
+## Propriedades assintóticas dos EMVs
+<hr>
+
+* Equivalentemente, podemos escrever também:
+
+$$\tau(\hat{\theta}) \sim N\left( \tau(\theta), \frac{[\tau'(\theta)]^2}{n I_1(\theta)} \right)$$
+
+sendo $I_1(\theta) = E_{\theta} \left[ \left( \frac{\partial}{\partial \theta} \log f(X_i | \theta) \right)^2 \right]$ a informação de Fisher (caso: 1 observação). Este resultado é válido visto que $X_1, \cdots, X_n$ são i.i.d.
+
+> Conclusão: Em geral, podemos dizer que os EMVs são assintoticamente:
+
+- **Eficientes:** sua variância atinge o limite inferior de Cramér-Rao (amostra de tamanho $n$);
+
+- **Consistentes:** seu valor esperado se aproxima do valor real do parâmetro alvo (assintoticamente não viciado);
+
+- **Normais:** a distribuição do estimador se aproxima da Normal.
+
+
+
+# [Método Delta]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Método Delta
+
+
+* O Método Delta é uma generalização útil do TCL. 
+
+* Aplicável em situações onde estamos interessados na distribuição de uma função de uma variável aleatória.
+
+:::{#thm-thma406}
+## Método Delta.
+
+Seja $Y_n = Y_1, Y_2, Y_3, \ldots$ uma sequência de variáveis aleatórias satisfazendo $\sqrt{n} (Y_n - \theta) \xrightarrow{d} N(0, \sigma^2)$. Para uma dada função $g$ e um valor específico de $\theta$, suponha que $g'(\theta)$ exista e não é igual a zero,
+
+$$\sqrt{n} [g(Y_n) - g(\theta)] \xrightarrow{d} N(0, \sigma^2[g'(\theta)]^2).$$
+:::
+
+## Método Delta.
+<hr>
+
+:::{#exm-exma409} 
+Suponha que $X_i$ é uma variável aleatória com $E(X_i) = \mu \neq 0.$ Considere o estimador  
+
+$$\overline{X}_n = \frac{\sum_{i=1}^n X_i}{n}.$$  
+:::
+
+* Quando $n$ é grande, temos pelo TCL o resultado:  
+
+$$\overline{X}_n \sim N\left[\mu, \frac{Var(X_i)}{n}\right]$$
+
+* O que podemos dizer da distribuição assintótica de $\frac{1}{\overline{X}_n}$, ou seja, $g(\overline{X}_n) = \frac{1}{\overline{X}_n}$.
+
+
+> Usaremos o Método Delta:
+
+
+$$g(\mu) = \frac{1}{\mu}, \quad g'(\mu) = -\frac{1}{\mu^2}, \quad Var(\overline{X}_n) = \frac{Var(X_i)}{n} \quad \text{e} \quad E(\overline{X}_n) = \mu$$
+
+
+## Método Delta.
+<hr>
+
+**Pelo TCL:**  
+
+$$\sqrt{n}(\overline{X}_n - \mu) \longrightarrow N\left[0, Var(X_i)\right]$$
+
+**Pelo M. Delta:** 
+
+$$\sqrt{n} \left[\frac{1}{\overline{X}_n} - \frac{1}{\mu}\right] \longrightarrow N\left[0, Var(X_i)\left(-\frac{1}{\mu^2}\right)^2\right]$$
+
+**Conclusão:** Quando $n$ é grande, a variável aleatória $\frac{1}{\overline{X}_n}$ terá aproximadamente distribuição  
+
+$$N\left[\frac{1}{\mu}, \frac{Var(X_i)}{n\mu^4}\right]$$
+
+* Se desconhecemos $\mu$ e $Var(X_i)$, iremos utilizar o resultado acima com a substituição desses elementos pelos seus respectivos estimadores. Sendo assim, a variância aproximada seria  $\frac{S^2}{n\overline{X}^4}.$
+
+
+
+## Método Delta.
+<hr>
+
+:::{#exm-exma410} 
+Suponha que $X_1, \ldots, X_n$ são i.i.d. $f(x|\theta)$. Considere $\hat{\theta} = EMV$ de $\theta$
+
+$$I_n(\theta) = E_{\theta} \left[ \left( \frac{\partial}{\partial \theta} \log L(\theta;X) \right)^2 \right]$$
+:::
+
+* Informação de Fisher baseada na amostra $X = (X_1, \ldots, X_n)$.
+
+* Desejamos avaliar resultados assintóticos para $g(\hat{\theta})$, sendo $g(\cdot)$ uma função tal que $g(\theta)$ existe e não é zero.
+
+* Visto que $\hat{\theta}$ é EMV, $\sqrt{n} [\hat{\theta} - \theta] \xrightarrow{d} N[0, \nu(\theta)]$, sendo $\nu(\theta)$ o limite inferior de Cramér-Rao (1 obs.)
+
+$$\nu(\Theta) = \frac{\left[ \frac{d}{d\theta} E(\hat{\theta}) \right]^2}{E_{\theta} \left[ \left( \frac{\partial}{\partial \theta} \log f(X_i|\theta) \right)^2 \right]} = \frac{1}{I_1(\theta)} \Rightarrow n \text{ grande } \Rightarrow E(\hat{\theta}) \approx \theta$$
+
+## Método Delta.
+<hr>
+
+* Variância assintótica de $\hat{\theta}$ é $\nu(\theta)$.
+
+* Através do Método Delta temos
+
+$$\sqrt{n} [g(\hat{\theta}) - g(\theta)] \longrightarrow N[0, \nu(\theta)[g'(\theta)]^2].$$
+
+
+
+
+
+* Então a variância assintótica de $g(\hat{\theta})$ será
+
+$$\nu(\theta) \cdot [g'(\theta)]^2 = [g'(\theta)]^2 / I_1(\theta).$$
+
+* Consequentemente, a variância de $g(\hat{\theta})$ será $[g'(\theta)]^2 / I_n(\theta)$
+
+
+## Método Delta.
+<hr>
+
+* Este último resultado pode ser aproximado usando a Informação de Fisher Observada.
+
+$$I_n(\hat{\theta}) = -\frac{\partial^2}{\partial\theta^2} \log L(\theta;X)\big|_{\theta=\hat{\theta}}
+$$
+
+* Aproximação desejada: Variância de
+
+$$g(\hat{\theta}) = \frac{[g'(\theta)]^2}{I_n(\theta)} \approx \frac{[g'(\theta)]^2\big|_{\theta=\hat{\theta}}}{-\frac{\partial^2}{\partial\theta^2} \log L(\theta;X)\big|_{\theta=\hat{\theta}}}$$
+
+* Note que o processo de estimação da variância envolve 2 passos:  
+
+   1. obter a variância de $g(\hat{\theta})$,  
+
+   2. estimar essa variância, em geral, substituindo $\theta$ por $\hat{\theta}$.
+
+
+
+
+
+
+
 
 
