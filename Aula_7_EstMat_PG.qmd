@@ -1,0 +1,2121 @@
+---
+format: 
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    #logo: "https://www.faest.icen.ufpa.br/images/110.png"
+    #footer: "[https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)"
+    code-copy: true
+    center-title-slide: false
+highlight-style: a11y
+code-link: true
+height: 1080
+width: 1600
+execute: 
+  eval: true
+  echo: true
+lang: pt
+---
+
+<h1> Inferência Estatística I </h1>
+
+<h2> Testes de Hipóteses </h2>
+
+<hr>
+
+<br>
+
+<h3> Prof. Paulo Cerqueira Jr <br>
+Faculdade de Estatística - FAEST <br> 
+Instituto de Ciências Exatas e Naturais - ICEN
+</h3>
+
+<h3>  </h3>
+<br>
+
+<h3> [https://github.com/paulocerqueirajr](https://https://github.com/paulocerqueirajr)
+
+![](github.jpg){.absolute top=560 left=845 height="80"}
+
+![](faest.png){.absolute top=5 left=1400 height="200"}
+
+
+
+# [Introdução]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+
+## Introdução
+<hr>
+
+
+* Em estatística, uma hipótese é uma afirmativa sobre um propriedade da população (ex.: média).
+* Um teste de hipóteses é um procedimento padrão (regra de decisão) para se testar uma afirmativa sobre uma propriedade da população.
+
+:::{.callout-note} 
+## Exemplos:
+  - A produtividade média de milho em Santa Catarina é de 2300kg/ha. (teste para a média);
+  - A proporção de alevinos de tilápia do Nilo que atingem o peso adequado em 120 dias é de 54\%. (teste para a proporção)
+  - A sobrevivência de mudas não dependem da época do plantio. (teste qui-quadrado);
+  - A proporção de fixação de fitoplâncton em dois tipos de solos é a mesma (Teste de comparação de porporções).
+
+:::
+
+## Testes de hipóteses
+<hr>
+<br/>
+<br/>
+
+* São ferramentas estatísticas que quantificam quão plausíveis são os resultados observados em uma amostra, podem ou não, ser verdadeiro.
+* Além disto, um teste também define um ponto de corte (regra de decisão) para tomarmos a decisão de aceitar ou rejeitar a hipótese testada.
+* Veremos testes para afirmações sobre a média e proporção de uma população.
+
+
+
+## Introdução
+<hr>
+<br/>
+
+> Um criador do *Colossoma macropomum* (tambaqui), criado à densidade de $1,0\ \text{peixe}/m^{2}/120\ \text{dias}$, afirma que os mesmos tem peso médio de $360,7g$ e uma variância de $30,7g^{2}$.
+
+<br/>
+
+Uma amostra com $22$ peixes foi formada e vetificou-se que o peso médio foi igual à $358,2g$. Dessa forma, temos duas situações:
+<br/>
+
+
+1. $H_{0}$: O criador está correto.  (Hipótese nula)
+
+2. $H_{1}$: O criador está errado. (Hipótese alternativa)
+
+<br/>
+
+. . .
+
+O que de fato queremos saber?
+
+. . . 
+
+<br/>
+
+`Se a média é igual a $360,7g$ ou diferente!!`
+
+
+## Testes de hipóteses
+<hr>
+<br/>
+
+
+:::{#def-def1}
+## Hipóteses estatística
+
+É uma afirmação ou conjetura sobre o parâmetro, ou parâmetros, da distribuição de probabilidades de uma característica, X, da população ou de uma v.a.
+:::
+
+<br/>
+
+:::{#def-def2}
+## Teste de hipóteses
+
+Um teste de hipóteses estatística é o procedimento ou regra de decisão que nos possibilita decidir por $H_{0}$ (Hipótese Nula) ou $H_{1}$ (Hipótese Alternativa), com base a informação contida na amostra.
+:::
+
+
+## Procedimentos gerais
+<hr>
+
+
+
+* População: $X$ com f.d ou f.p ($f(x\mid \theta)$).
+
+* $\theta$ é um parâmetro desconhecido, e temos alguma hipótese sobre o valor verdadeiro de $\theta$, por exemplo, afirmamos que seu valor é $\theta_0$.
+
+* Observamos uma a.a. de $X$, e com ela desejamos comprovar ou não tal hipótese. 
+
+* Assim, queremos testar
+
+$$H_0: \theta = \theta_0$$
+
+* Temos também que explicitar a hipótese que aceitaremos caso $H_0$ seja rejeitada,
+$$\underbrace{H_1 : \theta\neq \theta_0}_{\text{Bilateral}} \quad  \text{ou} \quad \underbrace{H_1: \theta < \theta_0}_{\text{Unilateral à esquerda.}} \quad \text{ou} \quad \underbrace{H_1: \theta > \theta_0}_{\text{Unilateral à direita.}},$$
+
+que dependerá das informações que o problema traz. 
+
+## Erros associados aos testes de hipóteses
+<hr>
+
+* Devemos tomar como $H_0$ aquela hipótese que, rejeitada, conduza a um erro de tipo I mais importante de evitar.
+
+* Por exemplo, suponha um experimento para determinar se um produto A é ou não cancerígeno. Após realizado o teste, podemos concluir: 
+
+$$\text{(i) A é cancerígeno ou (ii) A não é cancerígeno.}$$
+
+* Cada uma dessas conclusões pode estar errada e temos os dois tipos de erro:
+
+
+1. concluir que o produto é cancerígeno, quando ele não é.
+
+2. concluir que o produto não é cancerígeno, quando ele é.
+
+. . .
+
+Qual o pior erro?
+
+. . .
+
+O **segundo erro** é pior, este deve ser o erro tipo I (rejeitar $H_0$, quando ela é verdadeira), portanto,
+
+$$H_0 : \text{A é cancerígeno.}$$
+
+## Erros associados aos testes de hipóteses:
+<hr>
+<br/>
+
+* Os dois erros que podem ser cometidos ao se realizar um teste de hipóteses são:
+  - Rejeitar a hipótese nula (H0), quando tal hipótese é verdadeira;
+  - Não rejeitar a hipótese nula (H0) quando ela deveria ser rejeitada.
+
+* De forma mais simplificada temos:
+
+| Decisão/ Situação | $H_{0}$ verdade | $H_{0}$ falso |
+|:---:|:---:|:---:|
+| Rejeita $H_{0}$ | Erro I | Certo |
+| Não rejeita $H_{0}$ | Certo | Erro II |
+
+
+## Erros associados aos testes de hipóteses
+<hr>
+
+* Tais erros são expressos em termos de probabilidade.
+* O nível de significância ou probabilidade do Erro I é dada por
+
+  $$\alpha=P(\mbox{Rejeitar } H_{0} \mid H_{0} \mbox{ verdadeira}).$$
+
+* Em geral o `nível de siginificância` gira em torno de $1\%, 5\%, 10\%$.
+
+
+* A probabilidade do Erro II é dada por
+
+  $$\beta=P(\mbox{Não rejeitar} \  H_{0} \mid H_{0}  \mbox{ falsa}).$$
+
+* O poder o teste é dado por:
+
+$$\text{Poder}=1-\beta=1-P(\mbox{Não rejeitar} \  H_{0} \mid H_{0}  \mbox{ falsa})=P(\mbox{Rejeitar} \  H_{0} \mid H_{0}  \mbox{ falsa}).$$
+
+
+## Erros associados aos testes de hipóteses
+<hr>
+
+
+```{r fig1, echo=FALSE, message=FALSE, warning=FALSE, fig.height=10, fig.width=12, fig.align='center'}
+
+
+par(mfrow=c(2,3), oma=c(0,0,2,0))
+
+plot(function(x) dnorm(x) ,xlim=c(-4, 4), ylim=c(0, 0.4),main="Teste Bilateral", xlab="Média Amostral", ylab="Densidade", lwd=4, col="lightblue")
+abline(v=0, lty=4)
+xx <- seq(-4, -1.96, l=200)
+yy <- rbind(cbind(rev(xx), 0), cbind(xx, dnorm(xx)))
+polygon(yy, col="lightblue", border = NA)
+text(-2.2, 0.02, labels=expression(alpha/2), col="black")
+xx <- seq(1.96, 4, l=200)
+yy <- rbind(cbind(rev(xx), 0), cbind(xx, dnorm(xx)))
+polygon(yy, col="lightblue", border= NA)
+text(2.2, 0.02, labels=expression(alpha/2), col="black")
+
+plot(function(x) dnorm(x) ,xlim=c(-4, 4), ylim=c(0, 0.4),main="Teste Unilateral \n a Esquerda", xlab="Média Amostral", ylab="Densidade", lwd=2, col="lightblue")
+abline(v=0, lty=4)
+xx <- seq(-4, -1.96, l=200)
+yy <- rbind(cbind(rev(xx), 0), cbind(xx, dnorm(xx)))
+polygon(yy, col="lightblue", border=NA)
+text(-2.2, 0.02, labels=expression(alpha), col="black")
+
+
+plot(function(x) dnorm(x) ,xlim=c(-4, 4), ylim=c(0, 0.4),main="Teste Unilateral \n a Direita", xlab="Média Amostral", ylab="Densidade", lwd=2, col="lightblue")
+abline(v=0, lty=4)
+xx <- seq(1.96, 4, l=200)
+yy <- rbind(cbind(rev(xx), 0), cbind(xx, dnorm(xx)))
+polygon(yy, col="lightblue", border=NA)
+text(2.2, 0.02, labels=expression(alpha), col="black")
+
+
+plot(1,4, axes=FALSE, xlab="", ylab="", col="white")
+text(1,3.5,expression(H[a] :  mu != mu[0]), cex=2)
+text(1,4.5,expression(H[0] :  mu == mu[0]), cex=2)
+
+
+plot(1,4, axes=FALSE, xlab="", ylab="", col="white")
+text(1,3.5,expression(H[a] :  mu < mu[0]), cex=2)
+text(1,4.5,expression(H[0] :  mu == mu[0]), cex=2)
+
+
+plot(1,4, axes=FALSE, xlab="", ylab="", col="white")
+text(1,3.5,expression(H[a] :  mu > mu[0]), cex=2)
+text(1,4.5,expression(H[0] :  mu == mu[0]), cex=2)
+
+title(main=expression(paste("Distribuição Gaussiana com ", mu==0, " e ", sigma==1)), outer=TRUE)
+
+```
+
+
+
+## Construindo testes de hipóteses:
+<hr>
+<br/>
+
+1. Estabelecer a hipótese nula. A hipótese alternativa é complementar à hipótese nula.
+2. Definir a forma da região de aceitação com base na hipótese nula.
+3. Identificar a distribuição do estimador e obter sua estimativa.
+4. Fixar $\alpha$ e obter a região crítica.
+5. Concluir o teste com base na estimativa e na região crítica.
+   
+# [Testes para uma amostra ]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+
+## Testes para uma amostra
+<hr>
+<br/>
+Existem uma série de testes de hipóteses, cada um com sua finalidade.
+
+Para uma amostra, temos alguns testes:
+
+- Teste para a proporção;
+- Teste para média populacional com variância conhecida;
+- Teste para média populacional com variância desconhecida (Teste t de **Student**).
+
+## Teste para proporção populacional
+<hr>
+
+Considere o problema de testar a hipótese de que a proporção de sucessos de um ensaio de Bernoulli é igual a um valor específico, $p_0$.
+
+1. Definição das hipóteses
+
+
+$$
+\begin{array}{ccl}
+H_0: p = p_0 & \text{vs} & H_1: p \neq p_0 \quad \text{(bilateral)}\\
+H_0: p = p_0 & \text{vs} & H_1: p > p_0 \quad \text{(unilateral direita)}\\
+H_0: p = p_0 & \text{vs} & H_1: p < p_0 \quad \text{(unilateral esquerda)}
+\end{array}
+$$
+
+## Teste para proporção populacional
+<hr>
+
+
+2. Estatística de teste
+
+A estatística escolhida é a proporção amostral:
+
+$$\hat{p}\sim N\left( p, \dfrac{p(1-p)}{n} \right) \quad \Rightarrow \ \text{Sob}\ \text{H}_{0}\ \Rightarrow\ \hat{p}\sim N\left( p_{0}, \dfrac{p_{0}(1-p_{0})}{n} \right). $$
+
+3. Região Crítica (RC)
+
+A RC depende da hipótese alternativa considerada:
+
+- Para $H_1: p \neq p_0: \ RC = \left\{\hat{p} \in \mathbb{R}: \hat{p} < p_1 \text{ ou } \hat{p} > p_2 \right\}$
+- Para $H_1: p > p_0:\ RC = \left\{\hat{p} \in \mathbb{R}: \hat{p} > p_2 \right\}$
+- Para $H_1: p < p_0:\ RC = \left\{\hat{p} \in \mathbb{R}: \hat{p} < p_1 \right\}$
+
+
+Os passos 4 e 5 dependerão dos valores da amostra, vamos descrevê-los num exemplo.
+
+
+## Exemplo
+<hr>
+
+Um estudo foi realizado para determinar a relação entre uma certa droga e uma anomalia em embriões de frango. Foram injetados 50 ovos fertilizados com a droga no quarto dia de incubação. No vigésimo dia, os embriões foram examinados e 7 apresentaram a anomalia. Deseja-se verificar se a proporção verdadeira é inferior a 25\% com um nível de significância de 0,05.
+
+> Solução:
+
+**Passo 1:** As hipóteses são:
+$$H_0: p=0.25 \quad \text{vs} \quad H_1: p<0.25.$$  
+
+**Passo 2:** Estatística de teste:
+$$\hat{p}\sim N\left( p, \dfrac{p(1-p)}{50} \right),\quad n=50.$$  
+
+
+## Exemplo
+<hr>
+
+**Passo 3:** Fixamos $\alpha=0.05$. Sob $H_0$:
+$$\hat{p}\sim N\left( 0.25, \dfrac{0.25(1-0.25)}{50} \right).$$   
+A região de rejeição será dada por $RC = \left\{\hat{p}\in \mathbb{R}: \hat{p} < p_1\right\}$, com $p_1$ sendo tal que:
+
+$$
+\alpha=P(\text{Erro I})=P(\hat{p}\in RC\mid \hat{p}\sim N\left( 0.25, 0.0037 \right) ).
+$$
+
+Ou seja,
+
+$$
+0.05 = P(\hat{p}<p_1 \mid \hat{p}\sim N\left( 0.25, 0.0037 \right) ) \Longleftrightarrow  0.05 = P\left(Z<\dfrac{p_1-0.25}{\sqrt{0.0037}}\right)
+$$
+
+## Exemplo
+<hr>
+
+Graficamente,
+
+```{r, echo=FALSE, fig.height=6, fig.width=6, fig.align='center'}
+plot(function(z) dnorm(z, mean=0, sd=1), -5, 5, col="black", ylab="", xlab="", xaxt="n", main="",axes=FALSE, ylim=c(-0.05,0.4))
+abline(h=0, col="darkgray")
+segments(x0 = 0, y0 = 0, x1 = 0, y1 = dnorm(0, mean=0, sd=1), col="red", lty=2) 
+z <- seq(-5, -1.64, l=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dnorm(z, mean=0, sd=1)))
+polygon(yy, col="darkgray")
+text( 0, -0.02, 0)
+text( -1.64, -0.02, expression(z[c]))
+text( -1.9, 0.02, "RC", cex=0.5)
+text( -2.8, 0.15, expression("alpha=0.05"), cex=0.7)
+arrows(x0=-2.8, y0=0.1, x1 = -2.5, y1 = 0.05, length = 0.1, angle = 30)
+```
+
+
+
+## Exemplo
+<hr>
+
+
+Temos então,
+
+$$
+z_{c}=\dfrac{p_1-0.25}{\sqrt{0.0037}}.
+$$
+
+Consultando o valor tabelado, temos que $z_{c}=-1.64$. Logo,
+
+$$
+-1.64=\dfrac{p_1-0.25}{\sqrt{0.0037}}\Longleftrightarrow p_{1} = -1.64\sqrt{0.0037}+0.25= 0.1963
+$$
+
+Portanto, a regra de decisão consiste em:
+
+$$
+\text{Rejeitar} \ H_{0} \ \text{se} \ \hat{p}<0.1963
+$$
+
+**Passo 4:** Com os valores amostrais temos que $\hat{p}_{obs}=\dfrac{7}{50}=0.14$.
+
+**Passo 5:** Como $\hat{p}_{obs}=0.14 \in RC$, rejeitamos $H_{0}$ ao nível de significância de 5\%. Então, temos o indicativo de que a proporção verdadeira da anomalia em embriões é inferior a 25\%.
+
+
+# Teste para a média populacional (Variância conhecida)
+
+## Teste para a média populacional (Variância conhecida)
+<hr>
+
+Considere uma amostra aleatória de tamanho n de uma população normal com média $\mu$ (desconhecida) e variância $\sigma^{2}$ (conhecida). Suponha que tem-se interesse em verificar as seguintes hipóteses:
+
+1. As hipóteses são as seguintes:
+
+$$
+\begin{array}{ccl}
+&\times&(i) H_{1}:\mu\neq \mu_{0}. \text{(bilateral)}\\
+H_{0}: \mu=\mu_{0}&\times&(ii) H_{1}:\mu> \mu_{0}. \text{(Unilateral à direita)}\\
+&\times&(iii) H_{1}:\mu<\mu_{0}. \text{(Unilateral à esquerda)}
+\end{array}
+$$
+
+2. A estatística escolhida é a média.
+
+$$
+\bar{X}\sim N\left( \mu, \dfrac{\sigma^{2}}{n} \right).
+$$
+
+
+
+## Teste para a média populacional (Variância conhecida)
+<hr>
+
+3. Fixado um valor de $\alpha$, devemos construir a RC, supondo $H_0$ verdadeira. Ou seja, podemos escrever
+
+$$
+\bar{X}\sim N\left( \mu_{0}, \dfrac{\sigma^{2}}{n} \right).
+$$
+A RC dependerá da hipótese alternativa considerada:
+
+- Para a alternativa $(i): RC = \left\{\bar{X}\in \mathbb{R}: \bar{X} < \mu_1\ ou\ \bar{X} > \mu_1 \right\}$
+- Para a alternativa $(ii): RC = \left\{\bar{X}\in \mathbb{R}:\bar{X} > \mu_1\right\}$
+- Para a alternativa $(iii): RC = \left\{\bar{X}\in \mathbb{R}: \bar{X} < \mu_1\right\}$
+
+Os passos 4 e 5 dependerão dos valores da amostra, vamos descrevê-los num exemplo.
+
+
+## Exemplo
+<hr>
+
+Uma máquina automática para encher pacotes de café enche-os segundo uma distribuição normal, com média $\mu$ e variância igual a $400g^{2}$. A máquina foi regulada para $\mu= 500g$. Desejamos, periodicamente, colher uma amostra de 16 pacotes e verificar se a produção está sob controle, isto é, se $\mu= 500g$ ou não. Se uma dessas amostras apresentasse uma média $\bar{X} = 492g$, você pararia ou não a produção para regular a máquina?
+
+> Solução:
+
+**Passo 1:** As hipóteses são:
+
+$$
+H_{0}: \mu=500 \text{g} \times H_{1}: \mu\neq 500g.
+$$
+
+**Passo 2:** A estatística de teste:
+
+$$
+\bar{X}\sim N\left( \mu, \dfrac{400}{16} \right).
+$$
+
+
+## Exemplo
+<hr>
+
+**Passo 3:** Fixaremos $\alpha=0,01$ e sob a suposição de $H_0$ ser verdadeira, temos
+
+$$
+\bar{X}\sim N\left(500, \dfrac{400}{16} \right),\rightarrow \bar{X}\sim N\left( 500, 25 \right).
+$$
+
+Dessa forma, temos que
+
+$$
+RC = \left\{\bar{X}\in \mathbb{R}: \bar{X} < x_1 \ \text{ou} \ \bar{X}> x_2\right\}.
+$$
+
+Com,
+
+$$
+0.01=P\left( \bar{X}\in RC \mid \bar{X}\sim N\left( 500, 25 \right)\right) \Leftrightarrow 0.01=P\left( \bar{X}< x_{1} \ \text{ou} \ \bar{X}> x_{2}  \mid \bar{X}\sim N\left( 500, 25 \right)\right).
+$$
+
+Para resolver a expressão acima, tomaremos $x_1$ e $x_2$ tais que
+
+$$
+0.005=P\left( \bar{X}< x_{1}\mid \bar{X}\sim N\left( 500, 25 \right)\right) \ \text{e} \ 0.005=P\left( \bar{X}> x_{2}\mid \bar{X}\sim N\left( 500, 25 \right)\right)
+$$
+
+Ou simplesmente,
+
+$$
+0.005=P\left( Z< \dfrac{x_{1}-500}{\sqrt{25}} \right)\ \text{e} \ 0.005=P\left( Z> \dfrac{x_{2}-500}{\sqrt{25}} \right)
+$$
+
+
+
+## Exemplo
+<hr>
+
+
+Graficamente,
+
+```{r, echo=FALSE, fig.height=5, fig.width=5, fig.align='center'}
+plot(function(z) dnorm(z, mean=0, sd=1), -5, 5, col="black", ylab="", xlab="", xaxt="n", main="",axes=FALSE, ylim=c(-0.05,0.4))
+abline(h=0, col="darkgray")
+segments(x0 = 0, y0 = 0, x1 = 0, y1 = dnorm(0, mean=0, sd=1), col="red", lty=2) 
+z <- seq(-5, -2.58, l=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dnorm(z, mean=0, sd=1)))
+polygon(yy, col="darkgray")
+text( 0, -0.02, 0, cex=0.8)
+text( -2.58, -0.02, expression(z[c]))
+text( -1.8, -0.02, "=-2.58", cex=0.8)
+text( -3.5, 0.08, expression(alpha/2), cex=0.7)
+text( -2.6, 0.08, "=0.005", cex=0.7)
+arrows(x0=-3.5, y0=0.06, x1 = -3, y1 = 0.02, length = 0.1, angle = 30)
+legend("topleft", "RC", inset=.02, fill="darkgray", horiz=TRUE, cex=0.8, bty="n")
+z <- seq(2.58, 5, l=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dnorm(z, mean=0, sd=1)))
+polygon(yy, col="darkgray")
+text( 2.58, -0.02, expression(z[c]))
+text( 3.5, -0.02, "=2.58", cex=0.8)
+text( 3.5, 0.08, expression(alpha/2), cex=0.7)
+text( 4.5, 0.08, "=0.005", cex=0.7)
+arrows(x0=3.5, y0=0.06, x1 = 3, y1 = 0.02, length = 0.1, angle = 30)
+```
+
+
+## Exemplo
+<hr>
+
+Assim temos que,
+
+$$
+-2.58=\dfrac{x_{1}-500}{\sqrt{25}} \ \text{e} \ 2.58=\dfrac{x_{2}-500}{\sqrt{25}}.
+$$
+
+Isolando temos que $x_1=487.1$ e $x_2=512.9$. Portanto a regra de decisão será,
+
+$$
+\text{Rejeitar} \ H_{0} \ \text{se} \ \bar{X}<487.1 \ \text{ou} \ \bar{X}>512.9.
+$$
+
+**Passo 4:** Com os valores amostrais temos que $\bar{X}_{obs}=492g$.
+
+**Passo 5:** Como $\bar{X}_{obs}=492g$ não pertence à RC, ou seja, não rejeitamos $H_{0}$ ao nível de significância de 1%. Dessa forma, temos indicativo de que a máquina está regulada e não há necessidade de parar a produção.
+
+
+# Teste para a média populacional (Variância desconhecida)
+
+## Teste para a média populacional (Variância desconhecida)
+<hr>
+
+
+
+Considere uma amostra aleatória de tamanho n de uma população normal com média $\mu$ (desconhecida) e variância $\sigma^{2}$ (desconhecida). Suponha que tem-se interesse em verificar as seguintes hipóteses:
+
+1. As hipóteses são as seguintes:
+
+$$
+\begin{array}{ccl}
+&\times&(i) H_{1}:\mu\neq \mu_{0}. \text{(bilateral)}\\
+H_{0}: \mu=\mu_{0}&\times&(ii) H_{1}:\mu> \mu_{0}. \text{(Unilateral à direita)}\\
+&\times&(iii) H_{1}:\mu<\mu_{0}. \text{(Unilateral à esquerda)}
+\end{array}
+$$
+
+2. A estatística escolhida é a proporção amostral.
+
+$$
+T=\dfrac{\bar{X}-\mu}{S/\sqrt{n}}=\dfrac{\sqrt{n}(\bar{X}-\mu)}{S}\sim t_{n-1}.
+$$
+
+
+## Teste para a média populacional (Variância desconhecida)
+<hr>
+
+3. Fixado um valor de $\alpha$, devemos construir a RC, supondo $H_0$ verdadeira. Ou seja, podemos escrever
+
+$$
+T=\dfrac{\bar{X}-\mu_{0}}{S/\sqrt{n}}=\dfrac{\sqrt{n}(\bar{X}-\mu_{0})}{S}\sim t_{n-1}.
+$$
+
+* A RC dependerá da hipótese alternativa considerada:
+
+- Para a alternativa $(i): RC = \left\{T\in \mathbb{R}: T < t_1\ ou\ T > t_2 \right\}$
+- Para a alternativa $(ii): RC = \left\{T\in \mathbb{R}:T > t_2\right\}$
+- Para a alternativa $(iii): RC = \left\{T\in \mathbb{R}: T < t_1\right\}$
+
+Os passos 4 e 5 dependerão dos valores da amostra, vamos descrevê-los num exemplo.
+
+## Exemplo
+<hr>
+
+
+Os registros dos últimos anos de um colégio atestam para calouros admitidos uma nota média 115 (teste vocacional). Para testar a hipótese de que a média de uma nova turma é a mesma das turmas anteriores, retirou-se, ao acaso, uma amostra de 20 notas, obtendo-se média 118 e desvio padrão 20. Use $\alpha=0.05$.
+
+> Solução:
+
+**Passo 1:** As hipóteses são:
+
+$$
+H_{0}: \mu=115\times H_{1}: \mu\neq 115.
+$$
+
+**Passo 2:** A estatística de teste:
+
+$$
+T=\dfrac{\sqrt{n}(\bar{X}-\mu)}{S}\sim t_{20-1=19}.
+$$
+
+
+## Exemplo
+<hr>
+
+
+**Passo 3:** Fixaremos $\alpha=0,05$ e sob a suposição de $H_0$ ser verdadeira, temos
+
+$$
+T=\dfrac{\sqrt{n}(\bar{X}-115)}{S}\sim t_{19}.
+$$
+
+
+Dessa forma, temos que
+
+$$
+RC = \left\{T\in \mathbb{R}: T < t_1 \ \text{ou} \ T> t_2\right\}.
+$$
+
+Com,
+
+$$
+0.05=P\left( T \in RC \mid T\sim t_{19} \right) \Leftrightarrow 0.05=P\left( T< t_{1} \ \text{ou} \ T>t_{2}  \mid T\sim t_{19}\right).
+$$
+
+Para resolver a expressão acima, tomaremos $t_1$e $t_2$ tais que
+
+$$
+0.025=P\left(  T< t_{1}\mid T\sim t_{19}\right) \ \text{e} \ 0.025=P\left(  T> t_{2}\mid T\sim t_{19}\right)
+$$
+
+Note que os valores de $t_1$e $t_2$ podem ser obtidos através da tabela da distribuição $t$-Student.
+
+
+## Exemplo
+<hr>
+
+
+Graficamente,
+
+```{r, echo=FALSE, fig.height=6, fig.width=6, fig.align='center'}
+plot(function(z) dt(z, df = 19), -5, 5, col="black", ylab="", xlab="", xaxt="n", main="",axes=FALSE, ylim=c(-0.05,0.4))
+abline(h=0, col="darkgray")
+segments(x0 = 0, y0 = 0, x1 = 0, y1 = dt(0, df=19), col="red", lty=2) 
+z <- seq(-5, -2.093, l=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dt(z, df=19)))
+polygon(yy, col="darkgray")
+text( 0, -0.02, 0, cex=0.8)
+text( -2.093, -0.02, expression(t[1]))
+text( -2.3, 0.02, "RC", cex=0.5)
+text( -3.5, 0.08, expression(alpha/2==0.025), cex=0.7)
+arrows(x0=-3.5, y0=0.06, x1 = -3, y1 = 0.02, length = 0.1, angle = 30)
+z <- seq(2.093, 5, l=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dt(z, df=19)))
+polygon(yy, col="darkgray")
+text( 2.093, -0.02, expression(t[2]))
+text( 3.2, 0.08, expression(alpha/2==0.025), cex=0.7)
+text( 2.3, 0.02, "RC", cex=0.5)
+arrows(x0=3.5, y0=0.06, x1 = 3, y1 = 0.02, length = 0.1, angle = 30)
+```
+
+
+## Exemplo
+<hr>
+
+Com os valores de $t_{1}=-2.093$ e $t_{2}=2.093$, temos que a regra de decisão será:
+
+$$
+\text{Rejeitar} \ H_{0} \ \text{se} \ T<-2.093 \ \text{ou} \ T>2.093.
+$$
+
+**Passo 4:** Com os valores amostrais, temos que:
+
+$$
+T_{obs}=\dfrac{\sqrt{20}(118-115)}{20}=0.6708.
+$$
+
+**Passo 5:** Como $T_{obs}=0.6708$ não pertence à região crítica (RC), ou seja, não rejeitamos $H_{0}$ ao nível de significância de 5%. Dessa forma, temos indicativo de que a média de uma nova turma seria a mesma das turmas anteriores.
+
+
+## Teste para a Variância de uma Normal
+<hr>
+<br/>
+
+
+* $X_{1},X_{2},\cdots,X_{n}$ uma a.a. de $X\sim N(\mu,\sigma^{2})$
+
+* A estatística a ser usada para o teste é:
+
+$$Q=\frac{(n-1)S^{2}}{\sigma^{2}}\sim\chi_{n-1}^{2}$$
+
+<hr>
+
+**Exemplo:** Uma das maneiras de manter sob controle a qualidade de um produto é controlar sua variabilidade. Uma máquina de encher pacotes de café está regulada para enchê-los com média de $500$ g e desvio padrão de $10$ g. O peso de cada pacote segue uma distribuição $N(\mu,\sigma^{2})$. Colheu-se uma amostra de $16$ pacotes e observou-se uma variância $S^{2}=169g^{2}$. Com esse resultado, você diria que a máquina está desregulada com relação à variância?
+
+**Passo 1:** $H_{0}:\sigma^{2}=100$ contra $H_{1}:\sigma^{2}\neq 100$
+
+
+## Exemplo
+<hr>
+<br/>
+
+
+**Passo 2:** $Q=\frac{(n-1)S^{2}}{\sigma^{2}}\sim\chi_{15}^{2}$.
+
+**Passo 3:** Sob $H_{0}$, temos $Q=\frac{(n-1)S^{2}}{100}\sim\chi_{15}^{2}$. Fixando $\alpha=0,05$, temos que a região de rejeição deve ser tal que
+
+$$RC=\{Q\in\mathbb{R}_{+}:\ Q<\chi_{1}\ \text{ou}\ Q>\chi_{2}\},$$
+
+com
+
+$$0,025 =P(Q<\chi_{1}|Q\sim\chi_{15}^{2})\quad\text{e}\quad 0,025=P(Q> \chi_{2}|Q\sim\chi_{15}^{2})$$ 
+
+## Exemplo
+<hr>
+<br/>
+
+
+Graficamente,
+
+```{r, echo=FALSE, fig.height=6, fig.width=6, fig.align='center'}
+# Definindo os parâmetros
+df <- 15
+alpha <- 0.05
+chi1 <- qchisq(alpha/2, df)
+chi2 <- qchisq(1 - alpha/2, df)
+
+# Criando o gráfico
+plot(function(z) dchisq(z, df = df), 0, 40, col="black", ylab="", xlab="", xaxt="n", main="", axes=FALSE, ylim=c(-0.01, 0.1))
+abline(h=0, col="darkgray")
+segments(x0 = 0, y0 = 0, x1 = 0, y1 = dchisq(0, df=df), col="red", lty=2)
+
+# Área de rejeição à esquerda
+z <- seq(0, chi1, length.out=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dchisq(z, df=df)))
+polygon(yy, col="darkgray")
+text(chi1, -0.002, expression(chi[1]), cex=0.8)
+text(chi1/2, 0.01, "RC", cex=0.5)
+text(chi1/2, 0.03, expression(alpha/2==0.025), cex=0.7)
+arrows(x0=chi1/2, y0=0.025, x1=chi1/2, y1=0.01, length=0.1, angle=30)
+
+# Área de rejeição à direita
+z <- seq(chi2, 40, length.out=200)
+yy <- rbind(cbind(rev(z), 0), cbind(z, dchisq(z, df=df)))
+polygon(yy, col="darkgray")
+text(chi2, -0.002, expression(chi[2]), cex=0.8)
+text((chi2 + 40)/2, 0.01, "RC", cex=0.5)
+text((chi2 + 40)/2, 0.03, expression(alpha/2==0.025), cex=0.7)
+arrows(x0=(chi2 + 40)/2, y0=0.025, x1=(chi2 + 40)/2, y1=0.01, length=0.1, angle=30)
+
+# Adicionando eixos
+axis(1, at=c(0, chi1, chi2, 40), labels=c(0, expression(chi[1]), expression(chi[2]), ""))
+axis(2)
+```
+
+
+
+## Exemplo
+<hr>
+<br/>
+
+
+**Passo 2:** $Q=\frac{(n-1)S^{2}}{\sigma^{2}}\sim\chi_{15}^{2}$.
+
+**Passo 3:** Sob $H_{0}$, temos $Q=\frac{(n-1)S^{2}}{100}\sim\chi_{15}^{2}$. Fixando $\alpha=0,05$, temos que a região de rejeição deve ser tal que
+
+$$RC=\{Q\in\mathbb{R}_{+}:\ Q<\chi_{1}\ \text{ou}\ Q>\chi_{2}\},$$
+
+com
+
+$$0,025 =P(Q<\chi_{1}|Q\sim\chi_{15}^{2})\quad\text{e}\quad 0,025=P(Q> \chi_{2}|Q\sim\chi_{15}^{2})$$ $$\iff\quad\chi_{1}=6,262\quad\text{e}\quad\chi_{2}=27,488$$
+
+Portanto, a regra de decisão será: Rejeitar $H_{0}$ se $Q<6,262$ ou $Q>27,488$.
+
+**Passo 4:** $q_{o}=\frac{15\times 169}{100}=25,35$
+
+**Passo 5:** Como o valor observado $q_{o}=25,35$ não pertence a RC, então não rejeitamos $H_{0}$, ou seja, a máquina está sob controle quanto à variância.
+
+
+# Probabilidade de significância
+
+## Probabilidade de significância
+<hr>
+
+* Na construção de um teste de hipóteses, o nível de significância $\alpha$ é fixado.
+
+* Pode-se argumentar que esse procedimento pode levar à rejeição da hipótese nula para um valor de $\alpha$ e à não-rejeição para um valor menor.
+
+* Outra maneira de proceder consiste em apresentar a `probabilidade de significância`, `nível descritivo` ou `p-valor` do teste.
+
+* A principal diferença está em não construir a região crítica.
+
+* O que se faz é indicar a probabilidade de ocorrer valores da estatística mais extremos do que o observado, sob a hipótese de $H_0$ ser verdadeira.
+
+* Chamamos a estatística de teste de significante quando rejeitamos $H_0$.
+
+* O p-valor é o menor nível $\alpha$ em que a estatística é significante.
+
+* Pode determinar quão significante os dados são:
+
+  - p-valor pequeno (p-valor $<\alpha$) $\rightarrow$ muito provável que $H_0$ é falsa.
+  - p-valor grande (p-valor $>\alpha$) $\rightarrow$ muito provável que $H_0$ é verdadeira.
+
+## Probabilidade de significância - Teste para a média
+<hr>
+<br/>
+
+Para hipóteses unilaterais, em que $H_{0}:\mu=\mu_{0}$, temos:
+
+$$
+\begin{array}{cc}
+\text{p-valor}=P(\bar{X}<\bar{X}_{obs}\mid H_{0} \ \text{verdade}), & (H_{1}:\mu<\mu_{0})\\
+\text{p-valor}=P(\bar{X}>\bar{X}_{obs}\mid H_{0} \ \text{verdade}), & (H_{1}:\mu>\mu_{0})\\
+\end{array}
+$$
+
+Para hipótese bilateral, em que $H_{0}:\mu=\mu_{0}$ e $H_{1}:\mu\neq\mu_{0}$, temos:
+
+$$
+\text{p-valor}=2*P(\bar{X}<\bar{X}_{obs}\mid H_{0} \ \text{verdade}),
+$$
+
+ou
+
+$$
+\text{p-valor}=2*P(\bar{X}>\bar{X}_{obs}\mid H_{0} \ \text{verdade}).
+$$
+
+## Probabilidade de significância - Teste para a média
+<hr>
+
+
+Graficamente,
+
+```{r, echo=FALSE, fig.height=7, fig.width=7, fig.align='center'}
+plot(function(x) dnorm(x) ,xlim=c(-4, 4), ylim=c(-0.05, 0.45),main="", xlab="Média Amostral", ylab="", lwd=1, col="black", axes=FALSE,xaxt="n")
+
+x <- seq(-4, -1.64, l=200)
+y <- rbind(cbind(rev(x), -0), cbind(x, dnorm(x, mean=0, sd=1)))
+polygon(y, col="lightgreen")
+
+x <- seq(-4, -1.96, l=200)
+y <- rbind(cbind(rev(x), -0), cbind(x, dnorm(x, mean=0, sd=1)))
+polygon(y, col="lightblue")
+
+segments(x0=-1.96 , y0=0, x1=-1.96, y1=dnorm(-1.96))
+segments(x0=-1.64 , y0=0, x1=-1.64, y1=dnorm(-1.64))
+segments(x0=0 , y0=0, y1=dnorm(0))
+abline(h=0, col="lightgray")
+
+text( 0.5, 0.42, expression(H[0]))
+text( 0, -0.02, expression(mu[0]))
+text( -1.99, -0.02, expression(bar(x)[obs]))
+text( -1.60, -0.02, expression(x[1]))
+
+text( -3, dnorm(-1.64)+0.055, expression(paste(" Região de \n Rejeição de ", H[0])), cex = 0.8)
+arrows(x0=-3.2, y0=0.14, x1 = -1.9, y1 = 0.07, length = 0.1, angle = 30)
+text( -3, dnorm(-1.96)+0.01, "p-valor", cex = 0.8)
+arrows(x0=-3.2, y0=0.06, x1 = -2.9, y1 = 0.02, length = 0.1, angle = 30)
+```
+
+
+## Teste para a proporção - Exemplo
+<hr>
+
+
+Voltando ao exemplo 1, das anomalias em embriões, vamos obter a probabilidade da proporção amostral ser inferior à observada, supondo $H_0 :p=0.25$ verdadeira:
+
+A proporção amostral observada $\hat{p}_{obs}$ foi igual a $7/50=0.14$, logo,
+
+$$
+\text{p-valor}=P(\hat{p}<0.14\mid \hat{p}\sim N(0.25,0.0037))= P\left(Z<\dfrac{0.14-0.25}{\sqrt{0.0037}}\right)=0.0368.
+$$
+
+**Interpretação:** Como o $\text{p-valor}=0.0368$ é menor que $\alpha=0.05$, rejeitamos $H_{0}$. E dessa forma, temos indicativo de que a proporção de anomalias é menor que $0.25$.
+
+## Teste para a média com variância conhecida - Exemplo
+<hr>
+
+Voltando ao exemplo 2, o peso de pacotes de café, vamos obter a probabilidade da média amostral ser diferente da observada, supondo $H_0:\mu=500g$ verdadeira:
+
+A média amostral observada $\bar{X}_{obs}$ foi igual a $492g$, logo,
+
+$$
+\text{p-valor}=2*P(\bar{X}<492\mid \bar{X}\sim N(500,25))=2*P\left(Z<\dfrac{492-500}{\sqrt{25}}\right)=0.1151.
+$$
+
+ou
+
+$$
+\text{p-valor}=2*P(\bar{X}>492\mid \bar{X}\sim N(500,25))=2*P\left(Z>\dfrac{492-500}{\sqrt{25}}\right)=0.1151.
+$$
+
+**Interpretação:** Como o $\text{p-valor}=0.1151$ é maior que $\alpha=0.05$, não rejeitamos $H_{0}$. E dessa forma, temos indicativo de que a máquina está bem calibrada.
+
+## Testes de Hipótese vs Intervalo de Confiança
+<hr>
+<br/>
+
+* Estamos testando,
+
+$$
+H_0: \theta= \theta_0 \ vs\  H_1: \theta\neq \theta_0.
+$$
+
+- Seja $[l, u]$ um intervalo com confiança $100(1-\alpha)$% para $\theta$.
+- Se $\theta_0 \in [l, u]$ não rejeitamos $H_0$.
+- Se $\theta_0 \notin [l, u]$ rejeitamos $H_0$.
+
+## Exemplo:
+<hr>
+<br/>
+
+* No exemplo, da média das notas de novos alunos, o intervalo com 95% de confiança para a média é dada por
+
+$$
+IC(\mu, 95\%)=\bar{X}\pm t_{19}\dfrac{S}{\sqrt{n}}=118\pm 2.093\dfrac{20}{\sqrt{20}}=[108.63; 127.37].
+$$
+
+* A hipótese nula $H_{0}:\mu=115$, com $\mu_{0}=115$, observamos que $\mu_{0}$ pertence ao intervalo de confiança de 95\%.
+
+* logo, não rejeitamos $H_{0}$, e dessa forma, temos o indicativo de que a média das provas de uma nova turma seria igual às das anteriores.
+
+
+# Poder de um Teste
+
+## Poder de um Teste
+<hr>
+
+$$X\sim f(x|\theta)\;,\qquad\theta\in\Theta$$
+
+$$H_{0}:\theta\in\Theta_{0}\quad\text{contra}\quad H_{1}:\theta\in\Theta_{1}$$
+
+* Quando $\Theta_{0}=\{\theta_{0}\}$, ou seja, a hipótese $H_{0}$ especifica um único valor para o parâmetro, dizemos que $H_{0}$ é uma **hipótese simples**, caso contrário, quando a hipótese especifica vários valores para $\theta$, dizemos que a **hipótese** é **composta**.
+
+:::{#def-def3} 
+O **Poder do Teste** com região crítica RC para testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta=\theta_{1}$ é dado por
+
+$$\pi(\theta_{1})=P(\text{Rejeitar }H_{0}|H_{0}\;\text{é falsa})=P_{H_{1}}( \boldsymbol{X}\in RC)=P(\boldsymbol{X}\in RC|\theta=\theta_{1})$$
+:::
+
+**Observações:**
+
+i) $\pi(\theta_{1})=1-\beta$, onde $\beta=$ P(Erro II) = P(aceitar $H_{0}|H_{0}\;\text{é falsa})$ ;
+
+ii) Quando a hipótese alternativa $\hat{e}$ composta, não podemos calcular o valor de $\beta$, consequentemente, não obtemos o poder do teste. Neste caso, podemos construir uma **função poder** para o teste.
+
+## Exemplo
+<hr>
+
+
+**Exemplo:** Voltando ao Exemplo da máquina de café, a v.a. $X$ representava o peso dos pacotes de café, e assumimos que $X\sim N(\mu,400)$. Para testar se a máquina estava regulada ($H_{0}:\mu=500$) ou não ($H_{1}:\mu\neq 500$), construímos a seguinte $RC=\{\overline{x}<487,1\text{ ou }\overline{x}>512,9\}$. A probabilidade $\beta$ do erro tipo II não pode ser calculada, pois
+
+$$\beta =P(\text{aceitar }H_{0}|H_{0}\text{ é falsa})$$ 
+$$=P(487,1<\overline{X}<512,9|\overline{X}\sim N(\mu,400/16),\ \mu\neq 500)$$
+
+* Observe que o valor de $\beta$ depende do particular valor que $\mu$ pode assumir na hipótese alternativa, ou seja, $\beta=\beta(\mu)$. Por exemplo, se a máquina se desregular para $\mu=505$, teremos
+
+$$\beta(505) =P(487,1<\overline{X}<512,9|\overline{X}\sim N(505,400/16))$$ $=P(-3,58<Z<1,58)=0,9428.$
+
+## Exemplo
+
+* A função $\pi(\mu)=1-\beta(\mu)=P$(Rejeitar $H_{0}|H_{0}$ é falsa) é chamada a função poder do teste.
+
+* A Tabela 1 apresenta os valores de $\pi(\mu)$ e $\beta(\mu)$ para diversos valores de $\mu$.
+
+**Tabela 1**: Valores de $\pi(\mu)$ e $\beta(\mu)$
+
+| Valores de $\mu$ |  |  |  |
+|---|---|---|---|
+| à esquerda de 500 | à direita de 500 | $\pi(\mu)$ (em \%) | $\beta(\mu)$ (em \%) |
+| 500 | 500 | 1,0 | 99,0 |
+| 498 | 502 | 1,7 | 98,3 |
+| 495 | 505 | 5,7 | 94,3 |
+| 492 | 508 | 16,4 | 83,6 |
+| 490 | 510 | 28,1 | 71,9 |
+| 487 | 513 | 49,0 | 51,0 |
+| 485 | 515 | 66,3 | 34,7 |
+| 480 | 520 | 92,1 | 7,9 |
+| 475 | 525 | 99,2 | 0,8 |
+
+
+## Exemplo
+<hr>
+
+Observe que quanto maior for a distância entre o valor fixado em $H_{0}(\mu = 500)$ e o valor atribuído para a hipótese alternativa, maior será a probabilidade de tomar a decisão correta. As seguintes propriedades de $\pi(\mu)$ são facilmente verificadas:
+
+i) $\pi(-\infty) = \pi(+\infty) = 1$;
+
+ii) $\pi(500) = \alpha$
+
+iii) $\pi(\mu)$ decresce para $\mu < 500$ e cresce para $\mu > 500$.
+
+
+
+# [Testes para duas amostra ]{style="float:right;text-align:right;"} {background-color="#027eb6"}
+
+## Testes para duas amostra
+<hr>
+<br/>
+
+Existem uma série de testes de hipóteses, cada um com sua finalidade.
+
+Para duas amostra, temos alguns testes:
+
+* Teste para a comparação de médias com variância conhecida (Teste $Z$);
+* Teste para a comparação de médias com variância desconhecida (Teste t de **Student** comparação de grupos);
+* Teste para a comparação de variâncias;
+* Teste para comparação de amostras dependentes (Teste t de **Student** comparação de grupos pareado)
+
+
+
+# Teste para Comparação das médias
+
+## Teste para Comparação das médias
+<hr>
+<br/>
+
+* Queremos comparar:
+
+$$
+\begin{array}{ccl}
+&\times&(i) H_{1}:\mu_{1}\neq\mu_{2}. \text{(bilateral)}\\
+H_{0}: \mu_{1}=\mu_{2}&\times&(ii) H_{1}:\mu_{1}>\mu_{2}. \text{(Unilateral à direita)}\\
+&\times&(iii) H_{1}:\mu_{1}<\mu_{2}. \text{(Unilateral à esquerda)}
+\end{array}
+$$
+
+**CASO 1:** Mesma variância, conhecida. $(\sigma^{2}_{1}=\sigma^{2}_{2}=\sigma^{2}).$
+
+* Estatística para o teste:
+
+$$Z=\frac{\overline{X}-\overline{Y}-(\mu_{1}-\mu_{2})}{\sigma\sqrt{\frac{1}{n}+ \frac{1}{m}}}\sim N(0,1).$$
+
+
+
+
+## Exemplo
+<hr>
+
+**Exemplo:** Duas técnicas de venda são aplicadas por dois grupos de vendedores: a técnica A, por 12 vendedores, e a técnica B, por 15 vendedores. Espera-se que a técnica B produza melhores resultados. Suponha que as vendas para as duas técnicas seguem uma distribuição Normal, com média desconhecida e variância comum igual a 50. Com base nos dados apresentados na Tabela 1, teste ao nível de 5% se há diferenças significativas entre as vendas resultantes das duas técnicas.
+
+**Tabela 1:** Dados para duas técnicas de vendas
+
+| Medidas | Técnica A | Técnica B |
+|---|---|---|
+| Média | 68 | 76 |
+| Variância | 50 | 75 |
+| Vendedores | 12 | 15 |  
+
+
+## Exemplo
+<hr>
+
+**Passo 1:** $H_{0}:\mu_{A}=\mu_{B}$ contra $H_{1}:\mu_{A}<\mu_{B}$
+
+**Passo 2:**
+
+$$Z=\frac{\overline{X}_{A}-\overline{X}_{B}-(\mu_{A}-\mu_{B})}{\sigma\sqrt{ \frac{1}{n}+\frac{1}{m}}}\sim N(0,1)$$
+
+**Passo 3:** Sob $H_{0}$, temos $Z=\frac{\overline{X}_{A}-\overline{X}_{B}}{\sqrt{50}\sqrt{\frac{1}{n}+\frac{1}{ m}}}\sim N(0,1)$
+
+$$RC=\left\{Z\in\mathbb{R}:Z<z_{c}\right\},\text{ com }0,05=P(Z<z_{c}|Z\sim N(0,1))$$
+
+Assim, temos $z_{c}=-1,64$. E a regra de decisão é dada por
+
+$$\text{Rejeitar}\ \ H_{0}\ \ \text{se}\ \ Z<-1,64.$$
+
+## Exemplo
+<hr>
+
+**Passo 4:** O valor observado da estatística é
+
+$$z_{0}=\frac{68-76}{\sqrt{50}\sqrt{\frac{1}{12}+\frac{1}{15}}}=-2,92$$
+
+**Passo 5:** Como o valor observado de $Z$ pertence a RC, rejeitamos $H_{0}$, e concluímos que há evidências de que a técnica B é melhor que a técnica A.
+
+. . . 
+
+
+:::{.callout-note} 
+## Importante
+
+* Poderíamos construir um I.C. para a diferença $\theta=\mu_{A}-\mu_{B}$!!!
+* Em que:
+
+$$
+\text{IC}(\theta,\gamma) = \left( \overline{X}_A - \overline{X}_B \pm z_{\alpha/2} \sigma \sqrt{\frac{1}{n} + \frac{1}{m}} \right)
+$$
+:::
+
+
+
+## Teste para Comparação das médias
+<hr>
+<br/>
+
+**CASO 2:** Mesma variância, desconhecida.
+
+* Neste caso, a estatística para o teste:
+
+$$T=\frac{\overline{X}_{A}-\overline{X}_{B}-(\mu_{A}-\mu_{B})}{S_{p}\sqrt{\frac{1 }{n}+\frac{1}{m}}}\sim t_{n+m-2},$$
+
+onde
+
+$$S_{p}^{2}=\frac{(n-1)S_{A}^{2}+(m-1)S_{B}^{2}}{n+m-2}.$$
+
+* Este teste é conhecido como `teste t para duas amostras!`
+
+
+## Exemplo
+<hr>
+
+**Exemplo:** Suponha que no exemplo anterior as variâncias populacionais fossem iguais, mas seu valor comum $\sigma^{2}$ desconhecido. Repita o teste anterior.
+
+**Passo 1:** $H_{0}:\mu_{A}=\mu_{B}$ contra $H_{1}:\mu_{A}<\mu_{B}$
+
+**Passo 2:**
+
+$$T=\frac{\overline{X}_{A}-\overline{X}_{B}-(\mu_{A}-\mu_{B})}{S_{p}\sqrt{\frac{1 }{n}+\frac{1}{m}}}\sim t_{25}$$
+
+**Passo 3:** Sob $H_{0}$, temos $T=\frac{\overline{X}_{A}-\overline{X}_{B}}{S_{p}\sqrt{\frac{1}{n}+\frac{1}{m}}} \sim t_{25}$
+
+
+$$RC=\{T\in\mathbb{R}:T<t_{c}\}\,,\text{ com }0,05=P(T<t_{c}|T\sim t_{25})$$
+
+
+. . .
+
+
+Assim, temos $t_{c}=-1,708$. E a regra de decisão é dada por: rejeitar $H_{0}$ se $T<-1,708$.
+
+## Exemplo
+<hr>
+<br/>
+
+**Passo 4:**
+
+$$S^{2}_{p}=\frac{11\times 50+14\times 75}{25}=64$$
+
+O valor observado da estatística é
+
+$$t_{0}=\frac{68-76}{\sqrt{64}\sqrt{\frac{1}{12}+\frac{1}{15}}}=-2,56$$
+
+**Passo  5:** Como o valor observado de $T$ pertence a RC, rejeitamos $H_{0}$, e concluímos que há evidências de que a técnica B é melhor que a técnica A.
+
+
+
+
+## Teste para Comparação das médias
+<hr>
+<br/>
+
+**CASO 3:** Variâncias desiguais e desconhecidas.
+
+* Pode-se provar que a estatística
+
+$$
+T = \frac{\overline{X}_A - \overline{X}_B - (\mu_A - \mu_B)}{\sqrt{\frac{S_A^2}{n} + \frac{S_B^2}{m}}},
+$$
+
+sob $H_0$, tem uma distribuição aproximadamente t-Student com graus de liberdade, dados aproximadamente por
+
+$$
+v = \frac{(x + y)^2}{\frac{x^2}{n - 1} + \frac{y^2}{m - 1}},
+$$
+
+com $x = \frac{S_A^2}{n}$ e $y = \frac{S_B^2}{m}$.
+
+* Este teste é conhecido como `Problema de Behrens-Fisher!`.
+
+
+## Exemplo
+<hr>
+<br/>
+
+**Exemplo:** Queremos testar as resistências de dois tipos de vigas de aço, A e B. Tomando-se $n = 15$ vigas do tipo A e $m = 20$ vigas do tipo B, obtemos os valores na Tabela 2. Admita que as variâncias da resistência para os dois tipos de viga não podem ser consideradas iguais. Compare as resistências médias dos dois tipos de viga ao nível de 5%.
+
+**Tabela 2:** Dados para os dois tipos de vigas de aço
+
+| Tipo | Média | Variância |
+|---|---|---|
+| A    | 70,5  | 81,6      |
+| B    | 84,3  | 161,5     |
+
+**Passo 1:** $H_0 : \mu_A = \mu_B$ contra $H_1 : \mu_A \neq \mu_B$
+
+**Passo 2:**
+
+$$T=\frac{\overline{X}_{A}-\overline{X}_{B}-(\mu_{A}-\mu_{B})}{\sqrt{\frac{S_{A }^{2}}{n}+\frac{S_{B}^{2}}{m}}}$$
+
+
+## Exemplo
+<hr>
+
+**Passo 3:** Sob $H_{0}$, temos $T=\frac{\overline{X}_{A}-\overline{X}_{B}}{\sqrt{\frac{S_{A}^{2}}{n}+\frac{S_{B}^ {2}}{m}}}\sim t_{v}$
+
+$$RC=\{T\in\mathbb{R}:T<t_{1}\text{ ou }T>t_{2}\},$$
+
+com
+
+$$0,025=P(T<t_{1}|T\sim t_{v})\quad\text{e}\quad 0,025=P(T>t_{2}|T\sim t_{v}).$$
+
+Agora,
+
+$$v=\frac{((81,6/15)+(161,5/20))^{2}}{(81,6/15)^{2}/14+(161,5/20)^{2}/19}=32,9 \simeq 33.$$
+
+. . . 
+
+
+Portanto,
+
+$$t_{1}=-2,0348\quad\text{e}\quad t_{2}=2,0348.$$
+
+E a regra de decisão é dada por: Rejeitar $H_{0}$ se $T<-2,0348$ ou $T>2,0348$.
+
+
+## Exemplo
+<hr>
+<br/>
+
+**Passo 4:** O valor observado da estatística é
+
+$$t_{0}=\frac{70,5-84,3}{\sqrt{\frac{81,6}{15}+\frac{161,5}{20}}}=-3,75.$$
+
+**Passo 5:** Como o valor observado de $T$ pertence a RC, rejeitamos $H_{0}$, e concluímos que há evidências de que os dois tipos de vigas têm resistências médias diferentes.
+
+
+
+# Teste para Comparação das Variâncias
+## Teste para Comparação das Variâncias
+<hr>
+<br/>
+
+$$H_{0}:\sigma^{2}_{1}=\sigma^{2}_{2}$$
+
+A estatística do teste será
+
+$$F=\frac{S^{2}_{1}/\sigma^{2}_{1}}{S^{2}_{2}/\sigma^{2}_{2}}\sim F_{n-1,m-1}$$
+
+. . . 
+
+**Exemplo:** Queremos verificar se duas máquinas produzem peças com a mesma homogeneidade quanto à resistência à tensão. Para isso, sorteamos duas amostras de seis peças de cada máquina, e obtivemos as seguintes resistências:
+
+* Máquina A: 145, 127, 136, 142, 141, 137
+
+* Máquina B: 143, 128, 132, 138, 142, 132
+
+
+## Exemplo
+<hr>
+<br/>
+
+**Passo 1:** $H_{0}:\sigma^{2}_{A}=\sigma^{2}_{B}$ contra $H_{1}:\sigma^{2}_{A}\neq\sigma^{2}_{B}$
+
+**Passo 2:**
+
+$$F=\frac{S^{2}_{A}/\sigma^{2}_{A}}{S^{2}_{B}/\sigma^{2}_{B}}\sim F_{5,5}$$
+
+**Passo 3:** Sob $H_{0}$, temos que $F=\frac{S^{2}_{A}}{S^{2}_{B}}\sim F_{5,5}$
+
+Fixando $\alpha=0,05$, a RC é dada por
+
+$$RC=\{F<F_{1}\text{ ou }F>F_{2}\},$$
+
+com $F_{1}$ e $F_{2}$ tais que
+
+$$0,025=P(F<F_{1}|F\sim F_{5,5})\quad\text{e}\quad 0,025=P(F>F_{2}|F\sim F_{5,5})$$
+
+
+## Exemplo
+<hr>
+<br/>
+
+Temos então, $F_{2}=7,15$ e $F_{1}=1/7,15=0,14$. Assim, a regra de decisão é: 
+
+$$\text{Rejeitar}\ \ H_{0}\ \ \text{se}\ \  F<0,14\ \ \text{ou}\ \  F>7,15.$$
+
+**Passo 4:** Com os dados apresentados, temos $S^{2}_{A}=40$ e $S^{2}_{B}=37$. Portanto, o valor observado da estatística é $F_{o}=40/37=1,08$.
+
+**Passo 5:** Como o valor observado da estatística não pertence a RC, aceitamos $H_{0}$ e concluímos que as máquinas produzem com a mesma variabilidade.
+
+
+# Duas Populações Normais dependentes
+
+## Duas Populações Normais dependentes
+<hr>
+<br/>
+
+
+Aqui temos duas amostras $X_{1},X_{2},\cdots,X_{n}$ e $Y_{1},Y_{2},\cdots,Y_{n}$, só que agora as observações são pareadas, isto é, temos uma amostra de pares
+
+$$(X_{1},Y_{1}),(X_{2},Y_{2}),\cdots,(X_{n},Y_{n})$$
+
+Se definirmos a v.a. $D=X-Y$, teremos uma amostra $D_{1},D_{2},\cdots,D_{n}$, resultante da diferença dos valores entre cada par. Reduzimos o problema de duas populações a um problema de uma única população, já visto anteriormente. Assim,
+
+$$\overline{D}=\frac{1}{n}\sum_{i=1}^{n}D_{i}=\frac{1}{n}\sum_{i=1}^{n}(X_{i}-Y_{i })=\frac{1}{n}\sum_{i=1}^{n}X_{i}-\frac{1}{n}\sum_{i=1}^{n}Y_{i}=\overline{X}- \overline{Y}$$
+
+terá distribuição $N(\mu_{D},\sigma^{2}_{D}/n)$. 
+
+## Duas Populações Normais dependentes :
+<hr>
+<br/>
+
+Considerando
+
+$$S^{2}_{D}=\frac{1}{n-1}\sum_{i=1}^{n}(D_{i}-\overline{D})^{2},$$
+
+temos que
+
+$$T=\frac{\sqrt{n}(\overline{D}-\mu_{D})}{S_{D}}\sim t_{n-1}$$
+
+Como $\mu_{D}=E(D)=E(X-Y)=E(X)-E(Y)=\mu_{1}-\mu_{2}$, testar $H_{0}:\mu_{D}=0$ é equivalente a testar $H_{0}:\mu_{1}=\mu_{2}$.
+
+
+## Exemplo
+<hr>
+<br/>
+
+**Exemplo**: Cinco operadores de certo tipo de máquina são treinados em máquinas de duas marcas diferentes, A e B. Mediu-se o tempo em que cada um deles gasta na realização de uma mesma tarefa, e os resultados estão na tabela a seguir.
+
+| Operador | Marca A | Marca B |
+|:---:|:---:|:---:|
+| A | 80 | 75 |
+| B | 72 | 70 |
+| C | 65 | 60 |
+| D | 78 | 72 |
+| E | 85 | 78 |
+
+Ao nível de significância de $10\%$, poderíamos afirmar que a tarefa realizada na Máquina A demora mais que na Máquina B?
+
+## Exemplo
+<hr>
+
+
+**Passo 1:**
+
+$$H_{0}:\mu_{A}=\mu_{B}\times H_{1}:\mu_{A}>\mu_{B}$$
+
+Essas hipóteses são equivalentes a
+
+$$H_{0}:\mu_{D}=0 \times H_{1}:\mu_{D}>0$$
+
+**Passo 2:**
+
+$$T=\frac{\sqrt{n}(\overline{D}-\mu_{D})}{S_{D}}\sim t_{4}$$
+
+**Passo 3:** Como é o mesmo operador que realiza a tarefa nas duas máquinas, dizemos que as variáveis são emparelhadas. Sob $H_{0}$, temos $T=\frac{\sqrt{n}\overline{D}}{S_{D}}\sim t_{4}$. Assim, com $\alpha=0,10$, temos
+
+$$P(T>t_{c}|T\sim t_{4})=0,10.$$
+
+. . .
+
+Portanto, $t_{c}=1,533$, logo, a regra de decisão é: Rejeitar $H_{0}$ se $T>1,533$.
+
+## Exemplo
+<hr>
+
+
+**Passo 4:** Da Tabela de dados acima, obtemos os valores de $D$:
+
+$$d_{i}:\quad 5,2,5,6,7$$
+
+e, portanto,
+
+$$\overline{d}=5,\quad\text{e}\quad s_{D}^{2}=3,5$$
+
+Logo, o valor observado da estatística $\hat{e}$
+
+$$t_{o}=(\sqrt{5}\times 5)/\sqrt{3,5}=5,98$$
+
+**Passo 5:** Como o valor observado pertence a RC, rejeitamos $H_{0}$, ou seja, demora-se mais para realizar a tarefa na máquina A.
+
+. . .
+
+Podemos construir um I.C. para $\mu_{D}$, adotando $\gamma=0,90$ :
+
+$$IC(\mu_{D};90\%)=\bar{D}\pm t_{\alpha/2}\times\sqrt{s_{D}^{2}}/\sqrt{n}$$
+
+. . .
+
+$$IC(\mu_{D};90\%) = 5\pm 1,78=[3,22\; ;\;6,78]$$
+# [Testes mais poderosos]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Testes mais poderosos
+<hr>
+
+> Hipótese Nula Simples contra Alternativa Simples
+
+$$H_0 : \theta = \theta_0 \quad \text{contra} \quad H_1 : \theta = \theta_1$$
+
+* Fixado o valor de $\alpha$, a probabilidade do erro tipo I, vamos procurar a região crítica $RC$ que tenha o menor valor de $\beta$, ou seja, tenha maior poder dentre todos os testes com nível menor ou igual a $\alpha$. 
+
+* No caso discreto, temos
+
+$$\alpha = P_{H_0}(X \in RC) = \sum_{\boldsymbol{x} \in RC} f(\boldsymbol{x}|\theta_0) \quad \text{e} \quad \beta = \sum_{\boldsymbol{x} \in \overline{RC}} f(\boldsymbol{x}|\theta_1),$$
+
+onde $\overline{RC}$ é o conjunto complementar de $RC$.
+
+
+
+## Testes mais poderosos
+<hr>
+
+:::{#exm-exm1}
+Suponha que queremos testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta=\theta_{1}$, com base em uma única observação da v.a. $X$, com f.p. dada na tabela abaixo.
+:::
+
+
+| $X$ | 0 | 1 | 2 | 3 | 4 | 5 |
+|------|---|---|---|---|---|---|
+| $f(x|\theta_{0})$ | 0,02 | 0,03 | 0,05 | 0,05 | 0,35 | 0,50 |
+| $f(x|\theta_{1})$ | 0,04 | 0,05 | 0,08 | 0,12 | 0,41 | 0,30 |
+
+* Fixando $\alpha=0,05$, vamos procurar a RC que fornece o teste mais poderoso. 
+
+* A Tabela 3 apresenta as possíveis RC para $\alpha=0,05$, com os respectivos valores de $\beta=P$ (Erro tipo II).
+
+
+| $RC$      | $\alpha$ | $\overline{RC}$    | $\beta$ |
+|-----------|----------|--------------------|---------|
+| $\{0,1\}$ | 0,05     | $\{2,3,4,5\}$      | 0,91    |
+| $\{2\}$   | 0,05     | $\{0,1,3,4,5\}$    | 0,92    |
+| $\{3\}$   | 0,05     | $\{0,1,2,4,5\}$    | 0,88    |
+
+Portanto, o teste MP (que tem o menor $\beta$) é dado pela $RC=\{3\}$.
+
+
+
+
+## Testes mais poderosos
+<hr>
+
+:::{#lem-lem1} 
+O teste que minimiza uma combinação linear dos erros, do tipo $a\alpha+b\beta$, é dado pela seguinte região crítica:
+:::
+
+$$RC^{*}=\left\{\boldsymbol{x}:\frac{L_{1}(\boldsymbol{x})}{L_{0}(\boldsymbol{x})}\geq\frac{a}{b}\right\}$$
+
+onde $a$ e $b$ são conhecidos (com $b>0$) e
+
+$$L_{1}(\boldsymbol{x})=\prod_{i=1}^{n}f(x_{i}|\theta_{1}) \qquad L_{0}(\boldsymbol{x})=\prod_{i=1}^{n}f(x_{i}|\theta_{0})$$
+
+*(Demonstração na pg. 95 do livro de Bolfarine & Sandoval)*
+
+
+## Testes mais poderosos
+<hr>
+
+:::{#lem-lem2}  
+## Lema de Neyman-Pearson
+
+Considere o teste com região crítica dada por
+:::
+
+$$RC^{*}=\left\{\boldsymbol{x}:\frac{L_{1}(\boldsymbol{x})}{L_{0}(\boldsymbol{x})}\geq k\right\}$$
+
+Então, $RC^{*}$ é a melhor região crítica de nível $\alpha=\alpha(RC^{*})$ para testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta=\theta_{1}$, isto é, $\beta(RC^{*})\leq\beta(RC)$ para qualquer outro teste $RC$ com $\alpha(RC)\leq\alpha$.
+
+*(Demonstração na pg. 96 do livro de Bolfarine & Sandoval)*
+
+. . . 
+
+:::{.callout-note}
+## Observações:
+
+1. $L_{0}(\boldsymbol{x})$ é a função de verossimilhança sob $H_{0}$ e representa a evidência trazida pelos dados em favor de $H_{0}$;
+
+2. $L_{1}(\boldsymbol{x})$ é a função de verossimilhança sob $H_{1}$ e representa a evidência trazida pelos dados em favor de $H_{1}$;
+
+3. O teste apresentado no Lema 2 é o teste MP de nível $\alpha$ para testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta=\theta_{1}$. Este teste rejeita $H_{0}$ quando a evidência em favor de $H_{1}$ é maior que a evidência em favor de $H_{0}$.
+
+:::
+
+
+
+
+## Testes mais poderosos
+<hr>
+
+
+:::{#exm-exm2} 
+Seja $X_{1},\cdots,X_{n}$ uma a.a. de $X\sim N(\mu,1)$. Obtenha o teste MP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu=1$.
+:::
+
+* A função de verossimilhança é dada por
+
+$$L(\mu,\boldsymbol{x})=\left(\frac{1}{\sqrt{2\pi}}\right)^{n}e^{-\sum_{i=1}^{n} \frac{(x_i-1)^{2}}{2}}.$$
+
+* Sob $H_{1}$ e sob $H_{0}$, temos respectivamente
+
+$$L_{1}(\boldsymbol{x})=\left(\frac{1}{\sqrt{2\pi}}\right)^{n}e^{-\sum_{i=1}^{n} \frac{(x_i-1)^{2}}{2}} \quad\text{e}\quad L_{0}(\boldsymbol{x})=\left(\frac{1}{\sqrt{2\pi}}\right)^{n}e^{-\sum_{i=1}^{n}\frac{x_i^{2}}{2}}.$$
+
+* Portanto, o teste MP rejeita $H_{0}$ se
+
+$$\frac{L_{1}(\boldsymbol{x})}{L_{0}(\boldsymbol{x})}=e^{\sum_{i=1}^{n}x_i-\frac{n}{2}} \geq k$$
+
+
+## Testes mais poderosos
+<hr>
+
+* Ou seja, se
+
+$$\sum_{i=1}^{n}x_i \geq \log k+\frac{n}{2}=c.$$
+
+* Portanto, a RC do teste MP é dada por
+
+$$RC=\left\{\sum_{i=1}^{n}X_i \geq c\right\}.$$
+
+* Assim, se tomarmos $\alpha=0,05$ e $n=9$, temos:
+
+$$0,05=P_{H_0}\left(\sum_{i=1}^{9}X_i \geq c\right).$$
+
+
+## Testes mais poderosos
+<hr>
+
+* Agora, sob $H_0 : \mu = 0$, temos que $\sum_{i=1}^n X_i \sim N(0,9)$, logo
+
+$$0,05 = P_{H_{0}}\left(\sum_{i=1}^{n}X_{i}\geq c\right) = P\left(Z\geq\frac{c-0}{3}\right),$$
+
+e temos que
+
+$$\frac{c}{3} = 1,64 \quad\Longleftrightarrow\quad c = 4,92$$
+
+* Portanto, o teste MP consiste em rejeitar $H_{0}$ se $\sum_{i=1}^{n}X_{i}\geq 4,92$. Associado a esta RC podemos calcular o valor de $\beta = P(\text{aceitar }H_{0}|H_{1}\text{ é verdadeira})$:
+
+$$\beta = P_{H_{1}}\left(\sum_{i=1}^{n}X_{i} < 4,92\right) = P\left(Z < \frac{4,92-9}{3}\right) = P(Z < -1,36) = 0,09.$$
+
+* O poder do teste é dado por $\pi = 1-\beta = 0,91.
+
+
+
+
+
+
+## Testes mais poderosos
+<hr>
+
+:::{#exm-exm3}  
+Seja $X_{1},\cdots,X_{n}$ uma a.a. de $X\sim N(\mu,\sigma^{2})$, onde $\mu$ é conhecido. Obtenha o teste MP para testar $H_{0}:\sigma^{2}=\sigma_{0}^{2}$ contra $H_{1}:\sigma^{2}=\sigma_{1}^{2}$, com $\sigma_{1}^{2}>\sigma_{0}^{2}$.
+:::
+
+* Portanto, o teste MP rejeita $H_{0}$ se
+
+$$\frac{L_{1}(\textbf{x})}{L_{0}(\textbf{x})}=\left(\frac{\sigma_{0}}{\sigma_{1}}\right)^{n}e^{\left(\frac{1}{2\sigma_{0}^{2}}-\frac{1}{2\sigma_{1}^{2}}\right)\sum_{l=1}^{n}(x_{l}-\mu)^{2}} \geq k$$
+
+* Ou seja, se
+
+$$e^{\left(\frac{1}{2\sigma_{0}^{2}}-\frac{1}{2\sigma_{1}^{2}}\right)\sum_{l=1}^{n}(x_{l}-\mu)^{2}} \geq k\left(\frac{\sigma_{1}}{\sigma_{0}}\right)^{n}$$
+
+## Testes mais poderosos
+<hr>
+
+ou, equivalentemente, se
+
+$$\sum_{i=1}^{n}(x_{i}-\mu)^{2} \geq \frac{\log\left[k\left(\frac{\sigma_{1}}{\sigma_{0}}\right)^{n}\right]}{\left(\frac{1}{2\sigma_{0}^{2}}-\frac{1}{2\sigma_{1}^{2}}\right)}=c.$$
+
+* Portanto, a RC do teste MP é dada por
+
+$$RC=\left\{\sum_{i=1}^{n}(X_{i}-\mu)^{2} \geq c\right\}$$
+
+* Fixado o valor de $\alpha$ e usando o fato de que sob $H_{0}$ temos
+
+$$\sum_{i=1}^{n}\frac{(X_{i}-\mu)^{2}}{\sigma_{0}^{2}} \sim \chi_{n}^{2},$$
+
+podemos facilmente obter o valor de $c$.
+
+
+
+# [Testes Uniformemente Mais Poderosos (UMP)]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+> Caso I: Hipótese Nula Simples contra Alternativa Composta
+
+$$H_{0}:\theta=\theta_{0} \quad \text{contra} \quad H_{1}:\theta\in\Theta_{1}$$
+
+:::{#def-def4} 
+Um teste com região crítica $RC^{*}$ é dito ser UMP para testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta\in\Theta_{1}$, se ele é MP de nível $\alpha$ para testar $H_{0}:\theta=\theta_{0}$ contra $H_{1}:\theta=\theta_{1}$, qualquer que seja $\theta_{1}\in\Theta_{1}$.
+:::
+
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+
+:::{#exm-exm5}
+Seja $X_{1},\cdots,X_{n}$ uma a.a. de $X\sim N(\mu,1)$. Obtenha o teste UMP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu>0$.
+:::
+
+* Vamos inicialmente obter o teste MP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu=\mu_{1} (\mu_{1}>0)$. 
+
+* Assim, o teste MP rejeita $H_{0}$ se
+
+$$\frac{L_{1}(x)}{L_{0}(x)} = e^{\mu_{1}\sum_{l=1}^{n}x_{l}-\frac{n\mu_{1}^{2}}{2}} \geq k$$
+
+* Ou seja, se
+
+$$\sum_{i=1}^{n}x_{i} \geq \frac{1}{\mu_{1}}\left(\log k + \frac{n\mu_{1}^{2}}{2}\right) = c.$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+* Como a região crítica do teste MP não depende do particular $\mu_{1}$ especificado em $H_{1}$, ela também será a RC do teste UMP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu>0$:
+
+$$RC = \left\{\sum_{i=1}^{n}X_{i} \geq c\right\}.$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+:::{#exm-exm6} 
+Seja $X_1, \cdots, X_n$ uma a.a. de $X \sim N(\mu, 1)$. Obtenha o teste UMP para testar $H_0 : \mu = 0$ contra $H_1 : \mu \neq 0$.
+:::
+
+* Vimos no @exm-exm2 que o teste MP para testar $H_0 : \mu = 0$ contra $H_1 : \mu = 1$ é dado pela seguinte região crítica:
+
+$$RC = \left\{\sum_{i=1}^n X_i \geq c\right\}$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+
+* Agora, vamos obter a RC do teste MP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu=-1$. O teste MP consiste em rejeitar $H_{0}$ se
+
+$$\frac{L_{1}(\boldsymbol{x})}{L_{0}(\boldsymbol{x})} = \frac{\left(\frac{1}{\sqrt{2\pi}}\right)^{n}e^{-\sum_{i=1}^{n}\frac{(x_{i}+1)^{2}}{2}}}{\left(\frac{1}{\sqrt{2\pi}}\right)^{n}e^{-\sum_{i=1}^{n}\frac{x_{i}^{2}}{2}}} = e^{-\sum_{i=1}^{n}x_{i}-\frac{n}{2}} \geq k$$
+
+* Ou seja, se
+
+$$\sum_{i=1}^{n}x_{i} \leq -\left(\log k + \frac{n}{2}\right) = c_{1}.$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+* Portanto, temos
+
+$$RC = \left\{\sum_{i=1}^{n}X_{i} \leq c_{1}\right\}.$$
+
+* Vemos então que a RC do teste MP depende do particular valor de $\mu$ que tomarmos na hipótese alternativa. 
+
+* Concluímos, portanto, que não existe teste UMP para testar $H_{0}:\mu=0$ contra $H_{1}:\mu\neq 0$.
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+
+> Caso II: Hipóteses Compostas
+
+$$H_0 : \theta \in \Theta_0 \quad \text{contra} \quad H_1 : \theta \in \Theta_1$$
+
+:::{#thm-thm1} 
+No caso em que $X_1, \cdots, X_n$ seguem uma distribuição da família exponencial, temos que o teste UMP para testar $H_0 : \theta = \theta_0$ contra $H_1 : \theta > \theta_0$ é também UMP para testar $H_0 : \theta \leq \theta_0$ contra $H_1 : \theta > \theta_0$. Também o teste UMP para testar $H_0 : \theta = \theta_0$ contra $H_1 : \theta < \theta_0$ é UMP para testar $H_0 : \theta \geq \theta_0$ contra $H_1 : \theta < \theta_0$.
+:::
+
+<br/>
+
+:::{#exm-exm7}
+Seja $X_1, \cdots, X_n$ uma a.a. de $X \sim N(\mu, 1)$. De acordo com o Teorema 1, temos do exemplo 10 que o teste UMP para testar $H_0 : \mu \leq 0$ contra $H_1 : \mu > 0$ tem região crítica dada por
+:::
+
+$$RC = \left\{\sum_{i=1}^n X_i \geq c\right\}.$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+
+
+:::{#exm-exm8} 
+Seja $X_1, \cdots, X_n$ uma a.a. de $X \sim \text{Bernoulli}(\theta)$. Obtenha o teste UMP para testar $H_0 : \theta \geq 0,5$ contra $H_1 : \theta < 0,5$.
+:::
+
+* Vamos, inicialmente, obter o teste MP para testar $H_0 : \theta = 0,5$ contra $H_1 : \theta = \theta_1, \theta_1 < 0,5$. Pelo Lema 2, temos que o teste MP rejeita $H_0$ se
+
+$$\frac{L_1(\boldsymbol{x})}{L_0(\boldsymbol{x})} = \frac{\theta_1^{\sum_{i=1}^n x_i} (1 - \theta_1)^{n-\sum_{i=1}^n x_i}}{0,5^{\sum_{i=1}^n x_i} 0,5^{n-\sum_{i=1}^n x_i}} = \left( \frac{\theta_1}{1 - \theta_1} \right)^{\sum_{i=1}^n x_i} \left( \frac{1 - \theta_1}{0,5} \right)^n \geq k$$
+
+ou seja, se
+
+$$\left( \frac{\theta_1}{1 - \theta_1} \right)^{\sum_{i=1}^n x_i} \geq k \left( \frac{0,5}{1 - \theta_1} \right)^n.$$
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+* Aplicando logaritmo em ambos os lados da desigualdade, temos que o teste MP rejeita $H_0$ se
+
+$$(\sum_{i=1}^n x_i) \log \left( \frac{\theta_1}{1 - \theta_1} \right) \geq \log \left[ k \left( \frac{0,5}{1 - \theta_1} \right)^n \right]$$
+
+* Agora, como $\theta_1 < 0,5$, então $\left( \frac{\theta_1}{1 - \theta_1} \right) < 1$. Logo, $\log \left( \frac{\theta_1}{1 - \theta_1} \right) < 0$. Portanto, o teste MP rejeita $H_0$ se
+
+$$\sum_{i=1}^n x_i \leq \frac{\log \left[ k \left( \frac{0,5}{1 - \theta_1} \right)^n \right]}{\log \left( \frac{\theta_1}{1 - \theta_1} \right)} = c$$
+
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+* Como o teste MP não depende do particular valor de $\theta_{1}$, pela Definição 1 este teste é UMP para testar $H_0 : \theta = 0,5$ contra $H_1 : \theta < 0,5$. E pelo Teorema 1 ele será UMP para testar $H_0 : \theta \geq 0,5$ contra $H_1 : \theta < 0,5$:
+
+$$RC = \left\{\sum_{i=1}^{n} X_i \leq c\right\}.$$
+
+* Se tomarmos $\alpha = 0,055$ e $n = 10$, temos que
+
+$$\alpha = P_{H_0}\left(\sum_{i=1}^{n} X_i \leq c\right).$$
+
+## Testes Uniformemente Mais Poderosos (UMP)
+<hr>
+
+* Sob $H_0$, temos que $\sum_{i=1}^{n} X_i \sim Binomial(10; \, 0,5)$, logo
+
+$$0,055 = P_{H_0}\left(\sum_{i=1}^{n} X_i \leq c\right) \iff c = 2.$$
+
+* Portanto, a RC do teste UMP para testar $H_0 : \theta \geq 0,5$ contra $H_1 : \theta < 0,5$, ao nível $\alpha = 0,055$ é dada por
+
+$$RC = \left\{\sum_{i=1}^{n} X_i \leq 2\right\}.$$
+
+
+# [Função poder]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Função Poder
+<hr>
+
+:::{#def-def4} 
+A função de poder $\pi(\theta)$ com região crítica $RC$ para testar $H_0 : \theta = \theta_0$ contra $H_1 : \theta \in \Theta_1$ é dada por 
+
+$$\pi(\theta) = P_\theta [X \in RC],$$
+
+ou seja, é a probabilidade de rejeitar $H_0$ para $\theta \in \Theta$. Notemos que $\pi(\theta_0) = \alpha$.
+
+:::
+
+:::{#exm-exm7}
+Sejam $X_1, \ldots, X_n$, uma amostra aleatória de tamanho $n$ da distribuição $N(\mu, 1)$. 
+:::
+* Consideremos o problema de testar $H_0 : \mu = 0$ contra $H_1 : \mu > 0$. 
+
+* Conforme visto, a região crítica do teste U.M.P. é dada por $RC = \{x; \sum_{i=1}^n x_i \geq c\}$. 
+
+* Sendo $n = 9$ e $\alpha = 0,05$, temos que $c = 1,64\sqrt{9} = 4,92$, de modo que $RC = \{x; \sum_{i=1}^n x_i \geq 4,92\}$. A função de poder é, então, dada por
+
+
+$$\pi(\mu) = P_\mu \left[ \sum_{i=1}^9 X_i \geq 4,92 \right] = 1 - \Phi \left( \frac{4,92 - 9\mu}{3} \right),$$
+
+onde $\Phi(\cdot)$ denota a função de distribuição acumulada da distribuição $N(0, 1)$. 
+
+
+
+## Função Poder
+<hr>
+
+
+:::columns
+::::column
+* Então,
+
+$$\pi(0,3) = 1 - \Phi(0,74) = 1 - 0,77 = 0,23.$$
+
+De modo similar, 
+
+* $\pi(0,5) = 1 - \Phi(0,14) = 0,44$;
+
+* $\pi(1,0) = 0,91$;
+
+* $\pi(0,0)=0,05=\alpha$.
+
+::::
+::::column
+
+```{r, fig.height=8, fig.width=8}
+
+pimu <- function(mu){ return(1-pnorm(((4.92-9*mu)/3))) }
+
+mu <- seq(-0.2,1.7, length.out=1000)
+y <- pimu(mu)
+plot(mu, y, type="l", ylab=expression(pi(mu)), xlab=expression(mu), cex=1.2)
+abline(h = 1, lty=2)
+
+```
+
+
+::::
+:::
+
+
+# [Testes da Razão de Verossimilhanças Generalizadas]{style="float:right;text-align:right;"} {background-color="#00008B"}
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Vimos que os testes UMP existem apenas em situações especiais.
+
+* Essas situações compreendem o caso das famílias exponenciais unidimensionais.
+
+* Vimos também que, em geral, não existem testes UMP para testar $H_{0}:\theta=\theta_{0}$ versus $H_{1}:\theta\neq\theta_{0}$.
+
+* Também não existe teste UMP na maioria dos casos em que a distribuição envolve mais de um parâmetro desconhecido como, por exemplo, a $N(\mu,\sigma^{2})$ com $\mu$ e $\sigma^{2}$ desconhecidos.
+
+* Um procedimento que produz testes razoáveis e que pode ser utilizado em muitos casos, sem muita dificuldade, é o Teste da Razão de Verossimilhanças Generalizada (TRVG).
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Consideremos uma situação bastante geral onde as hipóteses de interesse são
+
+$$H_{0}:\theta\in\Theta_{0}\quad\text{versus}\quad H_{1}:\theta\in\Theta_{1}$$
+
+onde $\Theta=\Theta_{0}\cup\Theta_{1}$, $\Theta_{0}\cap\Theta_{1}=\emptyset$, $\Theta_{0}\neq\emptyset$ e $\Theta_{1}\neq\emptyset$.
+
+* O TRVG pode ser definido como o teste com região crítica dada por (ver Bickel e Doksum(1976))
+
+$$RC=\bigg{\{}\mathbf{x};\frac{\sup_{\theta\in\Theta_{1}}L(\theta; \mathbf{x})}{\sup_{\theta\in\Theta_{0}}L(\theta;\mathbf{x})}\geq c\bigg{\}}.$$
+
+* Podemos notar que, quando as hipóteses são simples, ou seja, $\Theta_{0}=\{\theta_{0}\}$ e $\Theta_{1}=\{\theta_{1}\}$, o TRVG coincide com o Lema de Neyma-Pearson.
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+Como
+
+$$\frac{\sup_{\theta\in\Theta}L(\theta;\mathbf{x})}{\sup_{\theta\in\Theta_{0}}L(\theta;\mathbf{x})}=\max\bigg{\{}1,\frac{\sup_{\theta\in\Theta_{1}}L(\theta;\mathbf{x})}{\sup_{\theta\in\Theta_{0}}L(\theta;\mathbf{x})}\bigg{\}}.$$
+
+Por facilidades computacionais o TRVG pode também ser definido como
+
+$$RC=\bigg{\{}\mathbf{x};\lambda(\mathbf{x})=\frac{\sup_{\theta\in\Theta_{0}}L(\theta;\mathbf{x})}{\sup_{\theta\in\Theta}L(\theta;\mathbf{x})}\leq c \bigg{\}}.$$
+
+Observemos que $0\leq\lambda(\mathbf{x})\leq 1$, pois o numerador é o supremo com relação a $\theta$ pertencente a um subconjunto de $\Theta$ ($\Theta_{0}\in\Theta$), enquanto que o denominador é o supremo sobre todo conjunto $\Theta$. 
+
+
+* Se a hipótese $H_{0}$ for verdadeira, esperamos que $\lambda(\mathbf{x})$ esteja `próximo` de $1$.
+
+* se a hipótese $H_{0}$ for falsa, esperamos que o denominador seja grande em relação ao numerador, e, portanto, $\lambda(\mathbf{x})$ deve ser `próximo` de zero.
+
+
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Para determinar $c$ temos que resolver a equação
+
+$$\alpha = \sup_{\theta\in\Theta_{0}} P(\lambda(\mathbf{X}) \leq c).$$
+
+* Para isso, precisamos da distribuição da estatística $\lambda(\mathbf{X})$ que, em geral, não é simples de ser obtida.
+
+* Ou podemos encontrar uma função $h$ estritamente crescente no domínio de $\lambda(\mathbf{x})$ tal que $h(\lambda(\mathbf{X}))$ tenha uma forma simples e uma distribuição conhecida e tabelada sob a hipótese $H_{0}$.
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+> Para implementação do TRVG, os seguintes passos devem ser seguidos:
+
+1. obter o estimador de máxima verossimilhança (EMV) $\hat{\theta}$ de $\theta$;  
+
+2. obter o EMV $\hat{\theta}_{0}$ de $\theta$, quando $\theta\in\Theta_{0}$;  
+
+3. calcular $\lambda(\mathbf{X}) = \frac{L(\hat{\theta}_{0};\mathbf{X})}{L(\hat{\theta};\mathbf{X})}$;  
+
+4. encontrar a função $h$;  
+
+5. obter $c$, resolvendo a equação $\alpha = P_{H_{0}}(h(\lambda(\mathbf{X})) \leq c)$.
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+:::{#exm-exm8} 
+Consideremos da $N(\mu, 1)$, mas agora o interesse é testar $H_{0}: \mu=\mu_{0}$ versus $H_{1}: \mu\neq\mu_{0}$. 
+:::
+
+
+* Vimos não existe teste UMP nesse caso. 
+
+* Pelo exemplo, temos que o EMV de $\mu$ é dado por $\hat{\mu}=\overline{X}$. 
+
+* Como a hipótese $H_{0}$ só especifica um único valor para $\mu$, o numerador de $\lambda(\mathbf{x})$ é $L(\mu_{0};\mathbf{x})$ de modo que
+
+$$\lambda(\mathbf{x}) = \frac{(2\pi)^{-n/2}\mathrm{e}^{-\frac{1}{2}\sum(x_{i}-\mu_{0})^{2}}}{(2\pi)^{-n/2}\mathrm{e}^{-\frac{1}{2}\sum(x_{i}-\overline{x})^{2}}} = \mathrm{e}^{-\frac{1}{2}\left[\sum(x_{i}-\mu_{0})^{2}-\sum(x_{i}-\overline{x})^{2}\right]}.$$
+
+* Podemos simplificar $\lambda(\mathbf{x})$ usando o fato de que
+
+$$\sum(x_{i}-\mu_{0})^{2} = \sum(x_{i}-\overline{x})^{2} + n(\overline{x}-\mu_{0})^{2}.$$
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Temos que o TRVG rejeita $H_{0}$ quando
+
+$$\mathrm{e}^{-\frac{n}{2}(\overline{x}-\mu_{0})^{2}} \leq c,$$
+
+que é equivalente a rejeitar $H_{0}$ quando
+
+$$|\overline{x}-\mu_{0}| \geq \sqrt{-2\log c/n}.$$
+
+* Portanto a região crítica do TRVG é dada por
+
+$$RC = \{\mathbf{x}; \sqrt{n}|\overline{x}-\mu_{0}| \geq a\}.$$
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+* Fixado $\alpha$, obtemos $a$ de forma que
+
+$$\alpha = P_{H_{0}}(\sqrt{n}|\overline{X}-\mu_{0}| \geq a)$$
+
+* Como sob $H_{0}$, $\sqrt{n}(\overline{X}-\mu_{0}) \sim N(0,1)$, temos que $a = z_{\alpha/2}$. 
+
+* Sendo $\alpha = 0,05$ temos que $RC = \{\mathbf{x}; \sqrt{n}|\overline{x}-\mu_{0}| \geq 1,96\}$. 
+
+
+* Considerando $\mu_{0} = 0$, $n = 9$, $\sum_{i=1}^{n}x_{i} = 3,4$, `não rejeitamos` $H_{0}$ pois $\sqrt{9}|3,4/9 - 0|= 1.33 < 1,96$. 
+
+
+
+* Nesse caso, a função de poder do teste é
+
+$$\pi(\mu) = P_{\mu}(\sqrt{n}|\overline{X}-\mu| \geq 1,96) = 1 - P(-1,96 - \sqrt{n}\mu \leq \sqrt{n}(\overline{X} - \mu) \leq 1,96 - \sqrt{n}\mu)$$
+
+$$= 1 - [\Phi(1,96 - \sqrt{n}\mu) - \Phi(-1,96 - \sqrt{n}\mu)],$$
+
+pois temos que $\sqrt{n}(\overline{X} - \mu) \sim N(0,1)$ quando $\mu$ é o verdadeiro valor do parâmetro. 
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+
+:::columns
+::::column
+
+* Notemos que $\pi(0) = 1 - P(-1,96 \leq Z \leq 1,96) = 0,05$
+
+* De maneira similar, $\pi(0,3) = \pi(-0,3) = 0,15$.
+
+
+::::
+::::column
+
+```{r, fig.height=8, fig.width=10}
+
+pimu <- function(mu, n){ 
+  
+  dif <- pnorm(1.96-sqrt(n)*mu) - pnorm(-1.96-sqrt(n)*mu)
+  return(1-dif) 
+}
+
+mu <- seq(-1.7,1.7, length.out=1000)
+y <- pimu(mu, n=9)
+plot(mu, y, type="l", ylab=expression(pi(mu)), xlab=expression(mu), cex=1.2)
+abline(h = 1, lty=2)
+
+```
+
+
+::::
+:::
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+
+:::{#exm-exm9} 
+Sejam $X_{1},\ldots,X_{n}$ uma amostra aleatória da variável aleatória $X\sim N(\mu,\sigma^{2})$ com $\mu$ e $\sigma^{2}$ desconhecidos. 
+
+* O interesse é testar $H_{0}:\mu=\mu_{0}$ versus $H_{1}:\mu\neq\mu_{0}$. 
+:::
+
+
+* Nesse caso,
+
+$$\lambda(\mathbf{x})=\frac{(2\pi)^{-n/2}(\hat{\sigma}_{0}^{2})^{-n/2}\mathrm{e}^{-\frac{1}{2\hat{\sigma}_{0}^{2}}}\sum(x_{i}-\mu_{0})^{2}}{(2\pi)^{-n/2}(\hat{\sigma}^{2})^{-n/2}\mathrm{e}^{-\frac{1}{2\hat{\sigma}^{2}}}\sum(x_{i}-\overline{x})^{2}}=\left(\frac{\hat{\sigma}^{2}}{\hat{\sigma}_{0}^{2}}\right)^{n/2}$$
+
+Usando $\sum(x_{i}-\mu_{0})^{2} = \sum(x_{i}-\overline{x})^{2} + n(\overline{x}-\mu_{0})^{2}.$, temos que o TRVG rejeita $H_{0}$ quando
+
+$$\left(\frac{1}{1+\frac{n(\overline{x}-\mu_{0})^{2}}{\sum(x_{i}-\overline{x})^{2}}}\right)^{n/2}\leq c$$
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+que é equivalente a rejeitar $H_{0}$ quando
+
+$$\frac{\sqrt{n}|\overline{x}-\mu_{0}|}{\sqrt{\frac{\sum(x_{i}-\overline{x})^{2}}{n-1}}}\geq\sqrt{(c^{-2/n}-1)(n-1)}$$
+
+
+
+
+* Portanto a região crítica do TRVG é dada por
+
+$$RC=\left\{\mathbf{x};\frac{\sqrt{n}|\overline{x}-\mu_{0}|}{s}\geq a\right\}$$
+
+onde $s^{2}=\frac{\sum(x_{i}-\overline{x})^{2}}{n-1}$. 
+
+
+* Sob a hipótese $H_{0}$, $\frac{\sqrt{n}(\overline{X}-\mu_{0})}{S}\sim t_{n-1}$.
+
+* Então, dado $\alpha=0,05$ e $n=9$ obtemos, usando a tabela da distribuição $t$ com $8$ graus de liberdade, $a=2,306$. 
+
+* Se $\mu_{0}=0$, $\overline{x}=0,68$ e $s=1,2$, então $\frac{\sqrt{n}(\overline{x}-\mu_{0})}{s}=1,7$ de modo que `não rejeitamos` $H_{0}$.
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+:::{#exm-exm10}  
+Consideremos novamente, $X_{1},\ldots,X_{n}$ uma amostra aleatória da variável aleatória $X\sim N(\mu,\sigma^{2})$ com $\mu$ e $\sigma^{2}$ desconhecidos, mas sendo que o interesse é testar $H_0 : \sigma^2 = \sigma_0^2$ versus $H_1 : \sigma^2 \neq \sigma_0^2$. Nesse caso,
+:::
+
+$$\Theta_0 = \{ (\mu, \sigma^2); -\infty < \mu < \infty, \sigma^2 = \sigma_0^2 \}$$
+
+e
+
+$$\Theta = \{ (\mu, \sigma^2), -\infty < \mu < \infty, \sigma^2 > 0 \}$$
+
+* Vimos que o EMV de $(\mu, \sigma^2)$ em $\Theta$ é dado por $\hat{\mu} = \overline{X}$ e $\hat{\sigma}^2 = \sum(X_i - \overline{X})^2/n$.
+
+* Enquanto que em $\Theta_0$ é dado por $\hat{\mu}_0 = \overline{X}$ e $\hat{\sigma}_0^2 = \sigma_0^2$. 
+
+
+* Logo, a estatística do TRVG é dada por
+
+$$\lambda(\mathbf{x}) = \frac{(2\pi)^{-n/2}(\sigma_0^2)^{-n/2}e^{-\frac{1}{2\sigma_0^2}\sum(x_i- \overline{x})^2}}{(2\pi)^{-n/2}(\hat{\sigma}^2)^{-n/2}e^{-\frac{1}{2\sigma^2}\sum(x_i- \overline{x})^2}} = \left(\frac{\hat{\sigma}^2}{\sigma_0^2}\right)^{n/2}e^{-\frac{1}{2\sigma_0^2}\sum(x_i- \overline{x})^2+n/2}.$$
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Então, temos que o TRVG rejeita $H_0$ quando
+
+$$\left(\frac{\sum(x_i - \overline{x})^2}{\sigma_0^2}\right)^{n/2}e^{-\frac{\sum(x_i - \overline{x})^2}{2\sigma_0^2}} \leq c.$$
+
+
+
+* Notemos que se $g(y)=y^{n/2}e^{-y/2},~y>0$ então a função $\log g(y)$ (e também $g(y)$) é crescente para $y<n$, atingindo o ponto de máximo em $y=n$ e é decrescente para $y>n$.
+
+* Logo $g(y)\leq c$ se e somente se $y\leq c_{1}$ ou $y\geq c_{2}$ com $g(c_{1})=g(c_{2})$. 
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+* Portanto o TRVG é equivalente a rejeitar $H_{0}$ quando
+
+$$\frac{\sum(x_{i}-\overline{x})^{2}}{\sigma_{0}^{2}}\leq c_{1}\quad\text{ou}\quad\frac{\sum(x_{i}-\overline{x})^{2}}{\sigma_{0}^{2}}\geq c_{2}.$$
+
+Sob a hipótese $H_{0}$, $\frac{\sum(X_{i}-\overline{X})^{2}}{\sigma_{0}^{2}}\sim\chi_{n-1}^{2}$ e, então, dado $\alpha=0,05$ e $n=9$ obtemos, usando a tabela da distribuição qui-quadrado com 8 graus de liberdade, $c_{1}=2,180$ e $c_{2}=17,534$ se considerarmos, como na Seção 5.2, probabilidades iguais para as duas caudas.
+
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+* Como mencionado anteriormente, a forma e a distribuição de $\lambda(\mathbf{X})$ po dem ser complicadas e nem sempre podemos encontrar uma função $h$ com distribuição conhecida. 
+
+
+* O Teorema a seguir fornece a distribuição assintótica da estatística do TRVG, resolvendo esse problema pelo menos para o caso de amostras grandes. 
+ 
+
+:::{#thm-thm2} 
+Sejam $X_{1},\ldots,X_{n}$ uma amostra aleatória da variável aleatória $X$ com f.d.p. $f(x|\theta)$. Sob as condições de regularidade, se $\theta\in\Theta_{0}$, então a distribuição da estatística $-2\log\lambda(\mathbf{X})$ converge para a distribuição qui-quadrado quando o tamanho da amostra $n$ tende ao infinito. O número de graus de liberdade da distribuição limite é a diferença entre o número de parâmetros não especificados em $\Theta$ e o número de parâmetros não especificados em $\Theta_{0}$.
+:::
+
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+:::{#exm-exm10}  
+Sejam $X_{1},\ldots,X_{n}$ uma amostra aleatória da variável aleatória $X\sim Poisson(\theta)$. 
+
+* O interesse é testar $H_{0}:\theta=5$ versus $H_{1}:\theta\neq 5$. Pelo 
+
+* O EMV de $\theta$ é dado por $\hat{\theta}=\overline{X}$. Como a hipótese $H_{0}$ só especifica um único valor para $\theta$, o numerador de $\lambda(\mathbf{x})$ é $L(5,\mathbf{x})$ de modo que
+:::
+
+$$\lambda(\mathbf{x})=\frac{e^{-5n}5^{\sum x_{i}}}{\prod x_{i}!}\frac{\prod x_{i}!}{e^{-n\overline{x}}\overline{x}^{\sum x_{i}}}=e^{-n(5-\overline{x})}(5/\overline{x})^{\sum x_{i}}$$
+
+## Testes da Razão de Verossimilhanças Generalizadas (TRVG)
+<hr>
+
+
+* Pelo @thm-thm2 temos que
+
+$$-2\log\lambda(\mathbf{x})=-2\left\{-n(5-\overline{x})+\sum x_{i}\log(5/\overline{x})\right\}.$$
+
+* Portanto a região crítica do TRVG é dada por
+
+$$RC=\{-2[-n(5-\overline{x})+\sum x_{i}\log(5/\overline{x})]\geq c\}$$
+
+onde um valor aproximado para $c$ é obtido de modo que $P(\chi_{1}^{2}\geq c)=0,05$, que requer a utilização da tabela da distribuição qui-quadrado.
+
